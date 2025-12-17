@@ -8,185 +8,200 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body { background-color: #041c2b; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
         .table-container { overflow-x: auto; }
         .border-slate-800 { border-color: rgba(255, 255, 255, 0.1); }
     </style>
 </head>
+
 <body class="text-slate-100 font-sans antialiased">
 
-    <header class="p-8 text-center border-b border-slate-800">
-        <div class="mb-6 flex justify-center">
-            <img src="pickswise-logo-comprido.png" alt="Pickswise Logo" class="h-12 md:h-16 w-auto object-contain">
+<header class="p-8 text-center border-b border-slate-800">
+    <div class="mb-6 flex justify-center">
+        <img src="pickswise-logo-comprido.png" alt="Pickswise Logo" class="h-12 md:h-16 w-auto object-contain">
+    </div>
+    <h1 class="text-4xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+        Performance Marketing Report
+    </h1>
+    <p class="text-slate-400 mt-2 italic text-lg">Q4 Analysis & Strategy Overview</p>
+</header>
+
+<main class="max-w-7xl mx-auto p-6 space-y-16">
+
+<!-- ================= CASINO PERFORMANCE ================= -->
+<section>
+    <div class="flex items-center space-x-4 mb-8">
+        <div class="bg-purple-600 p-3 rounded-lg">
+            <i class="fas fa-dice-five text-2xl text-white"></i>
         </div>
-        
-        <h1 class="text-4xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-            Performance Marketing Report
-        </h1>
-        <p class="text-slate-400 mt-2 italic text-lg">Q4 Analysis & Strategy Overview</p>
-    </header>
+        <h2 class="text-3xl font-bold uppercase tracking-wider">Casino Performance</h2>
+    </div>
 
-    <main class="max-w-7xl mx-auto p-6 space-y-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+        <div class="glass-card p-6 rounded-xl">
+            <p class="text-slate-400 text-sm uppercase">Total Impressions</p>
+            <p class="text-3xl font-bold">81,208</p>
+        </div>
+        <div class="glass-card p-6 rounded-xl border-l-4 border-blue-500">
+            <p class="text-slate-400 text-sm uppercase">Avg. CTR</p>
+            <p class="text-3xl font-bold text-blue-400">13.49%</p>
+        </div>
+        <div class="glass-card p-6 rounded-xl border-l-4 border-green-500">
+            <p class="text-slate-400 text-sm uppercase">Total Signups (Leads)</p>
+            <p class="text-3xl font-bold text-green-400">194</p>
+        </div>
+        <div class="glass-card p-6 rounded-xl border-l-4 border-yellow-500">
+            <p class="text-slate-400 text-sm uppercase">Total FTDs</p>
+            <p class="text-3xl font-bold text-yellow-400">14</p>
+        </div>
+    </div>
 
-        <section>
-            <div class="flex items-center space-x-4 mb-8">
-                <div class="bg-purple-600 p-3 rounded-lg"><i class="fas fa-dice-five text-2xl text-white"></i></div>
-                <h2 class="text-3xl font-bold uppercase tracking-wider">Casino Performance</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-                <div class="glass-card p-6 rounded-xl">
-                    <p class="text-slate-400 text-sm uppercase">Total Impressions</p>
-                    <p class="text-3xl font-bold">81,208</p>
-                </div>
-                <div class="glass-card p-6 rounded-xl border-l-4 border-blue-500">
-                    <p class="text-slate-400 text-sm uppercase">Avg. CTR</p>
-                    <p class="text-3xl font-bold text-blue-400">13.49%</p>
-                </div>
-                <div class="glass-card p-6 rounded-xl border-l-4 border-green-500">
-                    <p class="text-slate-400 text-sm uppercase">Total Signups (Leads)</p>
-                    <p class="text-3xl font-bold text-green-400">194</p>
-                </div>
-                <div class="glass-card p-6 rounded-xl border-l-4 border-yellow-500">
-                    <p class="text-slate-400 text-sm uppercase">Total FTDs</p>
-                    <p class="text-3xl font-bold text-yellow-400">14</p>
-                </div>
-            </div>
-
-            <div class="space-y-6">
-                <div class="flex gap-6 border-l-2 border-slate-700 ml-4 pl-8 relative pb-8">
-                    <div class="absolute -left-[11px] top-0 w-5 h-5 bg-purple-500 rounded-full border-4 border-[#041c2b]"></div>
-                    <div class="flex-1 bg-white/5 p-6 rounded-xl">
-                        <h3 class="text-xl font-bold text-purple-400 mb-2">September: Launch & Expansion</h3>
-                        <p class="text-slate-300 leading-relaxed mb-4">
-                            Implementation of dual campaigns across MI, NJ, WV, and PA focusing on generic casino terms.
-                        </p>
-                        <div class="text-sm font-mono text-slate-400 flex gap-4">
-                            <span>Cost: $8,937.45</span> | <span>Clicks: 3,495</span> | <span>CPA: $2,234.36</span>
-                        </div>
-                    </div>
-                </div>
-                </div>
-        </section>
-
-        <hr class="border-slate-800">
-
-        <section>
-            <div class="flex items-center space-x-4 mb-8">
-                <div class="bg-blue-600 p-3 rounded-lg"><i class="fas fa-football-ball text-2xl text-white"></i></div>
-                <h2 class="text-3xl font-bold uppercase tracking-wider text-blue-400">Sportsbook Performance</h2>
-            </div>
-
-            <div class="bg-blue-900/10 border border-blue-800/30 rounded-2xl p-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-4 text-white">Current Status: Learning Phase</h3>
-                        <p class="text-slate-300">Launched specialized campaigns targeting IN, MI, NJ, PA, TN, and VA.</p>
-                        <ul class="mt-4 space-y-3 text-slate-300">
-                            <li><i class="fas fa-check text-blue-500 mr-2"></i> <strong>Sports Generic:</strong> Broad reach.</li>
-                        </ul>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
-                            <p class="text-xs text-slate-400 uppercase">Impressions</p>
-                            <p class="text-2xl font-bold">956</p>
-                        </div>
-                        <div class="bg-white/5 p-4 rounded-lg text-center border border-white/5">
-                            <p class="text-xs text-slate-400 uppercase">CTR</p>
-                            <p class="text-2xl font-bold text-blue-400">9.10%</p>
-                        </div>
-                    </div>
+    <!-- Timeline -->
+    <div class="space-y-6">
+        <div class="flex gap-6 border-l-2 border-slate-700 ml-4 pl-8 relative pb-8">
+            <div class="absolute -left-[11px] top-0 w-5 h-5 bg-purple-500 rounded-full border-4 border-[#041c2b]"></div>
+            <div class="flex-1 bg-white/5 p-6 rounded-xl">
+                <h3 class="text-xl font-bold text-purple-400 mb-2">September: Launch & Expansion</h3>
+                <p class="text-slate-300 leading-relaxed mb-4">
+                    Implementation of dual campaigns across MI, NJ, WV, and PA focusing on generic casino terms and slots/spins.
+                    Initial optimizations included pausing underperforming keywords and stabilizing CPA.
+                </p>
+                <div class="text-sm font-mono text-slate-400 flex gap-4">
+                    <span>Cost: $8,937.45</span> | <span>Clicks: 3,495</span> | <span>CPA: $2,234.36</span>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <hr class="border-slate-800">
-
-        <section>
-            <div class="flex items-center space-x-4 mb-8">
-                <div class="bg-emerald-600 p-3 rounded-lg"><i class="fas fa-chart-line text-2xl text-white"></i></div>
-                <h2 class="text-3xl font-bold uppercase tracking-wider">Campaign & Regional Analysis</h2>
-            </div>
-            
-            <p class="text-slate-400 mb-8">Detailed breakdown of performance efficiency across active states and specific campaign types.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-emerald-900/20 border-l-4 border-emerald-500 p-6 rounded-r-xl">
-                    <h3 class="text-xl font-bold text-emerald-400 mb-4">Top Performers: MI & PA</h3>
-                    <p class="text-slate-300 mb-4">Campaigns in <strong>Pennsylvania</strong> and <strong>Michigan</strong> demonstrate superior efficiency.</p>
-                    <ul class="space-y-2 text-sm text-slate-300">
-                        <li><i class="fas fa-arrow-up text-emerald-500 mr-2"></i><strong>MI - Generic:</strong> 51.61% conv. rate.</li>
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i><strong>Trend:</strong> Costs per conversion below $7.00.</li>
-                    </ul>
-                </div>
-
-                <div class="bg-red-900/20 border-l-4 border-red-500 p-6 rounded-r-xl">
-                    <h3 class="text-xl font-bold text-red-400 mb-4">Regional Challenge: NJ</h3>
-                    <p class="text-slate-300 mb-4"><strong>New Jersey</strong> presents the highest acquisition costs across the portfolio.</p>
-                    <ul class="space-y-2 text-sm text-slate-300">
-                        <li><i class="fas fa-exclamation-triangle text-red-500 mr-2"></i><strong>NJ-Casinos:</strong> CPA of $22.55 in Sept.</li>
-                        <li><i class="fas fa-arrow-down text-red-500 mr-2"></i><strong>Gap:</strong> NJ costs are nearly 3x higher than benchmarks.</li>
-                    </ul>
+        <div class="flex gap-6 border-l-2 border-slate-700 ml-4 pl-8 relative pb-8">
+            <div class="absolute -left-[11px] top-0 w-5 h-5 bg-green-500 rounded-full border-4 border-[#041c2b]"></div>
+            <div class="flex-1 bg-white/5 p-6 rounded-xl">
+                <h3 class="text-xl font-bold text-green-400 mb-2">October: Efficiency & Scaling</h3>
+                <p class="text-slate-300 leading-relaxed mb-4">
+                    Paused WV campaigns due to low ROI. Scaled MI, NJ, and PA with new generic campaigns focusing on non-bonus intent users.
+                    Resulted in the <strong>highest conversion rate (34.97%)</strong> and 104 signups.
+                </p>
+                <div class="text-sm font-mono text-slate-400 flex gap-4">
+                    <span>Cost: $8,704.96</span> | <span>FTDs: 5</span> | <span>CTR: 14.90%</span>
                 </div>
             </div>
+        </div>
 
-            <div class="mt-8 p-4 bg-white/5 border border-dashed border-slate-600 rounded-lg text-slate-400 italic text-center">
-                <strong>Strategic Observation:</strong> In December, "PA-Spins & Slots" suggested a need for keyword refinement due to high CPA ($14.65).
-            </div>
-        </section>
-
-        <hr class="border-slate-800">
-
-        <section>
-            <div class="flex items-center space-x-4 mb-8">
-                <div class="bg-amber-600 p-3 rounded-lg"><i class="fas fa-key text-2xl text-white"></i></div>
-                <h2 class="text-3xl font-bold uppercase tracking-wider">Keyword Performance Insights</h2>
-            </div>
-
-            <div class="glass-card rounded-2xl overflow-hidden">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="bg-white/5 text-slate-400 uppercase text-xs tracking-widest">
-                            <th class="p-4 border-b border-white/10">Keyword Category</th>
-                            <th class="p-4 border-b border-white/10">Performance Metric</th>
-                            <th class="p-4 border-b border-white/10">Strategic Status</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sm">
-                        <tr class="border-b border-white/5">
-                            <td class="p-4 font-bold text-slate-200">"Free Spins"</td>
-                            <td class="p-4">339.23 conv. in Oct ($7.58 CPA)</td>
-                            <td class="p-4"><span class="px-2 py-1 bg-amber-500/20 text-amber-400 rounded text-xs font-bold">High Volume / Low FTD</span></td>
-                        </tr>
-                        <tr class="border-b border-white/5 bg-white/5">
-                            <td class="p-4 font-bold text-slate-200">"Casino Bonus"</td>
-                            <td class="p-4">$644.16 spend in Dec</td>
-                            <td class="p-4"><span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded text-xs font-bold">Consistent Performer</span></td>
-                        </tr>
-                        <tr class="border-b border-white/5">
-                            <td class="p-4 font-bold text-slate-200">"Casino Online"</td>
-                            <td class="p-4">$19.42 cost per conv.</td>
-                            <td class="p-4"><span class="px-2 py-1 bg-red-500/20 text-red-400 rounded text-xs font-bold">Inefficient</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="mt-6 bg-amber-900/30 p-6 rounded-xl border-l-4 border-amber-500">
-                <h4 class="text-amber-400 font-bold mb-2 flex items-center">
-                    <i class="fas fa-triangle-exclamation mr-2"></i> Important Lead Quality Note
-                </h4>
-                <p class="text-slate-300 text-sm">
-                    Keywords like "free spins" drive clicks, but <strong>not FTDs</strong>. These represent intent for free play rather than real revenue generation.
+        <div class="flex gap-6 border-l-2 border-slate-700 ml-4 pl-8 relative pb-8">
+            <div class="absolute -left-[11px] top-0 w-5 h-5 bg-yellow-500 rounded-full border-4 border-[#041c2b]"></div>
+            <div class="flex-1 bg-white/5 p-6 rounded-xl">
+                <h3 class="text-xl font-bold text-yellow-400 mb-2">November: Strategic Shift</h3>
+                <p class="text-slate-300 leading-relaxed mb-4">
+                    Budget consolidated to €300 daily. Pivoted away from "free spins" and "no deposit" keywords to test FTD quality.
+                    This led to a <strong>CPA reduction to $598.02</strong>, the lowest in the period.
                 </p>
             </div>
-        </section>
+        </div>
 
-        </main>
+        <div class="flex gap-6 border-l-2 border-slate-700 ml-4 pl-8 relative">
+            <div class="absolute -left-[11px] top-0 w-5 h-5 bg-purple-500 rounded-full border-4 border-[#041c2b]"></div>
+            <div class="flex-1 bg-white/5 p-6 rounded-xl border border-purple-500/30">
+                <h3 class="text-xl font-bold text-purple-400 mb-2">December: Lead Gen Innovation</h3>
+                <p class="text-slate-300 leading-relaxed">
+                    Development of a dedicated <strong>Lead Gen Landing Page</strong> to capture user contacts
+                    and activate multi-day email nurturing flows across all active states.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <footer class="p-12 text-center text-slate-500 text-sm">
-        © 2025 Clever Advertising &bull; All rights reserved &bull; Confidential report prepared for Pickswise
-    </footer>
+<hr class="border-slate-800">
 
+<!-- ================= INSIGHTS & ANALYSIS ================= -->
+<section>
+    <div class="flex items-center space-x-4 mb-8">
+        <div class="bg-emerald-600 p-3 rounded-lg">
+            <i class="fas fa-chart-line text-2xl text-white"></i>
+        </div>
+        <h2 class="text-3xl font-bold uppercase tracking-wider text-emerald-400">
+            Insights & Performance Analysis
+        </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div class="glass-card p-6 rounded-xl border-l-4 border-green-500">
+            <h3 class="text-xl font-bold text-green-400 mb-3">Campaign & Region Efficiency</h3>
+            <p class="text-slate-300 mb-4">
+                Campaigns in <strong>Michigan (MI)</strong> and <strong>Pennsylvania (PA)</strong> consistently outperform
+                <strong>New Jersey (NJ)</strong> in efficiency and cost control.
+            </p>
+            <ul class="space-y-3 text-slate-300">
+                <li><i class="fas fa-arrow-up text-green-400 mr-2"></i>
+                    <strong>Top Performer:</strong> In October, <em>MI – Generic Casino</em> reached a
+                    <strong>51.61% conversion rate</strong> with a <strong>$3.98 cost per conversion</strong>.
+                </li>
+                <li><i class="fas fa-arrow-down text-red-400 mr-2"></i>
+                    <strong>NJ Weakness:</strong> In September, <em>NJ – Casinos</em> reached
+                    <strong>$22.55 CPA</strong>, while PA and MI remained below <strong>$7.00</strong>.
+                </li>
+            </ul>
+        </div>
+
+        <div class="glass-card p-6 rounded-xl border-l-4 border-yellow-500">
+            <h3 class="text-xl font-bold text-yellow-400 mb-3">Spins & Slots Segment</h3>
+            <ul class="space-y-3 text-slate-300">
+                <li><i class="fas fa-coins text-yellow-400 mr-2"></i>
+                    In December, <em>PA – Spins & Slots</em> became the highest spend campaign
+                    (<strong>$981.32</strong>).
+                </li>
+                <li><i class="fas fa-exclamation-triangle text-orange-400 mr-2"></i>
+                    Performance was inefficient with a <strong>$14.65 cost per conversion</strong>.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="glass-card p-6 rounded-xl border-l-4 border-blue-500">
+            <h3 class="text-xl font-bold text-blue-400 mb-3">Keyword Performance Drivers</h3>
+            <ul class="space-y-3 text-slate-300">
+                <li><strong>"free spins":</strong> 339.23 conversions in October with $7.58 CPA.
+                    November conversion rate reached <strong>25.95%</strong>.
+                </li>
+                <li><strong>"casino bonus":</strong> Most consistent keyword and highest spend in December
+                    (<strong>$644.16</strong>).
+                </li>
+            </ul>
+        </div>
+
+        <div class="glass-card p-6 rounded-xl border-l-4 border-red-500">
+            <h3 class="text-xl font-bold text-red-400 mb-3">Quality & Inefficiencies</h3>
+            <ul class="space-y-3 text-slate-300">
+                <li>
+                    Keywords containing <strong>"free spins"</strong> and <strong>"no deposit"</strong>
+                    generate LP clicks only, <strong>not real FTDs</strong>.
+                </li>
+                <li>
+                    <strong>Inefficient keywords:</strong>
+                    <ul class="ml-6 list-disc">
+                        <li>"casino online" – $19.42 CPA (September)</li>
+                        <li>"free casino games" – $68.84 CPA (September)</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Generic Casino</strong> ad groups in MI and PA delivered excellent results in October,
+                    confirming strong non-bonus intent.
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<hr class="border-slate-800">
+
+<footer class="p-12 text-center text-slate-500 text-sm">
+    © 2025 Clever Advertising • All rights reserved • Confidential report prepared for Pickswise
+</footer>
+
+</main>
 </body>
 </html>
