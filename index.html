@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Relatório Campanhas Programáticas 2025</title>
+  <title>Relatório Campanhas Programáticas 2025 – Betway Africa</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f4f4f9;
       color: #333;
       scroll-behavior: smooth;
@@ -23,10 +24,24 @@
       z-index: 1000;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2em;
+    header h1 { margin: 0; font-size: 2em; }
+    header p { margin-top: 5px; font-size: 1em; }
+
+    nav {
+      background-color: #1e3a8a;
+      padding: 10px 0;
+      text-align: center;
     }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover { color: #facc15; }
 
     section {
       max-width: 1200px;
@@ -37,74 +52,51 @@
     h2 {
       color: #1e3a8a;
       font-size: 1.8em;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       border-bottom: 3px solid #2563eb;
       padding-bottom: 5px;
     }
 
-    h3 {
-      color: #3b82f6;
-      margin-top: 20px;
-      margin-bottom: 10px;
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
     }
 
-    p {
+    .card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover { transform: translateY(-5px); }
+
+    .card h3 {
       margin-bottom: 15px;
-      line-height: 1.5;
+      color: #2563eb;
     }
 
-    .highlight-box {
-      background-color: #facc15;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
+    .highlight { color: #facc15; font-weight: bold; }
+    .critical { color: #f87171; font-weight: bold; }
 
-    .critical-box {
-      background-color: #f87171;
-      color: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
-
+    .table-scroll { overflow-x:auto; margin-bottom:40px; }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 20px;
       min-width: 600px;
     }
-
     th, td {
-      border: 1px solid #ccc;
       padding: 10px;
+      border: 1px solid #ccc;
       text-align: left;
     }
+    th { background-color: #2563eb; color: #fff; }
+    tr:nth-child(even) { background-color: #e0e7ff; }
 
-    th {
-      background-color: #2563eb;
-      color: #fff;
-    }
-
-    tr:nth-child(even) {
-      background-color: #e0e7ff;
-    }
-
-    .table-scroll {
-      overflow-x: auto;
-    }
-
-    .graph-placeholder {
-      background-color: #e0e7ff;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      margin-bottom: 30px;
-      font-style: italic;
-      color: #1e3a8a;
-    }
+    canvas { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 40px; }
 
     footer {
       text-align: center;
@@ -115,7 +107,7 @@
 
     @media (max-width: 768px) {
       h2 { font-size: 1.5em; }
-      h3 { font-size: 1.2em; }
+      .cards { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -123,30 +115,58 @@
 
 <header>
   <h1>Relatório Campanhas Programáticas 2025</h1>
-  <p>Análise de performance das campanhas In-App via Kayzen/DV360</p>
+  <p>Betway Africa – Campanhas In-App via Kayzen/DV360</p>
 </header>
 
-<section>
+<nav>
+  <a href="#summary">Resumo</a>
+  <a href="#os">OS Performance</a>
+  <a href="#apps">Top Apps</a>
+  <a href="#geography">Geografia & CPP</a>
+  <a href="#analysis">Análise</a>
+</nav>
+
+<section id="summary">
   <h2>Resumo Executivo</h2>
   <p>O desempenho global em 2025 apresentou dois períodos distintos: fase de exploração e fase de otimização pós-tracking (6 de agosto).</p>
   <p>iOS foi o motor de conversões, com destaque para África do Sul. Android enfrentou problemas críticos de atribuição.</p>
   <p>Investimento pré-6 de agosto é considerado "aprendizado" ou desperdiçado.</p>
-  <div class="highlight-box">
-    Próximos passos: ajustar lances em Ghana e Tanzânia, resolver tracking em Android
+  <div class="cards">
+    <div class="card">
+      <h3>Próximos Passos</h3>
+      <p>Ajustar lances em <strong>Ghana</strong> e <strong>Tanzânia</strong></p>
+      <p>Resolver tracking em <strong>Android</strong></p>
+    </div>
+    <div class="card">
+      <h3>Investimento Desperdiçado</h3>
+      <p>Android: 4.311€ sem FTDs</p>
+      <p>Pré-tracking iOS: ~2.800€ sem dados acionáveis</p>
+    </div>
   </div>
 </section>
 
-<section>
+<section id="os">
   <h2>Performance por Sistema Operativo</h2>
-  <h3>iOS (Performance Core)</h3>
-  <p>Responsável por todas as conversões rastreadas, melhoria significativa após agosto, ROI comprovado.</p>
-  <h3>Android (Atribuição Nula)</h3>
-  <p>100% do investimento considerado ineficiente. Consumo de 4.311€ sem FTDs.</p>
-  <h3>Eficiência de Volume</h3>
-  <p>iOS em Ghana e África do Sul atingiu mais de 67 milhões de impressões com CPP próximo do target.</p>
+  <div class="cards">
+    <div class="card">
+      <h3>iOS (Performance Core)</h3>
+      <p>Responsável por todas as conversões rastreadas, ROI comprovado</p>
+      <p>Eficiência pós-agosto aumentou significativamente</p>
+    </div>
+    <div class="card">
+      <h3>Android (Atribuição Nula)</h3>
+      <p>100% do investimento considerado ineficiente</p>
+      <p>Consumo de 4.311€ sem FTDs</p>
+    </div>
+    <div class="card">
+      <h3>Volume de Impressões</h3>
+      <p>iOS em África do Sul: >67M impressões, CPP próximo do target</p>
+      <p>Ghana também apresenta bom volume, com necessidade de ajuste de lances</p>
+    </div>
+  </div>
 </section>
 
-<section>
+<section id="apps">
   <h2>Top Performing Apps</h2>
   <div class="table-scroll">
     <table>
@@ -179,8 +199,8 @@
   </div>
 </section>
 
-<section>
-  <h2>Geographic & CPP Analysis</h2>
+<section id="geography">
+  <h2>Geografia & CPP</h2>
   <div class="table-scroll">
     <table>
       <thead>
@@ -195,33 +215,100 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>South Africa</td><td>iOS</td><td>33.379,57€</td><td>743</td><td>44,93€</td><td>40,00€</td><td class="highlight-box">Ajustar (-11%)</td></tr>
-        <tr><td>Ghana</td><td>iOS</td><td>5.408,55€</td><td>441</td><td>12,26€</td><td>5,00€</td><td class="critical-box">Fora do Target</td></tr>
-        <tr><td>Tanzania</td><td>iOS</td><td>1.196,53€</td><td>135</td><td>8,86€</td><td>5,00€</td><td class="highlight-box">Ajustar (-43%)</td></tr>
-        <tr><td>Mozambique</td><td>iOS</td><td>152,69€</td><td>3</td><td>50,90€</td><td>20,00€</td><td class="critical-box">Fora do Target</td></tr>
-        <tr><td>Malawi</td><td>iOS</td><td>74,89€</td><td>1</td><td>74,89€</td><td>20,00€</td><td class="critical-box">Volume Baixo</td></tr>
-        <tr><td>Nigeria</td><td>iOS</td><td>671,82€</td><td>1</td><td>671,82€</td><td>20,00€</td><td class="critical-box">Crítico</td></tr>
-        <tr><td>Zambia</td><td>iOS</td><td>126,04€</td><td>0</td><td>N/A</td><td>20,00€</td><td class="critical-box">Sem Conversão</td></tr>
+        <tr><td>South Africa</td><td>iOS</td><td>33.379,57€</td><td>743</td><td>44,93€</td><td>40,00€</td><td class="highlight">Ajustar (-11%)</td></tr>
+        <tr><td>Ghana</td><td>iOS</td><td>5.408,55€</td><td>441</td><td>12,26€</td><td>5,00€</td><td class="critical">Fora do Target</td></tr>
+        <tr><td>Tanzania</td><td>iOS</td><td>1.196,53€</td><td>135</td><td>8,86€</td><td>5,00€</td><td class="highlight">Ajustar (-43%)</td></tr>
+        <tr><td>Mozambique</td><td>iOS</td><td>152,69€</td><td>3</td><td>50,90€</td><td>20,00€</td><td class="critical">Fora do Target</td></tr>
+        <tr><td>Malawi</td><td>iOS</td><td>74,89€</td><td>1</td><td>74,89€</td><td>20,00€</td><td class="critical">Volume Baixo</td></tr>
+        <tr><td>Nigeria</td><td>iOS</td><td>671,82€</td><td>1</td><td>671,82€</td><td>20,00€</td><td class="critical">Crítico</td></tr>
+        <tr><td>Zambia</td><td>iOS</td><td>126,04€</td><td>0</td><td>N/A</td><td>20,00€</td><td class="critical">Sem Conversão</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="graph-placeholder">
-    Gráfico sugerido: Performance vs. Target (visualização de CPP por país)
-  </div>
+  <canvas id="cppChart" width="400" height="200"></canvas>
+  <canvas id="ftdChart" width="400" height="200"></canvas>
 </section>
 
-<section>
+<section id="analysis">
   <h2>Comentário Analítico</h2>
-  <p><strong>África do Sul:</strong> Mais madura, desvio de 11% aceitável, otimizar criativos</p>
-  <p><strong>Ghana & Tanzânia:</strong> Maior potencial de escala, CPP acima do target, recomenda-se bidding agressivo e exclusão de apps com CPP > 15€</p>
-  <p><strong>Desperdício de orçamento:</strong> Android e pré-tracking iOS representam perda de eficiência, pausar Android até validação técnica</p>
-  <p><strong>Eficiência geográfica:</strong> Nigéria e Malawi apresentam custos proibitivos, avaliar inventário e lances mínimos</p>
+  <div class="cards">
+    <div class="card">
+      <h3>África do Sul</h3>
+      <p>Mais madura, desvio de 11% aceitável</p>
+      <p>Otimizar criativos para reduzir CPA</p>
+    </div>
+    <div class="card">
+      <h3>Ghana & Tanzânia</h3>
+      <p>Maior potencial de escala</p>
+      <p>CPP acima do target: aplicar bidding agressivo e excluir apps com CPP > 15€</p>
+    </div>
+    <div class="card">
+      <h3>Desperdício de Orçamento</h3>
+      <p>Android e pré-tracking iOS representam perda de eficiência</p>
+      <p>Pausar Android até validação técnica</p>
+    </div>
+    <div class="card">
+      <h3>Eficiência Geográfica</h3>
+      <p>Nigéria e Malawi: custos proibitivos</p>
+      <p>Avaliar inventário e lances mínimos</p>
+    </div>
+  </div>
 </section>
 
 <footer>
   Relatório Campanhas Programáticas 2025 – Betway Africa
 </footer>
+
+<script>
+  const countries = ["South Africa","Ghana","Tanzania","Mozambique","Malawi","Nigeria","Zambia"];
+  const cpp = [44.93,12.26,8.86,50.90,74.89,671.82,0];
+  const cppTarget = [40,5,5,20,20,20,20];
+  const ftds = [743,441,135,3,1,1,0];
+
+  const ctx1 = document.getElementById('cppChart').getContext('2d');
+  const cppChart = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: countries,
+      datasets: [
+        {
+          label: 'CPP Atual (€)',
+          data: cpp,
+          backgroundColor: '#2563eb'
+        },
+        {
+          label: 'CPP Target (€)',
+          data: cppTarget,
+          backgroundColor: '#facc15'
+        }
+      ]
+    },
+    options: {
+      responsive:true,
+      plugins: { legend:{ position:'top' } },
+      scales: { y:{ beginAtZero:true } }
+    }
+  });
+
+  const ctx2 = document.getElementById('ftdChart').getContext('2d');
+  const ftdChart = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: countries,
+      datasets: [{
+        label: 'FTDs',
+        data: ftds,
+        backgroundColor: '#3b82f6'
+      }]
+    },
+    options: {
+      responsive:true,
+      plugins: { legend:{ display:false } },
+      scales: { y:{ beginAtZero:true } }
+    }
+  });
+</script>
 
 </body>
 </html>
