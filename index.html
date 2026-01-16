@@ -237,20 +237,17 @@
     </h2>
 
     <div class="grid md:grid-cols-3 gap-12">
-        
         <div class="space-y-6">
             <div class="border-l-2 border-[#D4AF37] pl-4">
                 <h4 class="text-white font-bold uppercase text-sm tracking-widest">Conceito 01</h4>
                 <p class="text-gray-500 text-xs">Roleta de Ofertas & Interatividade</p>
             </div>
             <div class="space-y-4">
-                <div class="casino-card rounded-xl overflow-hidden group">
-                    <img src="LP1-1.png" alt="LP Roleta Estilizada" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity">
-                    <p class="p-3 text-[10px] text-center text-gray-500 uppercase">Variação Premium</p>
+                <div class="casino-card rounded-xl overflow-hidden group cursor-pointer" onclick="openLightbox('LP1-1.jpg')">
+                    <img src="LP1-1.png" alt="LP Roleta Estilizada" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-all group-hover:scale-105">
                 </div>
-                <div class="casino-card rounded-xl overflow-hidden group">
-                    <img src="LP1-2.png" alt="LP Roleta Web" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity">
-                    <p class="p-3 text-[10px] text-center text-gray-500 uppercase">Variação Web Standard</p>
+                <div class="casino-card rounded-xl overflow-hidden group cursor-pointer" onclick="openLightbox('LP1-2.jpg')">
+                    <img src="LP1-2.png" alt="LP Roleta Web" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-all group-hover:scale-105">
                 </div>
             </div>
         </div>
@@ -261,13 +258,11 @@
                 <p class="text-gray-500 text-xs">Seleção de Ofertas High-Intent</p>
             </div>
             <div class="space-y-4">
-                <div class="casino-card rounded-xl overflow-hidden group">
-                    <img src="LP2-1.png" alt="LP Ofertas Estilizada" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity">
-                    <p class="p-3 text-[10px] text-center text-gray-500 uppercase">Variação Dark Gold</p>
+                <div class="casino-card rounded-xl overflow-hidden group cursor-pointer" onclick="openLightbox('LP2-1.jpg')">
+                    <img src="LP2-1.png" alt="LP Ofertas Estilizada" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-all group-hover:scale-105">
                 </div>
-                <div class="casino-card rounded-xl overflow-hidden group">
-                    <img src="LP2-2.png" alt="LP Ofertas Web" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity">
-                    <p class="p-3 text-[10px] text-center text-gray-500 uppercase">Variação Minimalist</p>
+                <div class="casino-card rounded-xl overflow-hidden group cursor-pointer" onclick="openLightbox('LP2-2.png')">
+                    <img src="LP2-2.png" alt="LP Ofertas Web" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-all group-hover:scale-105">
                 </div>
             </div>
         </div>
@@ -278,19 +273,39 @@
                 <p class="text-gray-500 text-xs">Captura de Leads & CRM</p>
             </div>
             <div class="space-y-4">
-                <div class="casino-card rounded-xl overflow-hidden group">
-                    <img src="LP3-1.png" alt="LP Lead Gen Premium" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity">
-                    <p class="p-3 text-[10px] text-center text-gray-500 uppercase">Variação de Conversão</p>
+                <div class="casino-card rounded-xl overflow-hidden group cursor-pointer" onclick="openLightbox('LP3-1.jpg')">
+                    <img src="LP3-1.png" alt="LP Lead Gen Premium" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-all group-hover:scale-105">
                 </div>
-                <div class="casino-card rounded-xl overflow-hidden group">
-                    <img src="LP3-2.png" alt="LP Lead Gen Clean" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity">
-                    <p class="p-3 text-[10px] text-center text-gray-500 uppercase">Variação Direta</p>
+                <div class="casino-card rounded-xl overflow-hidden group cursor-pointer" onclick="openLightbox('LP3-2.png')">
+                    <img src="LP3-2.png" alt="LP Lead Gen Clean" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-all group-hover:scale-105">
                 </div>
             </div>
         </div>
-
     </div>
 </section>
+
+<div id="lightbox" class="fixed inset-0 z-[100] hidden bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm cursor-zoom-out" onclick="closeLightbox()">
+    <span class="absolute top-10 right-10 text-white text-4xl font-light">&times;</span>
+    <img id="lightbox-img" src="" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl border border-white/10">
+</div>
+
+<script>
+    function openLightbox(src) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox').classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Impede scroll ao ver imagem
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.add('hidden');
+        document.body.style.overflow = 'auto'; // Devolve o scroll
+    }
+
+    // Fechar com a tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+</script>
 
   <footer class="py-12 bg-black text-center border-t border-gray-900">
     <p class="text-gray-600 text-[10px] uppercase tracking-[0.3em]">
