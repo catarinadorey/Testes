@@ -18,6 +18,7 @@
             --border: #30363D;
             --success: #238636;
             --danger: #F85149;
+            --gold: #D4AF37;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -60,7 +61,6 @@
             margin-left: 20px;
         }
 
-        /* Cards Estilo Glassmorphism Suave */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
 
         .card { 
@@ -83,24 +83,23 @@
         ul li strong { color: var(--text-main); }
         ul li::before { content: '⚡'; color: var(--accent-cyan); font-size: 0.8rem; margin-top: 4px; }
 
-        /* Tabela Dark */
         .table-container { 
             background: var(--card-bg);
             border-radius: 20px; 
             border: 1px solid var(--border);
             overflow: hidden;
+            margin-bottom: 20px;
         }
         table { width: 100%; border-collapse: collapse; }
         th { background: #1C2128; color: var(--accent-blue); text-align: left; padding: 20px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
         td { padding: 20px; border-top: 1px solid var(--border); color: var(--text-dim); }
         tr:hover td { color: white; background: #1C2128; }
 
-        /* Badges */
         .badge { padding: 5px 15px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; }
         .badge-red { background: rgba(248, 81, 73, 0.1); color: var(--danger); border: 1px solid var(--danger); }
         .badge-green { background: rgba(35, 134, 54, 0.1); color: var(--success); border: 1px solid var(--success); }
+        .badge-gold { background: rgba(212, 175, 55, 0.1); color: var(--gold); border: 1px solid var(--gold); }
 
-        /* Caixas de Estratégia */
         .strategy-box { 
             background: linear-gradient(90deg, #161B22 0%, #0B0E14 100%);
             border-left: 4px solid var(--accent-blue); 
@@ -112,18 +111,8 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .chart-box {
-            background: #0D1117;
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 20px;
-            border: 1px dashed var(--border);
-        }
-
-        .bar-wrap { margin-bottom: 15px; }
-        .bar-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 8px; color: var(--text-dim); }
-        .bar-bg { background: #30363D; height: 8px; border-radius: 4px; overflow: hidden; }
-        .bar-fill { height: 100%; background: var(--accent-blue); box-shadow: 0 0 15px var(--accent-blue); }
+        .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .tag { background: #30363D; color: var(--text-main); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; border: 1px solid var(--border); }
 
         footer { text-align: center; margin-top: 6rem; padding: 3rem; color: var(--text-dim); font-size: 0.8rem; }
     </style>
@@ -145,86 +134,100 @@
             <div class="card">
                 <h3>O Modelo Financeiro</h3>
                 <ul>
-                    <li><strong>Contratos Binários:</strong> Liquidação em $1 ou $0 baseada em fatos reais.</li>
-                    <li><strong>Regulação CFTC:</strong> Licença idêntica às maiores bolsas de futuros do mundo.</li>
+                    <li><strong>Bolsa de Derivativos:</strong> Regulada pela CFTC, operando com contratos binários.</li>
                     <li><strong>Transparência:</strong> Preços definidos pelo mercado, sem margem da "casa".</li>
+                    <li><strong>Natureza:</strong> Trading e descoberta de preços, não apenas jogo.</li>
                 </ul>
-                <span class="badge badge-green">OPERADOR REGULADO</span>
+                <span class="badge badge-green">OPERADOR REGULADO EUA</span>
             </div>
             <div class="card">
                 <h3>Barreiras de Entrada</h3>
                 <ul>
-                    <li><strong>Residência:</strong> Exclusivo para residentes legais nos Estados Unidos.</li>
-                    <li><strong>KYC Rigoroso:</strong> Verificação de identidade sob normas AML federais.</li>
-                    <li><strong>Fronteira Geográfica:</strong> Operação limitada à jurisdição americana.</li>
+                    <li><strong>Geografia:</strong> Restrito a residentes legais nos EUA.</li>
+                    <li><strong>Verificação:</strong> KYC rigoroso e contas bancárias americanas obrigatórias.</li>
+                    <li><strong>Compliance:</strong> Vedado o uso de VPN para acesso internacional.</li>
                 </ul>
-                <span class="badge badge-red">ACESSO RESTRITO EUA</span>
+                <span class="badge badge-red">ACESSO RESTRITO</span>
             </div>
         </div>
     </section>
 
     <section>
-        <h2><i class="fa-solid fa-layer-group"></i> Ecossistema de Previsão</h2>
+        <h2><i class="fa-solid fa-vial"></i> Primeira Fase de Testes: Google Ads</h2>
+        <p style="color: var(--text-dim); margin-bottom: 2rem;">
+            O plano de testes divide-se em três pilares principais baseados no volume de pesquisa e nichos de mercado. 
+            O foco inicial é o mercado americano (residentes), respeitando as restrições de UA global.
+        </p>
+
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>Ativo</th>
-                        <th>Kalshi (EUA)</th>
-                        <th>Polymarket (Global)</th>
-                        <th>Betting Tradicional</th>
+                        <th>Campanha</th>
+                        <th>Grupo de Anúncios</th>
+                        <th>Keywords Principais (Exemplos)</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Natureza</strong></td>
-                        <td>Bolsa de Derivativos </td>
-                        <td>Cripto / Grey Market </td>
-                        <td>Entretenimento / Jogo </td>
+                        <td><strong>Kalshi - Prediction Markets</strong></td>
+                        <td>General / Concept</td>
+                        <td>
+                            <div class="tag-list">
+                                <span class="tag">prediction markets</span>
+                                <span class="tag">prediction stock market</span>
+                                <span class="tag">kalshi meaning</span>
+                            </div>
+                        </td>
+                        <td><span class="badge badge-gold">HIGH VOLUME</span></td>
                     </tr>
                     <tr>
-                        <td><strong>Eleições</strong></td>
-                        <td>Permitido e Regulado </td>
-                        <td>Volume Massivo </td>
-                        <td>Geralmente Proibido </td>
+                        <td><strong>Kalshi - Political Betting</strong></td>
+                        <td>Political / Presidential</td>
+                        <td>
+                            <div class="tag-list">
+                                <span class="tag">bet on politics</span>
+                                <span class="tag">presidential odds</span>
+                                <span class="tag">political gambling site</span>
+                            </div>
+                        </td>
+                        <td><span class="badge badge-green">CORE INTEREST</span></td>
                     </tr>
                     <tr>
-                        <td><strong>Confiabilidade</strong></td>
-                        <td>Máxima (Auditada) </td>
-                        <td>Variável </td>
-                        <td>Dependente do Operador </td>
+                        <td><strong>Betting Marketplace</strong></td>
+                        <td>Real-Life Events</td>
+                        <td>
+                            <div class="tag-list">
+                                <span class="tag">bet on the weather</span>
+                                <span class="tag">event betting</span>
+                                <span class="tag">bet on anything app</span>
+                            </div>
+                        </td>
+                        <td><span class="badge badge-gold">NICHE TEST</span></td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <div class="strategy-box">
+            <h3>Análise de Volume e Intenção</h3>
+            <p style="color: var(--text-dim); font-size: 0.95rem;">
+                As keywords <strong>"prediction markets"</strong> e <strong>"prediction stock market"</strong> lideram o volume com mais de 8.000 a 9.000 pesquisas mensais cada. 
+                A estratégia passará por posicionar a Pickswise como autoridade nestes termos "Evergreen".
+            </p>
+        </div>
     </section>
 
     <section>
-        <h2><i class="fa-solid fa-rocket"></i> Estratégia Google Ads</h2>
-        
+        <h2><i class="fa-solid fa-rocket"></i> Estratégia de UA Pickswise</h2>
         <div class="strategy-box">
             <h3>Fase 1: Captura Informacional</h3>
-            <p style="color: var(--text-dim); margin-bottom: 15px;">Focar em termos de busca que evitam o bloqueio de 'gambling' e atraem investidores.</p>
+            <p style="color: var(--text-dim); margin-bottom: 15px;">Evitar o bloqueio de 'gambling' tradicional ao focar no "Market Sentiment".</p>
             <ul>
-                <li><strong>Keywords:</strong> "Probabilidade Inflação EUA", "Forecast Eleições 2026", "Market Sentiment".</li>
-                <li><strong>CTA:</strong> "Veja o que o mercado está prevendo" em vez de "Aposte agora".</li>
+                <li><strong>Abordagem:</strong> "O que os mercados dizem" em vez de incentivos diretos de bónus.</li>
+                <li><strong>Keywords Adicionais:</strong> "Election forecast", "Probability of recession".</li>
             </ul>
-        </div>
-
-        <div class="strategy-box">
-            <h3>Fase 2: Autoridade Pickswise</h3>
-            <p style="color: var(--text-dim);">Utilizar os dados da Kalshi para criar conteúdo que as casas de apostas não podem replicar.</p>
-            
-            <div class="chart-box">
-                <div class="bar-wrap">
-                    <div class="bar-label"><span>Credibilidade do Conteúdo</span><span>95%</span></div>
-                    <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
-                </div>
-                <div class="bar-wrap">
-                    <div class="bar-label"><span>Intenção de Conversão (High Intent)</span><span>70%</span></div>
-                    <div class="bar-bg"><div class="bar-fill" style="width: 70%; background: var(--accent-cyan);"></div></div>
-                </div>
-            </div>
         </div>
     </section>
 
