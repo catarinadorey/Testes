@@ -8,15 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #002349;
-            --secondary: #0052FF;
-            --accent: #00D1FF;
-            --success: #27AE60;
-            --warning: #F2C94C;
-            --danger: #EB5757;
-            --bg: #F8FAFC;
-            --text: #1E293B;
-            --card-bg: #FFFFFF;
+            --primary-bg: #0B0E14;
+            --card-bg: #161B22;
+            --header-grad: linear-gradient(135deg, #0B0E14 0%, #161B22 100%);
+            --accent-blue: #58A6FF;
+            --accent-cyan: #00D1FF;
+            --text-main: #E6EDF3;
+            --text-dim: #8B949E;
+            --border: #30363D;
+            --success: #238636;
+            --danger: #F85149;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,176 +25,174 @@
         body { 
             font-family: 'Inter', sans-serif; 
             line-height: 1.6; 
-            color: var(--text); 
-            background-color: var(--bg);
-            padding-bottom: 50px;
+            color: var(--text-main); 
+            background-color: var(--primary-bg);
+            padding-bottom: 60px;
         }
 
-        /* Header Estilizado */
         header { 
-            background: linear-gradient(135deg, var(--primary) 0%, #003a7a 100%); 
-            color: white; 
-            padding: 4rem 2rem; 
+            background: var(--header-grad);
+            border-bottom: 1px solid var(--border);
+            padding: 5rem 2rem; 
             text-align: center; 
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
             margin-bottom: 3rem;
         }
 
-        header h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 10px; }
-        header p { font-weight: 300; opacity: 0.9; font-size: 1.1rem; }
+        header h1 { font-size: 2.8rem; font-weight: 700; color: white; letter-spacing: -1.5px; }
+        header p { color: var(--accent-blue); font-weight: 400; font-size: 1.2rem; margin-top: 10px; }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; }
 
         h2 { 
-            font-size: 1.8rem; 
-            color: var(--primary); 
-            margin: 3rem 0 1.5rem; 
+            font-size: 1.6rem; 
+            color: white; 
+            margin: 4rem 0 1.5rem; 
             display: flex; 
             align-items: center; 
-            gap: 10px;
+            gap: 12px;
         }
 
-        h2::before {
+        h2::after {
             content: '';
-            width: 4px;
-            height: 24px;
-            background: var(--secondary);
-            display: inline-block;
-            border-radius: 4px;
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+            margin-left: 20px;
         }
 
-        /* Grid de Cards */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        /* Cards Estilo Glassmorphism Suave */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
 
         .card { 
             background: var(--card-bg); 
-            padding: 2rem; 
-            border-radius: 16px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover { transform: translateY(-5px); }
-        .card h3 { color: var(--secondary); margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
-
-        ul { list-style: none; }
-        ul li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; }
-        ul li::before { content: '→'; color: var(--secondary); font-weight: bold; }
-
-        /* Tabela Moderna */
-        .table-container { overflow-x: auto; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        th { background-color: #f1f5f9; color: var(--primary); font-weight: 600; text-align: left; padding: 16px; font-size: 0.9rem; }
-        td { padding: 16px; border-top: 1px solid #f1f5f9; font-size: 0.95rem; }
-        tr:hover { background-color: #fcfdfe; }
-
-        /* Badges e Status */
-        .badge { 
-            padding: 4px 12px; 
+            padding: 2.5rem; 
             border-radius: 20px; 
-            font-size: 0.8rem; 
-            font-weight: 600; 
-            text-transform: uppercase; 
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
         }
-        .badge-limited { background: #fee2e2; color: #dc2626; }
-        .badge-regulated { background: #dcfce7; color: #16a34a; }
 
-        /* Estratégia Box */
-        .strategy-container { display: flex; flex-direction: column; gap: 20px; }
+        .card:hover { 
+            border-color: var(--accent-blue);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card h3 { color: var(--accent-cyan); margin-bottom: 20px; font-size: 1.3rem; }
+
+        ul li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; color: var(--text-dim); }
+        ul li strong { color: var(--text-main); }
+        ul li::before { content: '⚡'; color: var(--accent-cyan); font-size: 0.8rem; margin-top: 4px; }
+
+        /* Tabela Dark */
+        .table-container { 
+            background: var(--card-bg);
+            border-radius: 20px; 
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #1C2128; color: var(--accent-blue); text-align: left; padding: 20px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        td { padding: 20px; border-top: 1px solid var(--border); color: var(--text-dim); }
+        tr:hover td { color: white; background: #1C2128; }
+
+        /* Badges */
+        .badge { padding: 5px 15px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; }
+        .badge-red { background: rgba(248, 81, 73, 0.1); color: var(--danger); border: 1px solid var(--danger); }
+        .badge-green { background: rgba(35, 134, 54, 0.1); color: var(--success); border: 1px solid var(--success); }
+
+        /* Caixas de Estratégia */
         .strategy-box { 
-            background: white; 
-            border-left: 6px solid var(--secondary); 
-            padding: 2rem; 
-            border-radius: 0 16px 16px 0; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            background: linear-gradient(90deg, #161B22 0%, #0B0E14 100%);
+            border-left: 4px solid var(--accent-blue); 
+            padding: 2.5rem; 
+            border-radius: 0 20px 20px 0; 
+            margin-bottom: 25px;
+            border-right: 1px solid var(--border);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
-        .strategy-box h3 { margin-bottom: 10px; color: var(--primary); }
 
-        /* Gráfico Simulado (CSS puro) */
-        .chart-sim { margin-top: 20px; background: #f8fafc; padding: 20px; border-radius: 12px; }
-        .bar-container { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .bar-label { min-width: 120px; font-size: 0.85rem; font-weight: 600; }
-        .bar { height: 12px; border-radius: 6px; background: var(--secondary); }
+        .chart-box {
+            background: #0D1117;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 1px dashed var(--border);
+        }
 
-        footer { text-align: center; margin-top: 5rem; padding: 2rem; border-top: 1px solid #e2e8f0; color: #94a3b8; }
+        .bar-wrap { margin-bottom: 15px; }
+        .bar-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 8px; color: var(--text-dim); }
+        .bar-bg { background: #30363D; height: 8px; border-radius: 4px; overflow: hidden; }
+        .bar-fill { height: 100%; background: var(--accent-blue); box-shadow: 0 0 15px var(--accent-blue); }
 
-        .highlight-text { color: var(--danger); font-weight: 600; }
+        footer { text-align: center; margin-top: 6rem; padding: 3rem; color: var(--text-dim); font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="container">
-        <h1>Apresentação Estratégica: Kalshi</h1>
-        <p><i class="fa-solid fa-chart-line"></i> Parceria Pickswise | Inteligência de Mercados de Previsão</p>
+        <h1>PROJETO KALSHI</h1>
+        <p>Inteligência de Mercado & Estratégia Pickswise 2026</p>
     </div>
 </header>
 
 <div class="container">
     
     <section>
-        <h2><i class="fa-solid fa-circle-info"></i> O que é a Kalshi?</h2>
-        <p style="margin-bottom: 2rem; color: #64748b;">A Kalshi redefine a previsão de eventos ao operar como uma bolsa de derivativos regulada, transformando expectativas em contratos financeiros negociáveis[cite: 2, 19].</p>
-        
+        <h2><i class="fa-solid fa-cube"></i> Visão Geral da Marca</h2>
         <div class="grid">
             <div class="card">
-                <h3><i class="fa-solid fa-shield-halved"></i> Natureza do Produto</h3>
+                <h3>O Modelo Financeiro</h3>
                 <ul>
-                    <li><strong>Contratos Binários:</strong> Negociação de "Sim" ou "Não" sobre eventos reais com liquidação fixa[cite: 6, 7].</li>
-                    <li><strong>Regulação CFTC:</strong> Supervisionada como um mercado de contratos designado (DCM)[cite: 8, 40].</li>
-                    <li><strong>Modelo Financeiro:</strong> Foco em descoberta de preços e transparência, não apenas jogo[cite: 10, 43].</li>
+                    <li><strong>Contratos Binários:</strong> Liquidação em $1 ou $0 baseada em fatos reais.</li>
+                    <li><strong>Regulação CFTC:</strong> Licença idêntica às maiores bolsas de futuros do mundo.</li>
+                    <li><strong>Transparência:</strong> Preços definidos pelo mercado, sem margem da "casa".</li>
                 </ul>
-                <span class="badge badge-regulated">Regulação Federal EUA</span>
+                <span class="badge badge-green">OPERADOR REGULADO</span>
             </div>
             <div class="card">
-                <h3><i class="fa-solid fa-earth-americas"></i> Restrições de Acesso</h3>
+                <h3>Barreiras de Entrada</h3>
                 <ul>
-                    <li><span class="highlight-text">Apenas residentes dos EUA:</span> Exigência de morada e verificação de identidade local[cite: 22, 23].</li>
-                    <li><strong>Sem VPN:</strong> O uso de ferramentas de contorno não é uma alternativa legal[cite: 31, 32].</li>
-                    <li><strong>Licença Não-Portátil:</strong> A licença da CFTC não autoriza operações noutras jurisdições[cite: 45, 46].</li>
+                    <li><strong>Residência:</strong> Exclusivo para residentes legais nos Estados Unidos.</li>
+                    <li><strong>KYC Rigoroso:</strong> Verificação de identidade sob normas AML federais.</li>
+                    <li><strong>Fronteira Geográfica:</strong> Operação limitada à jurisdição americana.</li>
                 </ul>
-                <span class="badge badge-limited">Restrito Geograficamente</span>
+                <span class="badge badge-red">ACESSO RESTRITO EUA</span>
             </div>
         </div>
     </section>
 
     <section>
-        <h2><i class="fa-solid fa-code-compare"></i> Posicionamento Competitivo</h2>
+        <h2><i class="fa-solid fa-layer-group"></i> Ecossistema de Previsão</h2>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>Critério</th>
-                        <th>Kalshi</th>
-                        <th>Polymarket (Cripto)</th>
-                        <th>Casas de Apostas</th>
+                        <th>Ativo</th>
+                        <th>Kalshi (EUA)</th>
+                        <th>Polymarket (Global)</th>
+                        <th>Betting Tradicional</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Regulação</strong></td>
-                        <td>CFTC (EUA) [cite: 83]</td>
-                        <td>Inexistente/Cripto </td>
-                        <td>Gambling Local [cite: 80]</td>
+                        <td><strong>Natureza</strong></td>
+                        <td>Bolsa de Derivativos </td>
+                        <td>Cripto / Grey Market </td>
+                        <td>Entretenimento / Jogo </td>
                     </tr>
                     <tr>
-                        <td><strong>Produtos</strong></td>
-                        <td>Contratos Financeiros [cite: 91]</td>
-                        <td>Mercados de Previsão </td>
-                        <td>Odds Fixas [cite: 90]</td>
+                        <td><strong>Eleições</strong></td>
+                        <td>Permitido e Regulado </td>
+                        <td>Volume Massivo </td>
+                        <td>Geralmente Proibido </td>
                     </tr>
                     <tr>
-                        <td><strong>Disponibilidade</strong></td>
-                        <td>Apenas EUA [cite: 22, 198]</td>
-                        <td>Global </td>
-                        <td>Global </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Risco Regulatório</strong></td>
-                        <td>Baixo </td>
-                        <td>Alto </td>
-                        <td>Médio </td>
+                        <td><strong>Confiabilidade</strong></td>
+                        <td>Máxima (Auditada) </td>
+                        <td>Variável </td>
+                        <td>Dependente do Operador </td>
                     </tr>
                 </tbody>
             </table>
@@ -201,51 +200,36 @@
     </section>
 
     <section>
-        <h2><i class="fa-solid fa-bullseye"></i> Estratégia de Google Ads para Pickswise</h2>
-        <p style="margin-bottom: 2rem; color: #64748b;">Foco em converter o interesse global em autoridade através de um funil educacional[cite: 103, 165].</p>
+        <h2><i class="fa-solid fa-rocket"></i> Estratégia Google Ads</h2>
+        
+        <div class="strategy-box">
+            <h3>Fase 1: Captura Informacional</h3>
+            <p style="color: var(--text-dim); margin-bottom: 15px;">Focar em termos de busca que evitam o bloqueio de 'gambling' e atraem investidores.</p>
+            <ul>
+                <li><strong>Keywords:</strong> "Probabilidade Inflação EUA", "Forecast Eleições 2026", "Market Sentiment".</li>
+                <li><strong>CTA:</strong> "Veja o que o mercado está prevendo" em vez de "Aposte agora".</li>
+            </ul>
+        </div>
 
-        <div class="strategy-container">
-            <div class="strategy-box">
-                <h3>1. Search Informacional (SEO + SEM)</h3>
-                <p>Capturar tráfego de curiosidade intelectual em vez de intenção de aposta imediata[cite: 250].</p>
-                <ul>
-                    <li>Anúncios para "Previsão das eleições" e "Indicadores de recessão"[cite: 248, 249].</li>
-                    <li>Utilização da Kalshi como fonte de dados em tempo real[cite: 254].</li>
-                </ul>
-            </div>
-
-            <div class="strategy-box">
-                <h3>2. Abordagem "Prediction-First"</h3>
-                <p>Posicionar a Pickswise como o hub analítico que traduz mercados financeiros para o público[cite: 212, 282].</p>
-                <div class="chart-sim">
-                    <div class="bar-container">
-                        <span class="bar-label">Autoridade</span>
-                        <div class="bar" style="width: 90%; background: var(--accent);"></div>
-                        <span style="font-size: 0.8rem;">90%</span>
-                    </div>
-                    <div class="bar-container">
-                        <span class="bar-label">Escala</span>
-                        <div class="bar" style="width: 45%;"></div>
-                        <span style="font-size: 0.8rem;">45%</span>
-                    </div>
-                    <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 10px;">*Comparação de potencial de conversão informativa vs direta.</p>
+        <div class="strategy-box">
+            <h3>Fase 2: Autoridade Pickswise</h3>
+            <p style="color: var(--text-dim);">Utilizar os dados da Kalshi para criar conteúdo que as casas de apostas não podem replicar.</p>
+            
+            <div class="chart-box">
+                <div class="bar-wrap">
+                    <div class="bar-label"><span>Credibilidade do Conteúdo</span><span>95%</span></div>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
                 </div>
-            </div>
-
-            <div class="strategy-box">
-                <h3>3. Funil de Captura (Lead Gen)</h3>
-                <p>Transformar tráfego frio em ativos de longo prazo[cite: 263, 266].</p>
-                <ul>
-                    <li>CTAs para Newsletters de probabilidades semanais[cite: 264].</li>
-                    <li>Segmentação para audiências de finanças, política e economia[cite: 171, 172].</li>
-                </ul>
+                <div class="bar-wrap">
+                    <div class="bar-label"><span>Intenção de Conversão (High Intent)</span><span>70%</span></div>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 70%; background: var(--accent-cyan);"></div></div>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Pickswise - Planeamento de Marketing Digital Kalshi</p>
-        <p style="font-size: 0.7rem; margin-top: 10px;">Documento Estritamente Confidencial</p>
+        <p>PICKWISE & KALSHI | DOCUMENTO CONFIDENCIAL | 2026</p>
     </footer>
 </div>
 
