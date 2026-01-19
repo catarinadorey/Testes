@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apresentação Estratégica: Kalshi & Pickswise</title>
+    <title>Strategic Presentation: Kalshi & Pickswise</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -22,231 +22,277 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body { 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.6; 
-            color: var(--text-main); 
-            background-color: var(--primary-bg);
-            padding-bottom: 60px;
-        }
-
-        header { 
-            background: var(--header-grad);
-            border-bottom: 1px solid var(--border);
-            padding: 5rem 2rem; 
-            text-align: center; 
-            margin-bottom: 3rem;
-        }
-
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text-main); background-color: var(--primary-bg); padding-bottom: 60px; }
+        header { background: var(--header-grad); border-bottom: 1px solid var(--border); padding: 5rem 2rem; text-align: center; margin-bottom: 3rem; }
         header h1 { font-size: 2.8rem; font-weight: 700; color: white; letter-spacing: -1.5px; }
         header p { color: var(--accent-blue); font-weight: 400; font-size: 1.2rem; margin-top: 10px; }
-
         .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; }
 
-        h2 { 
-            font-size: 1.6rem; 
-            color: white; 
-            margin: 4rem 0 1.5rem; 
-            display: flex; 
-            align-items: center; 
-            gap: 12px;
-        }
-
-        h2::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-            margin-left: 20px;
-        }
+        h2 { font-size: 1.6rem; color: white; margin: 4rem 0 1.5rem; display: flex; align-items: center; gap: 12px; }
+        h2::after { content: ''; flex: 1; height: 1px; background: var(--border); margin-left: 20px; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-
-        .card { 
-            background: var(--card-bg); 
-            padding: 2.5rem; 
-            border-radius: 20px; 
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
+        .card { background: var(--card-bg); padding: 2.5rem; border-radius: 20px; border: 1px solid var(--border); transition: all 0.3s ease; height: 100%; }
+        .card:hover { border-color: var(--accent-blue); transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .card h3 { color: var(--accent-cyan); margin-bottom: 20px; font-size: 1.3rem; }
 
+        ul { list-style: none; }
         ul li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px; color: var(--text-dim); font-size: 0.95rem; }
         ul li strong { color: var(--text-main); }
         ul li::before { content: '⚡'; color: var(--accent-cyan); font-size: 0.8rem; margin-top: 4px; }
 
-        /* Estilo para Dropdowns / Accordion */
-        details {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            margin-bottom: 15px;
-            overflow: hidden;
-        }
+        .table-container { background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 2rem; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th { background: #1C2128; color: var(--accent-blue); text-align: left; padding: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        td { padding: 20px; border-top: 1px solid var(--border); color: var(--text-dim); }
+        tr:hover td { color: white; background: #1C2128; }
 
-        summary {
-            padding: 15px 20px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--accent-blue);
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(88, 166, 255, 0.05);
-        }
+        /* Accordion Style for Keywords */
+        .campaign-details { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
+        .campaign-summary { padding: 18px 25px; cursor: pointer; font-weight: 700; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center; background: rgba(88, 166, 255, 0.05); }
+        .campaign-summary:hover { background: rgba(88, 166, 255, 0.15); }
+        .campaign-content { padding: 20px; border-top: 1px solid var(--border); }
+        
+        .adgroup-details { margin-bottom: 10px; border: 1px solid #30363d; border-radius: 8px; }
+        .adgroup-summary { padding: 12px 20px; cursor: pointer; color: var(--accent-cyan); font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
+        .adgroup-summary:hover { background: rgba(0, 209, 255, 0.05); }
 
-        summary:hover { background: rgba(88, 166, 255, 0.1); }
+        .keyword-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .keyword-table td { padding: 8px 15px; font-size: 0.85rem; border-top: 1px solid #30363d; }
+        .vol-badge { background: #30363D; padding: 2px 10px; border-radius: 4px; color: var(--accent-cyan); font-weight: 600; }
 
-        summary::after {
-            content: '\f078';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            font-size: 0.8rem;
-            transition: transform 0.3s;
-        }
+        .strategy-box { background: linear-gradient(90deg, #161B22 0%, #0B0E14 100%); border-left: 4px solid var(--accent-blue); padding: 2rem; border-radius: 0 20px 20px 0; margin-bottom: 25px; border-right: 1px solid var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
-        details[open] summary::after { transform: rotate(180deg); }
-
-        .keyword-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
-
-        .keyword-table td {
-            padding: 10px 20px;
-            border-top: 1px solid var(--border);
-        }
-
-        .vol-badge {
-            background: #30363D;
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: var(--accent-cyan);
-            font-weight: 600;
-        }
-
-        .badge { padding: 5px 15px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; }
-        .badge-red { background: rgba(248, 81, 73, 0.1); color: var(--danger); border: 1px solid var(--danger); }
-        .badge-green { background: rgba(35, 134, 54, 0.1); color: var(--success); border: 1px solid var(--success); }
-
-        footer { text-align: center; margin-top: 6rem; padding: 3rem; color: var(--text-dim); font-size: 0.8rem; }
+        footer { text-align: center; margin-top: 6rem; padding: 3rem; color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid var(--border); }
+        .badge { padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+        .badge-safe { background: rgba(35, 134, 54, 0.1); color: var(--success); border: 1px solid var(--success); }
+        .badge-warning { background: rgba(248, 81, 73, 0.1); color: var(--danger); border: 1px solid var(--danger); }
     </style>
 </head>
 <body>
 
 <header>
     <div class="container">
-        <h1>PROJETO KALSHI</h1>
-        <p>Inteligência de Mercado & Estratégia Pickswise 2026</p>
+        <h1>KALSHI STRATEGIC PLAN</h1>
+        <p>Pickswise Partnership | Market Expansion 2026</p>
     </div>
 </header>
 
 <div class="container">
-    
+
     <section>
-        <h2><i class="fa-solid fa-cube"></i> Visão Geral</h2>
+        <h2><i class="fa-solid fa-circle-info"></i> What is Kalshi?</h2>
         <div class="grid">
             <div class="card">
-                <h3>A Marca</h3>
+                <h3>Platform Identity</h3>
                 <ul>
-                    <li><strong>Bolsa Regulada:</strong> Supervisão pela CFTC como Designated Contract Market[cite: 8, 40].</li>
-                    <li><strong>Eventos Reais:</strong> Contratos em economia, política e clima[cite: 2, 9, 62].</li>
-                    <li><strong>Modelo:</strong> Foco em trading e descoberta de preços[cite: 10, 43].</li>
+                    <li><strong>Regulated Prediction Market:</strong> An American platform for trading on real-world outcomes[cite: 293, 294].</li>
+                    <li><strong>Financial Model:</strong> Operates as a Designated Contract Market (DCM), supervised by the <strong>CFTC</strong>[cite: 300, 302].</li>
+                    <li><strong>Legal Status:</strong> It is a financial exchange for derivatives, not a traditional casino[cite: 302, 311].</li>
                 </ul>
+                <span class="badge badge-safe">US Federal Regulation</span>
             </div>
             <div class="card">
-                <h3>Limitações EUA</h3>
+                <h3>Product Mechanics</h3>
                 <ul>
-                    <li><strong>Residência:</strong> Exclusivo para residentes legais nos EUA[cite: 20, 22, 34].</li>
-                    <li><strong>Compliance:</strong> KYC rigoroso e proibição de VPN[cite: 24, 31, 32].</li>
-                    <li><strong>UA:</strong> Vedada a aquisição direta fora dos EUA[cite: 99, 100].</li>
+                    <li><strong>Binary Contracts:</strong> Users trade "Yes" or "No" on events like inflation, elections, and weather[cite: 298, 301].</li>
+                    <li><strong>Payout Structure:</strong> Contracts payout a fixed value (usually $1) if the event occurs, or $0 if not[cite: 306, 307].</li>
+                    <li><strong>Market Pricing:</strong> Prices reflect the probability of an event happening[cite: 299, 305].</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section>
-        <h2><i class="fa-solid fa-list-check"></i> Estrutura Completa: Google Ads Phase 1</h2>
-        <p style="color: var(--text-dim); margin-bottom: 2rem;">Clique nas campanhas para expandir os Grupos de Anúncios e Keywords (Volume Mensal).</p>
-
-        <details>
-            <summary>Kalshi - Prediction Markets <span>Volume Elevado</span></summary>
-            <div style="padding: 15px; background: #0D1117;">
-                <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 10px;">AD GROUP: Prediction Markets – General / Concept</p>
-                <table class="keyword-table">
-                    <tr><td>prediction markets</td><td align="right"><span class="vol-badge">9.900</span></td></tr>
-                    <tr><td>prediction stock market</td><td align="right"><span class="vol-badge">8.100</span></td></tr>
-                    <tr><td>betting prediction</td><td align="right"><span class="vol-badge">1.300</span></td></tr>
-                    <tr><td>kalshi prediction markets</td><td align="right"><span class="vol-badge">480</span></td></tr>
-                    <tr><td>polymarket app</td><td align="right"><span class="vol-badge">390</span></td></tr>
-                    <tr><td>polymarket crypto</td><td align="right"><span class="vol-badge">320</span></td></tr>
-                    <tr><td>best prediction markets</td><td align="right"><span class="vol-badge">140</span></td></tr>
-                    <tr><td>kalshi meaning</td><td align="right"><span class="vol-badge">110</span></td></tr>
-                </table>
-            </div>
-        </details>
-
-        <details>
-            <summary>Kalshi - Political Betting <span>Core Interest</span></summary>
-            <div style="padding: 15px; background: #0D1117;">
-                <p style="font-weight: bold; font-size: 0.8rem; color: var(--accent-cyan); margin: 10px 0;">Grupo: Political Betting – General</p>
-                <table class="keyword-table">
-                    <tr><td>bet on politics</td><td align="right"><span class="vol-badge">1.900</span></td></tr>
-                    <tr><td>political bet</td><td align="right"><span class="vol-badge">720</span></td></tr>
-                    <tr><td>presidential odds</td><td align="right"><span class="vol-badge">480</span></td></tr>
-                    <tr><td>political gambling site</td><td align="right"><span class="vol-badge">480</span></td></tr>
-                    <tr><td>political betting odds</td><td align="right"><span class="vol-badge">320</span></td></tr>
-                    <tr><td>bet on the next president</td><td align="right"><span class="vol-badge">110</span></td></tr>
-                </table>
-                
-                <p style="font-weight: bold; font-size: 0.8rem; color: var(--accent-cyan); margin: 20px 0 10px;">Grupo: Political Betting – Websites</p>
-                <table class="keyword-table">
-                    <tr><td>political betting sites</td><td align="right"><span class="vol-badge">480</span></td></tr>
-                    <tr><td>political betting website</td><td align="right"><span class="vol-badge">260</span></td></tr>
-                    <tr><td>best political betting sites</td><td align="right"><span class="vol-badge">40</span></td></tr>
-                </table>
-            </div>
-        </details>
-
-        <details>
-            <summary>Betting Marketplace / Futures <span>Event Testing</span></summary>
-            <div style="padding: 15px; background: #0D1117;">
-                <p style="font-weight: bold; font-size: 0.8rem; color: var(--accent-cyan); margin-bottom: 10px;">Grupo: Real-Life / Event Betting</p>
-                <table class="keyword-table">
-                    <tr><td>bet on the weather</td><td align="right"><span class="vol-badge">720</span></td></tr>
-                    <tr><td>event betting</td><td align="right"><span class="vol-badge">480</span></td></tr>
-                    <tr><td>bet on survivor</td><td align="right"><span class="vol-badge">90</span></td></tr>
-                    <tr><td>bet on real life events</td><td align="right"><span class="vol-badge">30</span></td></tr>
-                </table>
-                
-                <p style="font-weight: bold; font-size: 0.8rem; color: var(--accent-cyan); margin: 20px 0 10px;">Grupo: Betting Marketplace</p>
-                <table class="keyword-table">
-                    <tr><td>bet on anything</td><td align="right"><span class="vol-badge">1.900</span></td></tr>
-                    <tr><td>betting marketplace</td><td align="right"><span class="vol-badge">1.900</span></td></tr>
-                    <tr><td>betting markets</td><td align="right"><span class="vol-badge">1.900</span></td></tr>
-                    <tr><td>futures betting</td><td align="right"><span class="vol-badge">320</span></td></tr>
-                </table>
-            </div>
-        </details>
+        <h2><i class="fa-solid fa-lock"></i> Access & Restrictions</h2>
+        <div class="strategy-box">
+            <h3>Strict Geographical Boundaries</h3>
+            <p style="color: var(--text-dim); margin-bottom: 1rem;">Currently, Kalshi is restricted to United States residents only[cite: 312, 314]. To open an account, users must meet these criteria:</p>
+            <ul>
+                <li>Provide a valid <strong>US residential address</strong>[cite: 315].</li>
+                <li>Undergo <strong>identity verification</strong> (KYC) under US federal regulations[cite: 316].</li>
+                <li>Link compatible <strong>US bank accounts</strong>[cite: 317].</li>
+                <li><strong>Note:</strong> VPNs or other workarounds are not valid or legal alternatives[cite: 323, 324].</li>
+            </ul>
+            <span class="badge badge-warning" style="margin-top: 10px;">No Global Access Without Local Approval</span>
+        </div>
     </section>
 
     <section>
-        <h2><i class="fa-solid fa-bullseye"></i> Pilares de UA Pickswise</h2>
-        <div class="card" style="background: linear-gradient(135deg, #161B22 0%, #0D1117 100%);">
+        <h2><i class="fa-solid fa-scale-balanced"></i> Competitive Comparison</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Criteria</th>
+                        <th>Kalshi</th>
+                        <th>Polymarket</th>
+                        <th>Bookmakers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Regulation</strong></td>
+                        <td>CFTC (USA) [cite: 490]</td>
+                        <td>Crypto / Unclear [cite: 490]</td>
+                        <td>Gambling License [cite: 490]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Availability</strong></td>
+                        <td>USA Only [cite: 490]</td>
+                        <td>Global via Crypto [cite: 490]</td>
+                        <td>Global [cite: 490]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Product Type</strong></td>
+                        <td>Financial Contracts [cite: 490]</td>
+                        <td>Prediction Markets [cite: 490]</td>
+                        <td>Fixed Odds [cite: 490]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Affiliates</strong></td>
+                        <td>Rare / Educational [cite: 490]</td>
+                        <td>Informal [cite: 490]</td>
+                        <td>Core Business [cite: 490]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-chess-knight"></i> Pickswise Strategy</h2>
+        <div class="strategy-box">
+            <h3>"Prediction-First, Betting-Second"</h3>
+            <p style="color: var(--text-dim); margin-bottom: 1rem;">Since direct global acquisition is restricted, we focus on authority[cite: 391, 504].</p>
             <ul>
-                <li><strong>Abordagem "Prediction-First":</strong> Foco em conteúdo editorial sobre probabilidades[cite: 212, 214].</li>
-                <li><strong>Tráfego Educacional:</strong> Atração de audiências "high intent" e educadas (economia/política)[cite: 171, 175, 176].</li>
-                <li><strong>Funil de Captura:</strong> Newsletters e listas de espera para monetização indireta[cite: 183, 189, 263].</li>
+                <li><strong>Content Layer:</strong> Focus on probabilities ("63% chance of X") using Kalshi data as a primary source[cite: 506, 510].</li>
+                <li><strong>Comparison Value:</strong> Compare bookmaker odds against Kalshi market probabilities to find "value"[cite: 515, 520].</li>
+                <li><strong>Target Audience:</strong> High-intent, educated users interested in finance, data, and politics [cite: 462-468].</li>
+                <li><strong>Conversion:</strong> Build lead capture (newsletters) for indirect monetization[cite: 555, 558].</li>
             </ul>
         </div>
     </section>
 
+    <section>
+        <h2><i class="fa-solid fa-magnifying-glass-chart"></i> Google Ads Phase 1: Test Data</h2>
+        <p style="color: var(--text-dim); margin-bottom: 2rem;">Full list of 46 keywords, ad groups, and campaigns planned for the initial test.</p>
+
+        <details class='campaign-details' open>
+          <summary class='campaign-summary'>Kalshi - Prediction Markets <i class='fa-solid fa-chevron-down'></i></summary>
+          <div class='campaign-content'>
+            <details class='adgroup-details' open>
+              <summary class='adgroup-summary'>Prediction Markets – General / Concept <i class='fa-solid fa-chevron-down'></i></summary>
+              <table class='keyword-table'>
+                <thead><tr><th>Keyword</th><th style='text-align:right'>Avg. Monthly Searches</th></tr></thead>
+                <tbody>
+                  <tr><td>prediction markets</td><td style='text-align:right'><span class='vol-badge'>9,900</span></td></tr>
+                  <tr><td>prediction stock market</td><td style='text-align:right'><span class='vol-badge'>8,100</span></td></tr>
+                  <tr><td>betting prediction</td><td style='text-align:right'><span class='vol-badge'>1,300</span></td></tr>
+                  <tr><td>kalshi prediction markets</td><td style='text-align:right'><span class='vol-badge'>1,000</span></td></tr>
+                  <tr><td>polymarket app</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>polymarket crypto</td><td style='text-align:right'><span class='vol-badge'>480</span></td></tr>
+                  <tr><td>best prediction markets</td><td style='text-align:right'><span class='vol-badge'>210</span></td></tr>
+                  <tr><td>kalshi meaning</td><td style='text-align:right'><span class='vol-badge'>170</span></td></tr>
+                </tbody>
+              </table>
+            </details>
+          </div>
+        </details>
+
+        <details class='campaign-details'>
+          <summary class='campaign-summary'>Betting Marketplace / Futures <i class='fa-solid fa-chevron-down'></i></summary>
+          <div class='campaign-content'>
+            <details class='adgroup-details'>
+              <summary class='adgroup-summary'>Betting Marketplace / Futures <i class='fa-solid fa-chevron-down'></i></summary>
+              <table class='keyword-table'>
+                <thead><tr><th>Keyword</th><th style='text-align:right'>Avg. Monthly Searches</th></tr></thead>
+                <tbody>
+                  <tr><td>bet on anything</td><td style='text-align:right'><span class='vol-badge'>1,900</span></td></tr>
+                  <tr><td>betting marketplace</td><td style='text-align:right'><span class='vol-badge'>1,900</span></td></tr>
+                  <tr><td>betting markets</td><td style='text-align:right'><span class='vol-badge'>1,900</span></td></tr>
+                  <tr><td>bet on anything app</td><td style='text-align:right'><span class='vol-badge'>480</span></td></tr>
+                  <tr><td>futures betting</td><td style='text-align:right'><span class='vol-badge'>480</span></td></tr>
+                  <tr><td>website where you can bet on anything</td><td style='text-align:right'><span class='vol-badge'>210</span></td></tr>
+                  <tr><td>betting markets politics</td><td style='text-align:right'><span class='vol-badge'>210</span></td></tr>
+                  <tr><td>website to bet on anything</td><td style='text-align:right'><span class='vol-badge'>140</span></td></tr>
+                  <tr><td>betting on everything</td><td style='text-align:right'><span class='vol-badge'>140</span></td></tr>
+                </tbody>
+              </table>
+            </details>
+            <details class='adgroup-details'>
+              <summary class='adgroup-summary'>Real-Life / Event Betting <i class='fa-solid fa-chevron-down'></i></summary>
+              <table class='keyword-table'>
+                <thead><tr><th>Keyword</th><th style='text-align:right'>Avg. Monthly Searches</th></tr></thead>
+                <tbody>
+                  <tr><td>bet on the weather</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>event betting</td><td style='text-align:right'><span class='vol-badge'>260</span></td></tr>
+                  <tr><td>betting on dancing with the stars</td><td style='text-align:right'><span class='vol-badge'>210</span></td></tr>
+                  <tr><td>bet on survivor</td><td style='text-align:right'><span class='vol-badge'>140</span></td></tr>
+                  <tr><td>bet on real life events</td><td style='text-align:right'><span class='vol-badge'>110</span></td></tr>
+                </tbody>
+              </table>
+            </details>
+          </div>
+        </details>
+
+        <details class='campaign-details'>
+          <summary class='campaign-summary'>Kalshi - Political Betting <i class='fa-solid fa-chevron-down'></i></summary>
+          <div class='campaign-content'>
+            <details class='adgroup-details'>
+              <summary class='adgroup-summary'>Political Betting – General <i class='fa-solid fa-chevron-down'></i></summary>
+              <table class='keyword-table'>
+                <thead><tr><th>Keyword</th><th style='text-align:right'>Avg. Monthly Searches</th></tr></thead>
+                <tbody>
+                  <tr><td>bet on politics</td><td style='text-align:right'><span class='vol-badge'>1,000</span></td></tr>
+                  <tr><td>political bet</td><td style='text-align:right'><span class='vol-badge'>1,000</span></td></tr>
+                  <tr><td>presidential odds</td><td style='text-align:right'><span class='vol-badge'>1,000</span></td></tr>
+                  <tr><td>political gambling site</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>presidential betting odds</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>political betting odds</td><td style='text-align:right'><span class='vol-badge'>390</span></td></tr>
+                  <tr><td>gamble on politics</td><td style='text-align:right'><span class='vol-badge'>170</span></td></tr>
+                  <tr><td>political gambling</td><td style='text-align:right'><span class='vol-badge'>170</span></td></tr>
+                  <tr><td>bet on the next president</td><td style='text-align:right'><span class='vol-badge'>140</span></td></tr>
+                </tbody>
+              </table>
+            </details>
+            <details class='adgroup-details'>
+              <summary class='adgroup-summary'>Political Betting – Websites / Platforms <i class='fa-solid fa-chevron-down'></i></summary>
+              <table class='keyword-table'>
+                <thead><tr><th>Keyword</th><th style='text-align:right'>Avg. Monthly Searches</th></tr></thead>
+                <tbody>
+                  <tr><td>political betting sites</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>political betting website</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>betting on politics website</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>betting site politics</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>politics betting website</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>political betting sites</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>social betting</td><td style='text-align:right'><span class='vol-badge'>390</span></td></tr>
+                  <tr><td>best political betting sites</td><td style='text-align:right'><span class='vol-badge'>170</span></td></tr>
+                  <tr><td>peer to peer betting app</td><td style='text-align:right'><span class='vol-badge'>170</span></td></tr>
+                </tbody>
+              </table>
+            </details>
+            <details class='adgroup-details'>
+              <summary class='adgroup-summary'>Politics / Presidential Odds <i class='fa-solid fa-chevron-down'></i></summary>
+              <table class='keyword-table'>
+                <thead><tr><th>Keyword</th><th style='text-align:right'>Avg. Monthly Searches</th></tr></thead>
+                <tbody>
+                  <tr><td>sportsbook politics</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>political odds</td><td style='text-align:right'><span class='vol-badge'>260</span></td></tr>
+                  <tr><td>best sites for political betting</td><td style='text-align:right'><span class='vol-badge'>210</span></td></tr>
+                  <tr><td>politics betting markets</td><td style='text-align:right'><span class='vol-badge'>210</span></td></tr>
+                  <tr><td>presidential bet</td><td style='text-align:right'><span class='vol-badge'>140</span></td></tr>
+                  <tr><td>betting odds on politics</td><td style='text-align:right'><span class='vol-badge'>110</span></td></tr>
+                </tbody>
+              </table>
+            </details>
+          </div>
+        </details>
+        </section>
+
     <footer>
-        <p>PICKWISE & KALSHI | ESTRATÉGIA DE LANÇAMENTO 2026</p>
+        <p>PICKWISE & KALSHI | CONFIDENTIAL STRATEGIC PLAN | 2026</p>
     </footer>
 </div>
 
