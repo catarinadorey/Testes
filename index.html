@@ -14,7 +14,10 @@
 
         body {
             background: #000;
-            background-image: radial-gradient(circle at center, rgba(184, 134, 11, 0.2) 0%, transparent 70%);
+            /* Background impactante com efeito de partículas/luz */
+            background-image: 
+                radial-gradient(circle at center, rgba(184, 134, 11, 0.2) 0%, transparent 70%),
+                url('https://www.transparenttextures.com/patterns/stardust.png'); 
             color: white;
             font-family: 'Roboto', sans-serif;
             display: flex;
@@ -23,17 +26,15 @@
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        /* Título Responsive */
+        /* Título com brilho */
         h1 {
             font-family: 'Oswald', sans-serif;
             text-align: center;
             text-transform: uppercase;
-            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            font-size: 2.2rem;
             margin: 0 0 20px 0;
             line-height: 1.1;
             background: var(--gold-gradient);
@@ -42,17 +43,26 @@
             filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
         }
 
-        /* Estrutura da Roleta Responsive */
+        /* Estrutura da Roleta (Mais próxima da imagem) */
         .outer-rim {
             position: relative;
-            width: min(90vw, 420px);
-            height: min(90vw, 420px);
+            width: 420px;
+            height: 420px;
             border-radius: 50%;
-            padding: min(3vw, 15px);
+            padding: 15px;
             background: #1a1a1a;
             box-shadow: 0 0 50px rgba(0,0,0,1), 0 0 20px rgba(212, 175, 55, 0.4);
             border: 4px solid #333;
-            box-sizing: border-box;
+        }
+
+        /* Luzes ao redor */
+        .lights-frame {
+            position: absolute;
+            inset: 5px;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            pointer-events: none;
+            z-index: 5;
         }
 
         .wheel-container {
@@ -62,34 +72,29 @@
             background: #000;
             border-radius: 50%;
             overflow: hidden;
-        }
-
-        canvas {
-            width: 100%;
-            height: 100%;
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .arrow {
             position: absolute;
-            top: -5px;
+            top: -10px;
             left: 50%;
             transform: translateX(-50%);
             width: 0; height: 0;
-            border-left: min(4vw, 20px) solid transparent;
-            border-right: min(4vw, 20px) solid transparent;
-            border-top: min(6vw, 35px) solid #fff;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 35px solid #fff;
             filter: drop-shadow(0 0 5px gold);
             z-index: 30;
         }
 
+        /* Centro da Roleta (Bónus 100€) */
         .center-hub {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: min(22vw, 100px);
-            height: min(22vw, 100px);
+            width: 100px;
+            height: 100px;
             background: radial-gradient(circle, #f9d976, #b8860b);
             border-radius: 50%;
             z-index: 25;
@@ -97,58 +102,100 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 20px rgba(0,0,0,0.8);
-            border: 2px solid #000;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8), inset 0 0 10px white;
+            border: 3px solid #000;
         }
 
-        .center-hub span { color: #000; font-weight: 900; font-size: clamp(0.5rem, 2vw, 0.7rem); text-transform: uppercase; }
-        .center-hub strong { color: #000; font-size: clamp(0.8rem, 4vw, 1.2rem); }
+        .center-hub span {
+            color: #000;
+            font-weight: 900;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+        .center-hub strong {
+            color: #000;
+            font-size: 1.2rem;
+        }
 
-        /* Cronómetro Responsive */
-        .timer-box { margin-top: 25px; text-align: center; width: 100%; }
-        .timer-label { font-size: 0.8rem; color: #d4af37; text-transform: uppercase; letter-spacing: 2px; }
-        
+        /* Cronómetro Digital */
+        .timer-box {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .timer-label {
+            font-size: 0.8rem;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
         #countdown {
-            display: inline-block;
             background: rgba(0,0,0,0.8);
             border: 2px solid #333;
-            padding: 10px 20px;
+            padding: 10px 30px;
             border-radius: 10px;
             font-family: 'Oswald', sans-serif;
-            font-size: clamp(1.8rem, 8vw, 2.8rem);
+            font-size: 2.8rem;
             color: #fff;
-            letter-spacing: 3px;
-            margin-top: 5px;
+            text-shadow: 0 0 15px rgba(255,255,255,0.5);
+            letter-spacing: 5px;
         }
 
-        /* Botão Responsive */
+        /* Botão "Resgatar" igual à imagem */
         .btn-main {
             margin-top: 25px;
-            width: min(90vw, 350px);
-            padding: 15px;
+            width: 350px;
+            padding: 18px;
             border: none;
             border-radius: 10px;
             background: var(--btn-gradient);
             color: #000;
-            font-size: clamp(1.1rem, 5vw, 1.5rem);
+            font-size: 1.5rem;
             font-weight: 900;
             text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 6px 0 #8a6d3b;
+            box-shadow: 0 6px 0 #8a6d3b, 0 10px 20px rgba(0,0,0,0.5);
             transition: 0.1s;
         }
 
-        .btn-main:active { transform: translateY(4px); box-shadow: 0 2px 0 #8a6d3b; }
+        .btn-main:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #8a6d3b;
+        }
 
-        /* Modal Responsive */
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
         .modal-content {
             background: #111;
             border: 3px solid #d4af37;
-            padding: min(8vw, 40px);
+            padding: 40px;
             border-radius: 20px;
             text-align: center;
-            width: min(85vw, 350px);
+            width: 350px;
             box-shadow: 0 0 50px gold;
+        }
+
+        .claim-link {
+            display: block;
+            background: var(--gold-gradient);
+            color: #000;
+            padding: 15px;
+            margin-top: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -157,13 +204,14 @@
     <h1>Roda a roleta e ganha<br>uma oferta exclusiva!</h1>
 
     <div class="outer-rim">
+        <div class="lights-frame"></div>
         <div class="arrow"></div>
         <div class="center-hub">
             <span>Bónus</span>
             <strong>€100</strong>
         </div>
         <div class="wheel-container">
-            <canvas id="wheel" width="800" height="800"></canvas>
+            <canvas id="wheel" width="400" height="400"></canvas>
         </div>
     </div>
 
@@ -174,11 +222,11 @@
 
     <button class="btn-main" onclick="spin()">Resgatar Oferta</button>
 
-    <div id="modal" class="modal" onclick="this.style.display='none'">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <h2 id="winner-name" style="color:#d4af37; margin:0">PARABÉNS!</h2>
-            <p id="winner-offer" style="font-size: 1.2rem; margin: 20px 0;"></p>
-            <a id="winner-link" href="#" target="_blank" style="display:block; background:var(--gold-gradient); color:#000; padding:15px; text-decoration:none; font-weight:bold; border-radius:5px; text-transform:uppercase;">Reivindicar Agora</a>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2 id="winner-name" style="color:#d4af37">PARABÉNS!</h2>
+            <p id="winner-offer" style="font-size: 1.2rem;"></p>
+            <a id="winner-link" href="#" target="_blank" class="claim-link">REIVINDICAR AGORA</a>
         </div>
     </div>
 
@@ -201,37 +249,43 @@
         let isSpinning = false;
 
         function drawWheel() {
-            ctx.clearRect(0, 0, 800, 800);
+            ctx.clearRect(0, 0, 400, 400);
             brands.forEach((brand, i) => {
                 const angle = startAngle + i * arc;
                 ctx.fillStyle = brand.color;
                 ctx.beginPath();
-                ctx.arc(400, 400, 400, angle, angle + arc, false);
-                ctx.lineTo(400, 400);
+                ctx.arc(200, 200, 200, angle, angle + arc, false);
+                ctx.lineTo(200, 200);
                 ctx.fill();
+                
+                // Divisórias douradas
                 ctx.strokeStyle = "#d4af37";
-                ctx.lineWidth = 4;
+                ctx.lineWidth = 2;
                 ctx.stroke();
 
                 ctx.save();
-                ctx.translate(400 + Math.cos(angle + arc/2) * 280, 400 + Math.sin(angle + arc/2) * 280);
+                ctx.translate(200 + Math.cos(angle + arc/2) * 140, 200 + Math.sin(angle + arc/2) * 140);
                 ctx.rotate(angle + arc/2 + Math.PI/2);
                 ctx.fillStyle = "#fff";
-                ctx.font = "900 32px Roboto"; // Aumentado para melhor resolução no canvas
+                ctx.font = "900 14px Roboto";
                 ctx.fillText(brand.name, -ctx.measureText(brand.name).width / 2, 0);
                 ctx.restore();
             });
         }
 
+        // Lógica do Cronómetro (Reinicia em 03:12:45)
         function startTimer() {
             const initialTime = (3 * 3600) + (12 * 60) + 45;
             let timer = initialTime;
             const display = document.querySelector('#countdown');
+
             setInterval(() => {
                 let h = Math.floor(timer / 3600);
                 let m = Math.floor((timer % 3600) / 60);
                 let s = timer % 60;
+
                 display.textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+
                 if (--timer < 0) timer = initialTime;
             }, 1000);
         }
@@ -247,24 +301,32 @@
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
                 const easeOut = 1 - Math.pow(1 - progress, 4);
+                
                 startAngle = (easeOut * totalRotation) * Math.PI / 180;
                 drawWheel();
+
                 if (progress < 1) requestAnimationFrame(animate);
                 else {
                     isSpinning = false;
                     const degrees = (startAngle * 180 / Math.PI) % 360;
                     const index = Math.floor((360 - (degrees + 270) % 360) / (360 / brands.length));
-                    const winner = brands[((index % brands.length) + brands.length) % brands.length];
-                    document.getElementById("winner-name").innerText = winner.name;
-                    document.getElementById("winner-offer").innerText = winner.offer;
-                    document.getElementById("winner-link").href = winner.url;
-                    document.getElementById("modal").style.display = "flex";
+                    const winner = brands[index < 0 ? index + brands.length : index];
+                    
+                    setTimeout(() => {
+                        document.getElementById("winner-name").innerText = winner.name;
+                        document.getElementById("winner-offer").innerText = winner.offer;
+                        document.getElementById("winner-link").href = winner.url;
+                        document.getElementById("modal").style.display = "flex";
+                    }, 500);
                 }
             }
             requestAnimationFrame(animate);
         }
 
-        window.onload = () => { drawWheel(); startTimer(); };
+        window.onload = () => {
+            drawWheel();
+            startTimer();
+        };
     </script>
 </body>
 </html>
