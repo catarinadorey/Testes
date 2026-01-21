@@ -313,32 +313,54 @@ function spin() {
     isSpinning = true;
 
     const duration = 5000;
-    const start = performance.now();
-    const totalRotation = (10 + Math.random()*5) * Math.PI*2;
+    const startTime = performance.now();
+    
+    // Rotação extra para garantir várias voltas + um ângulo aleatório
+    const extraRotation = (Math.random() * Math.PI * 2);
+    const totalRotationToEffect = (10 * Math.PI * 2) + extraRotation;
+    
+    // Guardamos onde a roleta já estava para começar de onde parou
+    const initialAngle = startAngle;
 
-    function animate(time){
-        const progress = Math.min((time-start)/duration,1);
-        const ease = 1 - Math.pow(1-progress,4);
-        startAngle = ease * totalRotation;
+    function animate(currentTime){
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        
+        // Ease out quartic para suavizar o final
+        const ease = 1 - Math.pow(1 - progress, 4);
+        
+        // Atualiza o ângulo global
+        startAngle = initialAngle + (ease * totalRotationToEffect);
+        
         drawWheel();
 
-        if(progress < 1) requestAnimationFrame(animate);
-        else {
-    isSpinning = false;
+        if(progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            isSpinning = false;
 
-    // Calcula o ângulo final relativo à posição da seta (topo)
-    const normalizedAngle = startAngle % (2 * Math.PI);
-    const sectorAngle = 2 * Math.PI / brands.length;
+            // CÁLCULO DO VENCEDOR:
+            // 1. Normaliza o ângulo para ficar entre 0 e 2PI
+            const normalizedAngle = startAngle % (Math.PI * 2);
+            
+            // 2. A seta está no topo (1.5 * PI ou 270°). 
+            // Precisamos saber qual fatia cruza essa linha.
+            const sliceWidth = (Math.PI * 2) / brands.length;
+            
+            // A lógica é: (Posição da Seta - Rotação da Roleta)
+            let winningIndex = Math.floor((1.5 * Math.PI - normalizedAngle) / sliceWidth);
+            
+            // Ajusta se o índice for negativo
+            while (winningIndex < 0) winningIndex += brands.length;
+            winningIndex = winningIndex % brands.length;
 
-    // O índice é o setor na posição da seta (0 no topo)
-    const index = brands.length - 1 - Math.floor(normalizedAngle / sectorAngle);
-    const winner = brands[index];
+            const winner = brands[winningIndex];
 
-    document.getElementById("winner-name").innerText = winner.name;
-    document.getElementById("winner-offer").innerText = winner.offer;
-    document.getElementById("winner-link").href = winner.url;
-    document.getElementById("modal").style.display = "flex";
-}
+            // Exibe o Modal
+            document.getElementById("winner-name").innerText = winner.name;
+            document.getElementById("winner-offer").innerText = winner.offer;
+            document.getElementById("winner-link").href = winner.url;
+            document.getElementById("modal").style.display = "flex";
+        }
     }
     requestAnimationFrame(animate);
 }
