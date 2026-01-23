@@ -16,6 +16,10 @@
       --dark-gradient: linear-gradient(180deg, hsl(220, 20%, 12%) 0%, hsl(220, 20%, 6%) 100%);
       --glass-bg: hsla(220, 15%, 15%, 0.8);
       --glow-gold: 0 0 30px hsla(45, 100%, 50%, 0.4);
+      
+      /* Novas cores da roleta para máximo contraste */
+      --wheel-color-1: #151921; /* Dark Navy */
+      --wheel-color-2: #1e2430; /* Medium Navy */
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -70,7 +74,7 @@
 
     .pointer {
       position: absolute;
-      top: -10px;
+      top: -15px;
       left: 50%;
       transform: translateX(-50%);
       width: 0;
@@ -79,26 +83,26 @@
       border-right: 20px solid transparent;
       border-top: 35px solid hsl(45, 100%, 50%);
       filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
-      z-index: 20;
+      z-index: 25;
     }
 
     .wheel-border {
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      background: linear-gradient(135deg, hsl(45, 100%, 60%) 0%, hsl(30, 100%, 45%) 50%, hsl(45, 100%, 55%) 100%);
-      padding: 6px;
-      animation: pulse-glow 2s ease-in-out infinite;
+      background: var(--gold-gradient);
+      padding: 8px;
+      box-shadow: 0 0 50px rgba(0,0,0,0.5);
     }
 
     .wheel-border-inner { width: 100%; height: 100%; border-radius: 50%; background: var(--background); }
 
     .wheel {
       position: absolute;
-      inset: 6px;
+      inset: 8px;
       border-radius: 50%;
       overflow: hidden;
-      transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+      transition: transform 5s cubic-bezier(0.15, 0, 0.15, 1);
     }
 
     .wheel svg { width: 100%; height: 100%; }
@@ -111,45 +115,45 @@
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background: linear-gradient(135deg, hsl(45, 100%, 55%) 0%, hsl(30, 100%, 40%) 100%);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+      background: var(--gold-gradient);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 900;
-      color: var(--background);
+      color: #111;
       z-index: 10;
+      border: 3px solid #111;
     }
 
     .spin-button {
       background: var(--gold-gradient);
-      color: var(--background);
-      font-weight: 700;
+      color: #111;
+      font-weight: 800;
       font-size: 18px;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      padding: 16px 40px;
+      padding: 18px 45px;
       border: none;
       border-radius: 50px;
       cursor: pointer;
       transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
-    .spin-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 60px hsla(45, 100%, 50%, 0.6);
+    .spin-button:hover:not(:disabled) {
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 15px 30px hsla(45, 100%, 50%, 0.4);
     }
-
-    .spin-button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(5px);
-      z-index: 50;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 100;
       align-items: center;
       justify-content: center;
       padding: 20px;
@@ -158,117 +162,50 @@
     .modal-overlay.active { display: flex; }
 
     .modal {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid hsla(45, 100%, 50%, 0.2);
-      border-radius: 16px;
-      max-width: 500px;
+      background: #1a1f29;
+      border: 1px solid #d4af37;
+      border-radius: 20px;
+      max-width: 450px;
       width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
       padding: 30px;
       position: relative;
-      animation: scaleIn 0.3s ease;
-    }
-
-    @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-    .modal-close {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--secondary);
-      border: none;
-      color: var(--foreground);
-      cursor: pointer;
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .winner-badge {
-      display: inline-block;
-      padding: 6px 16px;
-      border-radius: 50px;
-      font-size: 14px;
-      font-weight: 600;
-      background: hsla(45, 100%, 50%, 0.2);
-      border: 1px solid hsla(45, 100%, 50%, 0.3);
-      margin-bottom: 20px;
     }
 
     .brand-logo-container {
-      width: 220px;
-      height: 110px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 12px;
+      width: 180px;
+      height: 90px;
+      background: white; /* Fundo branco no modal para o logo brilhar */
+      border-radius: 10px;
+      padding: 10px;
       margin: 0 auto 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
     .brand-logo-container img { width: 100%; height: 100%; object-fit: contain; }
-
-    .brand-name { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
-
-    .offer-box {
-      background: var(--glass-bg);
-      border: 1px solid hsla(45, 100%, 50%, 0.2);
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 20px;
-      box-shadow: var(--glow-gold);
-    }
-
-    .offer-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
-    .offer-text { font-size: 22px; font-weight: 700; }
-
-    .pros-cons h4 { font-size: 16px; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-    .pros-cons ul { list-style: none; margin-bottom: 16px; }
-    .pros-cons li { font-size: 14px; color: var(--muted); margin-bottom: 6px; display: flex; align-items: flex-start; gap: 8px; }
 
     .cta-button {
       display: block;
       width: 100%;
       background: var(--gold-gradient);
-      color: var(--background);
+      color: #111;
       font-weight: 700;
-      font-size: 16px;
-      text-transform: uppercase;
       padding: 16px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
+      border-radius: 10px;
       text-decoration: none;
-      text-align: center;
-      transition: all 0.3s ease;
+      margin-top: 20px;
     }
+    
+    .pros-cons li { text-align: left; color: #ccc; font-size: 13px; margin-bottom: 5px; }
 
-    .cta-button:hover { transform: scale(1.02); box-shadow: 0 0 40px hsla(45, 100%, 50%, 0.5); }
-
-    .terms { margin-top: 20px; padding: 16px; background: hsla(220, 15%, 18%, 0.5); border-radius: 12px; }
-    .terms h5 { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
-    .terms p { font-size: 11px; color: var(--muted); line-height: 1.5; }
-
-    .footer { margin-top: 40px; font-size: 11px; color: var(--muted); }
-
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 20px hsla(45, 100%, 50%, 0.4); }
-      50% { box-shadow: 0 0 40px hsla(45, 100%, 50%, 0.7); }
-    }
   </style>
 </head>
 <body>
+
   <div class="container">
     <div class="timer-container">
-      <p class="timer-label">✨ Offer expires in ✨</p>
+      <p class="timer-label">✨ OFFER EXPIRES IN ✨</p>
       <div class="timer">
         <div class="timer-digit"><span class="gold-text" id="hours">02</span></div>
         <span class="timer-separator gold-text">:</span>
@@ -279,7 +216,7 @@
     </div>
 
     <h1 class="title gold-text">🏆 SPIN & WIN! 🏆</h1>
-    <p class="subtitle">Discover your exclusive offer at the best sportsbooks!</p>
+    <p class="subtitle">Win exclusive bonuses at the top-rated sportsbooks!</p>
 
     <div class="wheel-container">
       <div class="pointer"></div>
@@ -289,64 +226,39 @@
       <div class="wheel" id="wheel">
         <svg viewBox="0 0 100 100"></svg>
       </div>
-      <div class="center-circle">SPIN</div>
+      <div class="center-circle">LUCKY SPIN</div>
     </div>
 
-    <button class="spin-button" id="spinBtn">SEE OFFER</button>
-    <p class="footer">21+. Gamble responsibly. If you have a gambling problem, please seek professional help.</p>
+    <button class="spin-button" id="spinBtn">SPIN TO REVEAL</button>
+    <p class="footer" style="margin-top:20px; font-size: 11px; opacity: 0.6;">21+. Gamble responsibly. T&Cs apply.</p>
   </div>
 
   <div class="modal-overlay" id="modalOverlay">
-    <div class="modal" id="modal">
-      <button class="modal-close" id="modalClose">✕</button>
-      <div style="text-align: center;">
-        <span class="winner-badge gold-text">🎉 CONGRATULATIONS! YOU WON! 🎉</span>
-        <div class="brand-logo-container">
-          <img id="modalLogo" src="" alt="Brand Logo">
-        </div>
-        <h2 class="brand-name gold-text" id="modalName"></h2>
-        <div class="offer-box">
-          <p class="offer-label">Exclusive Offer</p>
-          <p class="offer-text" id="modalOffer"></p>
-        </div>
+    <div class="modal">
+      <h2 class="gold-text" style="margin-bottom: 20px;">CONGRATULATIONS!</h2>
+      <div class="brand-logo-container">
+        <img id="modalLogo" src="" alt="">
       </div>
-      <div class="pros-cons">
-        <h4><span style="color: #22c55e;">✓</span> Pros</h4>
-        <ul id="modalPros"></ul>
-        <h4><span style="color: #f59e0b;">⚠</span> Cons</h4>
-        <ul id="modalCons"></ul>
+      <h3 id="modalName" style="color: white; margin-bottom: 10px;"></h3>
+      <div style="background: rgba(212,175,55,0.1); padding: 15px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3);">
+         <p id="modalOffer" style="font-size: 20px; font-weight: 800; color: #d4af37;"></p>
       </div>
-      <a class="cta-button" id="modalCta" href="#" target="_blank">GET OFFER →</a>
-      <div class="terms">
-        <h5>Terms & Conditions</h5>
-        <p id="modalTerms"></p>
-      </div>
+      <a class="cta-button" id="modalCta" href="#" target="_blank">CLAIM MY BONUS</a>
+      <button id="modalClose" style="background:none; border:none; color:white; margin-top:15px; cursor:pointer; opacity:0.5;">Close</button>
     </div>
   </div>
 
   <script>
     const brands = [
-      { id: "caesar", name: "Caesars", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Caesars-removebg-preview.png", offer: "Deposit $10 earn $200", url: "https://offers.pickswise.com/tyyw", color: "#C4A73E", pros: ["Excellent welcome bonus", "Wide variety of sports", "User-friendly mobile app", "Loyalty rewards program"], cons: ["Limited in some states", "Higher wagering requirements"], terms: "New users only. 21+. Terms and conditions apply. Gambling problem? Call 1-800-GAMBLER." },
-      { id: "betmgm", name: "BetMGM", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/BetMGM-removebg-preview.png", offer: "Deposit Match up to $1000", url: "https://mediaserver.betmgmpartners.com/renderBanner.do?zoneId=1742008", color: "#1a1a1a", pros: ["Massive deposit match bonus", "MGM Rewards integration", "Live streaming available", "Excellent casino section"], cons: ["Bonus has playthrough requirements", "Some features region-locked"], terms: "21+. New customers only. Deposit match subject to 1x playthrough. T&Cs apply." },
-      { id: "bet365", name: "Bet365", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/bet365-2-removebg-preview.png", offer: "Deposit Match up to $900", url: "https://www.bet365.com/hub/en-us/open-account-offer-gaming?affiliate=365_03333889", color: "#027B5B", pros: ["Industry-leading live betting", "Excellent streaming service", "Competitive odds", "Global reputation"], cons: ["Interface can be complex", "Limited US availability"], terms: "New members only. 21+. Min deposit $10. Bet Credits available for use upon settlement. T&Cs apply." },
-      { id: "wsop", name: "WSOP", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/WSOP.png", offer: "Deposit Match up to $800", url: "https://wlcaesarsinteractive.adsrv.eacdn.com/C.ashx?btag=a_987658961b_2058c_&affid=2536&siteid=987658961&adid=2058&c=", color: "#e11d48", pros: ["Official WSOP branding", "Great poker tournaments", "Solid mobile experience", "Poker-focused bonuses"], cons: ["Limited sportsbook options", "Fewer casino games"], terms: "21+. New players only. Deposit match requires opt-in. Playthrough requirements apply." },
-      { id: "fanatics", name: "Fanatics", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Fanatics-removebg-preview.png", offer: "Deposit Match up to $700", url: "https://track.fanaticsbettingpartners.com/track/6c270394-cbf7-4c98-a6f2-10334c1afd85?type=native&s1=BonusBets", color: "#ffffff", pros: ["Daily bonus bets for 5 days", "No promo code needed", "Easy to use app", "Great customer support"], cons: ["New to the market", "Fewer promotions than competitors"], terms: "21+. New users only. Bonus bets expire in 7 days. Terms and conditions apply." },
-      { id: "hardrock", name: "Hard Rock Bet", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Hard-Rock-Bet.png", offer: "Deposit Match up to $600", url: "https://wlhardrock.adsrv.eacdn.com/C.ashx?btag=a_1832b_258c_&affid=201&siteid=1832&adid=258&c=", color: "#282828", pros: ["Rock-solid platform", "Hard Rock rewards", "Competitive odds", "Great promotions"], cons: ["Limited state availability", "Smaller market selection"], terms: "21+. First-time depositors only. Minimum $10 deposit. Wagering requirements apply." },
-      { id: "playstar", name: "PlayStar", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/PlayStar.png", offer: "Deposit Match up to $500", url: "https://click.trackplaystar.com/track/62436506-a2d2-4275-8d69-441854d193ca?type=seo&s1=freebets", color: "#312e81", pros: ["Personalized experience", "Unique gamification", "Fast withdrawals", "Innovative features"], cons: ["Limited to NJ", "Smaller game library"], terms: "21+. NJ only. New customers only. Minimum deposit $20. Terms apply." },
-      { id: "fanduel", name: "FanDuel", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/FanDuel-scaled.png", offer: "Deposit Match up to $2000", url: "https://wlfanduelus.adsrv.eacdn.com/C.ashx?btag=a_21532b_50c_&affid=11877&siteid=21532&adid=50&c=", color: "#1493FF", pros: ["Highest deposit match", "Best-in-class app", "Daily fantasy sports", "Excellent promotions"], cons: ["Bonus has conditions", "Popular means busy servers"], terms: "21+. New users only. Deposit match released over time. See full terms at FanDuel.com." }
+      { name: "Caesars", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Caesars-removebg-preview.png", offer: "Deposit $10 earn $200", url: "#" },
+      { name: "BetMGM", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/BetMGM-removebg-preview.png", offer: "Deposit Match up to $1000", url: "#" },
+      { name: "Bet365", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/bet365-2-removebg-preview.png", offer: "Deposit Match up to $900", url: "#" },
+      { name: "WSOP", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/WSOP.png", offer: "Deposit Match up to $800", url: "#" },
+      { name: "Fanatics", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Fanatics-removebg-preview.png", offer: "Deposit Match up to $700", url: "#" },
+      { name: "Hard Rock", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Hard-Rock-Bet.png", offer: "Deposit Match up to $600", url: "#" },
+      { name: "PlayStar", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/PlayStar.png", offer: "Deposit Match up to $500", url: "#" },
+      { name: "FanDuel", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/FanDuel-scaled.png", offer: "Deposit Match up to $2000", url: "#" }
     ];
-
-    let totalSeconds = 2 * 3600 + 12 * 60 + 45;
-    setInterval(() => {
-      if (totalSeconds <= 0) totalSeconds = 3 * 3600;
-      const h = Math.floor(totalSeconds / 3600);
-      const m = Math.floor((totalSeconds % 3600) / 60);
-      const s = totalSeconds % 60;
-      document.getElementById('hours').textContent = String(h).padStart(2, '0');
-      document.getElementById('minutes').textContent = String(m).padStart(2, '0');
-      document.getElementById('seconds').textContent = String(s).padStart(2, '0');
-      totalSeconds--;
-    }, 1000);
 
     const wheelSvg = document.querySelector('#wheel svg');
     const segmentAngle = 360 / brands.length;
@@ -361,7 +273,10 @@
       const x2 = 50 + 50 * Math.cos(endRad);
       const y2 = 50 + 50 * Math.sin(endRad);
       const largeArc = segmentAngle > 180 ? 1 : 0;
-      const path = `M 50 50 L ${x1} ${y1} A 50 50 0 ${largeArc} 1 ${x2} ${y2} Z`;
+      
+      // Cores alternadas baseadas nas variáveis :root
+      const fillColor = (index % 2 === 0) ? 'var(--wheel-color-1)' : 'var(--wheel-color-2)';
+      
       const midAngle = ((startAngle + endAngle) / 2 * Math.PI) / 180;
       const logoX = 50 + 32 * Math.cos(midAngle);
       const logoY = 50 + 32 * Math.sin(midAngle);
@@ -369,15 +284,16 @@
 
       const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       g.innerHTML = `
-        <path d="${path}" fill="${brand.color}" stroke="hsla(0, 0%, 100%, 0.15)" stroke-width="0.3"/>
+        <path d="M 50 50 L ${x1} ${y1} A 50 50 0 ${largeArc} 1 ${x2} ${y2} Z" fill="${fillColor}" stroke="#d4af37" stroke-width="0.1"/>
         <image href="${brand.logo}" x="${logoX - 10}" y="${logoY - 6}" width="20" height="12" 
           transform="rotate(${logoRotation}, ${logoX}, ${logoY})" 
-          style="filter: drop-shadow(0px 0px 1.5px rgba(0,0,0,0.6));"
+          style="filter: drop-shadow(0px 0px 2px white) brightness(1.1);"
           preserveAspectRatio="xMidYMid meet"/>
       `;
       wheelSvg.appendChild(g);
     });
 
+    // Lógica do Spin
     let currentRotation = 0;
     let isSpinning = false;
     const wheel = document.getElementById('wheel');
@@ -387,47 +303,43 @@
       if (isSpinning) return;
       isSpinning = true;
       spinBtn.disabled = true;
-      spinBtn.textContent = 'SPINNING...';
 
       const winnerIndex = Math.floor(Math.random() * brands.length);
-      const extraVoltas = (5 + Math.floor(Math.random() * 3)) * 360;
+      const extraVoltas = 2880; // 8 voltas
       const targetAngle = (winnerIndex * segmentAngle);
       const stopAngle = 360 - targetAngle - (segmentAngle / 2);
       
-      const finalRotation = extraVoltas + stopAngle;
-      currentRotation += finalRotation + (360 - (currentRotation % 360));
-
+      currentRotation += extraVoltas + stopAngle + (360 - (currentRotation % 360));
       wheel.style.transform = `rotate(${currentRotation}deg)`;
 
       setTimeout(() => {
         isSpinning = false;
         spinBtn.disabled = false;
-        spinBtn.textContent = 'SEE OFFER';
         showModal(brands[winnerIndex]);
-      }, 4000);
+      }, 5000);
     });
 
-    const modalOverlay = document.getElementById('modalOverlay');
     function showModal(brand) {
       document.getElementById('modalLogo').src = brand.logo;
       document.getElementById('modalName').textContent = brand.name;
       document.getElementById('modalOffer').textContent = brand.offer;
       document.getElementById('modalCta').href = brand.url;
-      document.getElementById('modalTerms').textContent = brand.terms;
-      const prosEl = document.getElementById('modalPros');
-      const consEl = document.getElementById('modalCons');
-      prosEl.innerHTML = brand.pros.map(p => `<li><span style="color: #22c55e;">✓</span> ${p}</li>`).join('');
-      consEl.innerHTML = brand.cons.map(c => `<li><span style="color: #f59e0b;">⚠</span> ${c}</li>`).join('');
-      modalOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      document.getElementById('modalOverlay').classList.add('active');
     }
 
-    function closeModal() {
-      modalOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    document.getElementById('modalClose').addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+    document.getElementById('modalClose').addEventListener('click', () => {
+      document.getElementById('modalOverlay').classList.remove('active');
+    });
+
+    // Timer simples
+    let time = 8000;
+    setInterval(() => {
+      time--;
+      let m = Math.floor(time/60);
+      let s = time%60;
+      document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+    }, 1000);
   </script>
 </body>
 </html>
