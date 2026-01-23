@@ -1,376 +1,685 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pickswise | Casino Offers</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;900&display=swap');
-
-:root {
-    --gold-gradient: linear-gradient(180deg, #ffefba 0%, #d4af37 50%, #8a6d3b 100%);
-    --btn-gradient: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
-}
-
-* { box-sizing: border-box; }
-
-body {
-    background: #000;
-    background-image:
-        radial-gradient(circle at center, rgba(184,134,11,.2) 0%, transparent 70%),
-        url('https://www.transparenttextures.com/patterns/stardust.png');
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
-}
-
-/* Título */
-h1 {
-    font-family: 'Oswald', sans-serif;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    margin-bottom: 20px;
-    line-height: 1.1;
-    background: var(--gold-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Roleta */
-.outer-rim {
-    position: relative;
-    width: 420px;
-    max-width: 90vw;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    padding: 15px;
-    background: #1a1a1a;
-    border: 4px solid #333;
-    box-shadow: 0 0 50px rgba(0,0,0,1),
-                0 0 20px rgba(212,175,55,.4);
-}
-
-.lights-frame {
-    position: absolute;
-    inset: 5px;
-    border-radius: 50%;
-    border: 2px solid #d4af37;
-    pointer-events: none;
-    z-index: 5;
-}
-
-.wheel-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-.arrow {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 35px solid #fff;
-    filter: drop-shadow(0 0 5px gold);
-    z-index: 30;
-}
-
-/* Centro */
-.center-hub {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle, #f9d976, #b8860b);
-    border-radius: 50%;
-    z-index: 25;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 30px rgba(0,0,0,.8),
-                inset 0 0 10px white;
-    border: 3px solid #000;
-}
-
-.center-hub span {
-    font-size: .7rem;
-    font-weight: 900;
-    color: #000;
-    text-transform: uppercase;
-}
-
-.center-hub strong {
-    font-size: 1.2rem;
-    color: #000;
-}
-
-/* Timer */
-.timer-box {
-    margin-top: 25px;
-    text-align: center;
-}
-
-.timer-label {
-    font-size: .8rem;
-    color: #d4af37;
-    letter-spacing: 2px;
-}
-
-#countdown {
-    background: rgba(0,0,0,.8);
-    border: 2px solid #333;
-    padding: 10px 30px;
-    border-radius: 10px;
-    font-family: 'Oswald', sans-serif;
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-    letter-spacing: 4px;
-}
-
-/* Botão */
-.btn-main {
-    margin-top: 25px;
-    width: min(90vw, 350px);
-    padding: 18px;
-    border: none;
-    border-radius: 10px;
-    background: var(--btn-gradient);
-    color: #000;
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 6px 0 #8a6d3b,
-                0 10px 20px rgba(0,0,0,.5);
-}
-
-.btn-main:active {
-    transform: translateY(4px);
-    box-shadow: 0 2px 0 #8a6d3b;
-}
-
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.9);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(10px);
-}
-
-.modal-content {
-    background: #111;
-    border: 3px solid #d4af37;
-    padding: 30px;
-    border-radius: 20px;
-    width: min(90vw, 350px);
-    text-align: center;
-}
-
-.claim-link {
-    display: block;
-    background: var(--gold-gradient);
-    color: #000;
-    padding: 15px;
-    margin-top: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-}
-</style>
-</head>
-
-<body>
-
-<h1>Pickswise Exclusive<br>Casino Offers</h1>
-
-<div class="outer-rim">
-    <div class="lights-frame"></div>
-    <div class="arrow"></div>
-    <div class="center-hub">
-        <span>Get up to</span>
-        <strong>$1000</strong>
-    </div>
-    <div class="wheel-container">
-        <canvas id="wheel"></canvas>
-    </div>
-</div>
-
-<div class="timer-box">
-    <div class="timer-label">Offer Ends in:</div>
-    <div id="countdown">03:12:45</div>
-</div>
-
-<button class="btn-main" onclick="spin()">Get Offer</button>
-
-<!-- MODAL DINÂMICO -->
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <h2 id="winner-name" style="color:#d4af37"></h2>
-        <p id="winner-offer" style="font-size:1.2rem"></p>
-        <a id="winner-link"
-           href="#"
-           target="_blank"
-           class="claim-link">
-           Get Offer Now
-        </a>
-    </div>
-</div>
-
-<script>
-/* === MARCAS PICKSWISE === */
-const brands = [
-  { name:"CAESARS", color:"#16302b", offer:"Get $10 Sign-up Bonus + 100% deposit match up to $1K + 2500 Reward Credits® when you wager $25", url:"https://offers.pickswise.com/tyyw" },
-  { name:"BETMGM", color:"#000", offer:"Get a $1,000 Bonus with BetMGM Casino + $25 on the House!", url:"https://mediaserver.betmgmpartners.com/renderBanner.do?zoneId=1742008" },
-  { name:"BET365", color:"#127e5d", offer:"100% Deposit Match Bonus up to $1,000 + up to 500 Spins", url:"https://www.bet365.com/hub/en-us/open-account-offer-gaming?affiliate=365_03333889" },
-  { name:"WSOP", color:"#7b1113", offer:"Deposit $10, Get $40 in Bonus Dollars on Slots", url:"https://mediaserver.betmgmpartners.com/renderBanner.do?zoneId=1698587" },
-  { name:"FANDUEL", color:"#1475e1", offer:"Deposit $10, Get 500 Bonus Spins & $40 Casino Bonus", url:"https://wlfanduelus.adsrv.eacdn.com/C.ashx?btag=a_21532b_50c_&affid=11877&siteid=21532&adid=50&c=" },
-  { name:"PLAYSTAR", color:"#2d1b4d", offer:"100% Deposit Match up to $500 + up to 500 Free Spins", url:"https://click.trackplaystar.com/track/62436506-a2d2-4275-8d69-441854d193ca?type=seo&s1=freebets" },
-  { name:"HARD ROCK", color:"#1a1a1a", offer:"Deposit $10+ and Get 200 Bonus Spins + up to $1,000 Lossback", url:"https://wlhardrock.adsrv.eacdn.com/C.ashx?btag=a_1832b_258c_&affid=201&siteid=1832&adid=258&c=" },
-  { name:"FANATICS", color:"#c8102e", offer:"Get up to $1,000 Free Spins on Cash Eruption", url:"https://track.fanaticsbettingpartners.com/track/6c270394-cbf7-4c98-a6f2-10334c1afd85?type=native&s1=BonusBets" }
-];
-
-const canvas = document.getElementById("wheel");
-const ctx = canvas.getContext("2d");
-const arc = Math.PI / (brands.length / 2);
-let startAngle = 0;
-let isSpinning = false;
-
-/* Canvas resize CORRETO */
-function resizeCanvas() {
-    const size = document.querySelector(".wheel-container").clientWidth;
-    canvas.width = size;
-    canvas.height = size;
-    drawWheel();
-}
-
-function drawWheel() {
-    const size = canvas.width;
-    const center = size / 2;
-    ctx.clearRect(0,0,size,size);
-
-    brands.forEach((brand,i)=>{
-        const angle = startAngle + i * arc;
-        ctx.fillStyle = brand.color;
-        ctx.beginPath();
-        ctx.arc(center, center, center, angle, angle + arc);
-        ctx.lineTo(center, center);
-        ctx.fill();
-
-        ctx.strokeStyle = "#d4af37";
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        ctx.save();
-        ctx.translate(
-            center + Math.cos(angle + arc/2) * center * .7,
-            center + Math.sin(angle + arc/2) * center * .7
-        );
-        ctx.rotate(angle + arc/2 + Math.PI/2);
-        ctx.fillStyle = "#fff";
-        ctx.font = `900 ${center * .07}px Roboto`;
-        ctx.fillText(
-            brand.name,
-            -ctx.measureText(brand.name).width/2,
-            0
-        );
-        ctx.restore();
-    });
-}
-
-/* Timer */
-function startTimer() {
-    let t = 3*3600 + 12*60 + 45;
-    const d = document.getElementById("countdown");
-    setInterval(()=>{
-        const h = String(Math.floor(t/3600)).padStart(2,"0");
-        const m = String(Math.floor((t%3600)/60)).padStart(2,"0");
-        const s = String(t%60).padStart(2,"0");
-        d.textContent = `${h}:${m}:${s}`;
-        t = t>0 ? t-1 : 3*3600+12*60+45;
-    },1000);
-}
-
-/* Spin com popup dinâmico */
-function spin() {
-    if(isSpinning) return;
-    isSpinning = true;
-
-    const duration = 5000;
-    const startTime = performance.now();
-    
-    // Rotação extra para garantir várias voltas + um ângulo aleatório
-    const extraRotation = (Math.random() * Math.PI * 2);
-    const totalRotationToEffect = (10 * Math.PI * 2) + extraRotation;
-    
-    // Guardamos onde a roleta já estava para começar de onde parou
-    const initialAngle = startAngle;
-
-    function animate(currentTime){
-        const progress = Math.min((currentTime - startTime) / duration, 1);
-        
-        // Ease out quartic para suavizar o final
-        const ease = 1 - Math.pow(1 - progress, 4);
-        
-        // Atualiza o ângulo global
-        startAngle = initialAngle + (ease * totalRotationToEffect);
-        
-        drawWheel();
-
-        if(progress < 1) {
-            requestAnimationFrame(animate);
-        } else {
-            isSpinning = false;
-
-            // CÁLCULO DO VENCEDOR:
-            // 1. Normaliza o ângulo para ficar entre 0 e 2PI
-            const normalizedAngle = startAngle % (Math.PI * 2);
-            
-            // 2. A seta está no topo (1.5 * PI ou 270°). 
-            // Precisamos saber qual fatia cruza essa linha.
-            const sliceWidth = (Math.PI * 2) / brands.length;
-            
-            // A lógica é: (Posição da Seta - Rotação da Roleta)
-            let winningIndex = Math.floor((1.5 * Math.PI - normalizedAngle) / sliceWidth);
-            
-            // Ajusta se o índice for negativo
-            while (winningIndex < 0) winningIndex += brands.length;
-            winningIndex = winningIndex % brands.length;
-
-            const winner = brands[winningIndex];
-
-            // Exibe o Modal
-            document.getElementById("winner-name").innerText = winner.name;
-            document.getElementById("winner-offer").innerText = winner.offer;
-            document.getElementById("winner-link").href = winner.url;
-            document.getElementById("modal").style.display = "flex";
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spin & Win Casino Offers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: hsl(220, 20%, 8%);
+      --foreground: hsl(45, 100%, 95%);
+      --primary: hsl(45, 100%, 50%);
+      --secondary: hsl(220, 15%, 18%);
+      --muted: hsl(220, 10%, 60%);
+      --gold-gradient: linear-gradient(135deg, hsl(45, 100%, 50%) 0%, hsl(30, 100%, 45%) 50%, hsl(45, 100%, 55%) 100%);
+      --dark-gradient: linear-gradient(180deg, hsl(220, 20%, 12%) 0%, hsl(220, 20%, 6%) 100%);
+      --glass-bg: hsla(220, 15%, 15%, 0.8);
+      --glow-gold: 0 0 30px hsla(45, 100%, 50%, 0.4);
     }
-    requestAnimationFrame(animate);
-}
 
-window.addEventListener("resize", resizeCanvas);
-window.onload = ()=>{
-    resizeCanvas();
-    startTimer();
-};
-</script>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark-gradient);
+      color: var(--foreground);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Gold Text */
+    .gold-text {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Timer */
+    .timer-container {
+      margin-bottom: 20px;
+    }
+
+    .timer-label {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .timer {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .timer-digit {
+      background: linear-gradient(180deg, hsl(220, 15%, 18%) 0%, hsl(220, 15%, 12%) 100%);
+      border: 1px solid hsla(45, 100%, 50%, 0.3);
+      padding: 10px 15px;
+      border-radius: 8px;
+      min-width: 50px;
+    }
+
+    .timer-digit span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .timer-separator {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    /* Title */
+    .title {
+      font-size: 36px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    /* Wheel Container */
+    .wheel-container {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin: 0 auto 30px;
+    }
+
+    @media (min-width: 768px) {
+      .wheel-container {
+        width: 400px;
+        height: 400px;
+      }
+    }
+
+    /* Pointer */
+    .pointer {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 35px solid hsl(45, 100%, 50%);
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+      z-index: 20;
+    }
+
+    /* Golden Border Ring */
+    .wheel-border {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, hsl(45, 100%, 60%) 0%, hsl(30, 100%, 45%) 50%, hsl(45, 100%, 55%) 100%);
+      padding: 6px;
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .wheel-border-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--background);
+    }
+
+    /* Wheel */
+    .wheel {
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+    }
+
+    .wheel svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Center Circle */
+    .center-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, hsl(45, 100%, 55%) 0%, hsl(30, 100%, 40%) 100%);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--background);
+      z-index: 10;
+    }
+
+    /* Spin Button */
+    .spin-button {
+      background: var(--gold-gradient);
+      color: var(--background);
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .spin-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 60px hsla(45, 100%, 50%, 0.6);
+    }
+
+    .spin-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 50;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid hsla(45, 100%, 50%, 0.2);
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 30px;
+      position: relative;
+      animation: scaleIn 0.3s ease;
+    }
+
+    @keyframes scaleIn {
+      from {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--secondary);
+      border: none;
+      color: var(--foreground);
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .winner-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      background: hsla(45, 100%, 50%, 0.2);
+      border: 1px solid hsla(45, 100%, 50%, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .brand-logo-container {
+      width: 220px;
+      height: 110px;
+      background: white;
+      border-radius: 12px;
+      padding: 12px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .brand-logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .offer-box {
+      background: var(--glass-bg);
+      border: 1px solid hsla(45, 100%, 50%, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: var(--glow-gold);
+    }
+
+    .offer-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .offer-text {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .pros-cons h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pros-cons ul {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    .pros-cons li {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .pros-cons .icon {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+    }
+
+    .cta-button {
+      display: block;
+      width: 100%;
+      background: var(--gold-gradient);
+      color: var(--background);
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 40px hsla(45, 100%, 50%, 0.5);
+    }
+
+    .terms {
+      margin-top: 20px;
+      padding: 16px;
+      background: hsla(220, 15%, 18%, 0.5);
+      border-radius: 12px;
+    }
+
+    .terms h5 {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .terms p {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 20px hsla(45, 100%, 50%, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 40px hsla(45, 100%, 50%, 0.7);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Timer -->
+    <div class="timer-container">
+      <p class="timer-label">✨ Offer expires in ✨</p>
+      <div class="timer">
+        <div class="timer-digit"><span class="gold-text" id="hours">02</span></div>
+        <span class="timer-separator gold-text">:</span>
+        <div class="timer-digit"><span class="gold-text" id="minutes">12</span></div>
+        <span class="timer-separator gold-text">:</span>
+        <div class="timer-digit"><span class="gold-text" id="seconds">45</span></div>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <h1 class="title gold-text">🏆 SPIN & WIN! 🏆</h1>
+    <p class="subtitle">Discover your exclusive offer at the best sportsbooks!</p>
+
+    <!-- Wheel -->
+    <div class="wheel-container">
+      <div class="pointer"></div>
+      <div class="wheel-border">
+        <div class="wheel-border-inner"></div>
+      </div>
+      <div class="wheel" id="wheel">
+        <svg viewBox="0 0 100 100">
+          <!-- Segments will be generated by JS -->
+        </svg>
+      </div>
+      <div class="center-circle">SPIN</div>
+    </div>
+
+    <!-- Spin Button -->
+    <button class="spin-button" id="spinBtn">SEE OFFER</button>
+
+    <!-- Footer -->
+    <p class="footer">21+. Gamble responsibly. If you have a gambling problem, please seek professional help.</p>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div style="text-align: center;">
+        <span class="winner-badge gold-text">🎉 CONGRATULATIONS! YOU WON! 🎉</span>
+        <div class="brand-logo-container">
+          <img id="modalLogo" src="" alt="Brand Logo">
+        </div>
+        <h2 class="brand-name gold-text" id="modalName"></h2>
+        <div class="offer-box">
+          <p class="offer-label">Exclusive Offer</p>
+          <p class="offer-text" id="modalOffer"></p>
+        </div>
+      </div>
+      <div class="pros-cons">
+        <h4><span style="color: #22c55e;">✓</span> Pros</h4>
+        <ul id="modalPros"></ul>
+        <h4><span style="color: #f59e0b;">⚠</span> Cons</h4>
+        <ul id="modalCons"></ul>
+      </div>
+      <a class="cta-button" id="modalCta" href="#" target="_blank">GET OFFER →</a>
+      <div class="terms">
+        <h5>Terms & Conditions</h5>
+        <p id="modalTerms"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Brand Data
+    const brands = [
+      {
+        id: "caesar",
+        name: "Caesars",
+        logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Caesars.png",
+        offer: "Deposit $10 earn $200",
+        url: "https://offers.pickswise.com/tyyw",
+        color: "#C4A73E",
+        pros: ["Excellent welcome bonus", "Wide variety of sports", "User-friendly mobile app", "Loyalty rewards program"],
+        cons: ["Limited in some states", "Higher wagering requirements"],
+        terms: "New users only. 21+. Terms and conditions apply. Gambling problem? Call 1-800-GAMBLER."
+      },
+      {
+        id: "betmgm",
+        name: "BetMGM",
+        logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Betmgm.png",
+        offer: "Deposit Match up to $1000",
+        url: "https://mediaserver.betmgmpartners.com/renderBanner.do?zoneId=1742008",
+        color: "#B8860B",
+        pros: ["Massive deposit match bonus", "MGM Rewards integration", "Live streaming available", "Excellent casino section"],
+        cons: ["Bonus has playthrough requirements", "Some features region-locked"],
+        terms: "21+. New customers only. Deposit match subject to 1x playthrough. T&Cs apply."
+      },
+      {
+        id: "bet365",
+        name: "Bet365",
+        logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/bet365.png",
+        offer: "Deposit Match up to $900",
+        url: "https://www.bet365.com/hub/en-us/open-account-offer-gaming?affiliate=365_03333889",
+        color: "#027B5B",
+        pros: ["Industry-leading live betting", "Excellent streaming service", "Competitive odds", "Global reputation"],
+        cons: ["Interface can be complex", "Limited US availability"],
+        terms: "New members only. 21+. Min deposit $10. Bet Credits available for use upon settlement. T&Cs apply."
+      },
+      {
+        id: "wsop",
+        name: "WSOP",
+        logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/WSOP.png",
+        offer: "Deposit Match up to $800",
+        url: "https://wlcaesarsinteractive.adsrv.eacdn.com/C.ashx?btag=a_987658961b_2058c_&affid=2536&siteid=987658961&adid=2058&c=",
+        color: "#1C1C1C",
+        pros: ["Official WSOP branding", "Great poker tournaments", "Solid mobile experience", "Poker-focused bonuses"],
+        cons: ["Limited sportsbook options", "Fewer casino games"],
+        terms: "21+. New players only. Deposit match requires opt-in. Playthrough requirements apply."
+      },
+      {
+        id: "fanatics",
+        name: "Fanatics",
+        logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Fanatics.jpg",
+        offer: "Deposit Match up to $700",
+        url: "https://track.fanaticsbettingpartners.com/track/6c270394-cbf7-4c98-a6f2-10334c1afd85?type=native&s1=BonusBets",
+        color: "#004C97",
+        pros: ["Daily bonus bets for 5 days", "No promo code needed", "Easy to use app", "Great customer support"],
+        cons: ["New to the market", "Fewer promotions than competitors"],
+        terms: "21+. New users only. Bonus bets expire in 7 days. Terms and conditions apply."
+      },
+      {
+        id: "hardrock",
+        name: "Hard Rock Bet",
+        logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Hard-Rock-Bet.png",
+        offer: "Deposit Match up to $600",
+        url: "https://wlhardrock.adsrv.eacdn.com/C.ashx?btag=a_1832b_258c_&affid=201&siteid=1832&adid=258&c=",
+        color: "#E31837",
+        pros: ["Rock-solid platform", "Hard Rock rewards", "Competitive odds", "Great promotions"],
+        cons: ["Limited state availability", "Smaller market selection"],
+        terms: "21+. First-time depositors only. Minimum $10 deposit. Wagering requirements apply."
+      },
+      {
+        id: "playstar",
+        name: "PlayStar",
+        logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/PlayStar.png",
+        offer: "Deposit Match up to $500",
+        url: "https://click.trackplaystar.com/track/62436506-a2d2-4275-8d69-441854d193ca?type=seo&s1=freebets",
+        color: "#6B21A8",
+        pros: ["Personalized experience", "Unique gamification", "Fast withdrawals", "Innovative features"],
+        cons: ["Limited to NJ", "Smaller game library"],
+        terms: "21+. NJ only. New customers only. Minimum deposit $20. Terms apply."
+      },
+      {
+        id: "fanduel",
+        name: "FanDuel",
+        logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/FanDuel-scaled.png",
+        offer: "Deposit Match up to $2000",
+        url: "https://wlfanduelus.adsrv.eacdn.com/C.ashx?btag=a_21532b_50c_&affid=11877&siteid=21532&adid=50&c=",
+        color: "#1493FF",
+        pros: ["Highest deposit match", "Best-in-class app", "Daily fantasy sports", "Excellent promotions"],
+        cons: ["Bonus has conditions", "Popular means busy servers"],
+        terms: "21+. New users only. Deposit match released over time. See full terms at FanDuel.com."
+      }
+    ];
+
+    // Timer
+    let totalSeconds = 2 * 3600 + 12 * 60 + 45;
+    const resetSeconds = 3 * 3600 + 12 * 60 + 45;
+
+    function updateTimer() {
+      if (totalSeconds <= 0) {
+        totalSeconds = resetSeconds;
+      }
+      const h = Math.floor(totalSeconds / 3600);
+      const m = Math.floor((totalSeconds % 3600) / 60);
+      const s = totalSeconds % 60;
+      document.getElementById('hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+      totalSeconds--;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Build Wheel
+    const wheelSvg = document.querySelector('#wheel svg');
+    const segmentAngle = 360 / brands.length;
+
+    brands.forEach((brand, index) => {
+      const startAngle = index * segmentAngle - 90;
+      const endAngle = startAngle + segmentAngle;
+      const startRad = (startAngle * Math.PI) / 180;
+      const endRad = (endAngle * Math.PI) / 180;
+      const x1 = 50 + 50 * Math.cos(startRad);
+      const y1 = 50 + 50 * Math.sin(startRad);
+      const x2 = 50 + 50 * Math.cos(endRad);
+      const y2 = 50 + 50 * Math.sin(endRad);
+      const largeArc = segmentAngle > 180 ? 1 : 0;
+      const path = `M 50 50 L ${x1} ${y1} A 50 50 0 ${largeArc} 1 ${x2} ${y2} Z`;
+
+      const midAngle = ((startAngle + endAngle) / 2 * Math.PI) / 180;
+      const logoX = 50 + 32 * Math.cos(midAngle);
+      const logoY = 50 + 32 * Math.sin(midAngle);
+      const logoRotation = (startAngle + endAngle) / 2 + 90;
+
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.innerHTML = `
+        <path d="${path}" fill="${brand.color}" stroke="hsl(45, 100%, 50%)" stroke-width="0.3"/>
+        <rect x="${logoX - 10}" y="${logoY - 6}" width="20" height="12" rx="2" fill="white" transform="rotate(${logoRotation}, ${logoX}, ${logoY})"/>
+        <image href="${brand.logo}" x="${logoX - 9}" y="${logoY - 5}" width="18" height="10" transform="rotate(${logoRotation}, ${logoX}, ${logoY})" preserveAspectRatio="xMidYMid meet"/>
+      `;
+      wheelSvg.appendChild(g);
+    });
+
+    // Spin Logic
+    let rotation = 0;
+    let isSpinning = false;
+    const wheel = document.getElementById('wheel');
+    const spinBtn = document.getElementById('spinBtn');
+
+    spinBtn.addEventListener('click', () => {
+      if (isSpinning) return;
+      isSpinning = true;
+      spinBtn.disabled = true;
+      spinBtn.textContent = 'SPINNING...';
+
+      const winnerIndex = Math.floor(Math.random() * brands.length);
+      const fullRotations = 5 + Math.floor(Math.random() * 4);
+      const targetAngle = winnerIndex * segmentAngle + segmentAngle / 2;
+      const stopAngle = 360 - targetAngle;
+      const totalRotation = rotation + fullRotations * 360 + stopAngle;
+
+      rotation = totalRotation;
+      wheel.style.transform = `rotate(${rotation}deg)`;
+
+      setTimeout(() => {
+        isSpinning = false;
+        spinBtn.disabled = false;
+        spinBtn.textContent = 'SEE OFFER';
+        showModal(brands[winnerIndex]);
+      }, 4000);
+    });
+
+    // Modal
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalClose = document.getElementById('modalClose');
+
+    function showModal(brand) {
+      document.getElementById('modalLogo').src = brand.logo;
+      document.getElementById('modalName').textContent = brand.name;
+      document.getElementById('modalOffer').textContent = brand.offer;
+      document.getElementById('modalCta').href = brand.url;
+      document.getElementById('modalTerms').textContent = brand.terms;
+
+      const prosEl = document.getElementById('modalPros');
+      const consEl = document.getElementById('modalCons');
+      prosEl.innerHTML = '';
+      consEl.innerHTML = '';
+
+      brand.pros.forEach(pro => {
+        prosEl.innerHTML += `<li><span style="color: #22c55e;">✓</span> ${pro}</li>`;
+      });
+      brand.cons.forEach(con => {
+        consEl.innerHTML += `<li><span style="color: #f59e0b;">⚠</span> ${con}</li>`;
+      });
+
+      modalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+  </script>
 </body>
 </html>
