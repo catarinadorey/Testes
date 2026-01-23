@@ -29,41 +29,33 @@
       position: relative;
     }
 
-    /* --- EFEITO SPARKLING INTENSO --- */
+    /* --- EFEITO SPARKLING TURBO --- */
     #sparkles-container {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
       z-index: 0;
     }
 
     .sparkle {
       position: absolute;
-      background: radial-gradient(circle, #fff 10%, rgba(255,215,0,0.9) 40%, rgba(255,215,0,0) 80%);
+      background: radial-gradient(circle, #fff 0%, rgba(255,215,0,1) 40%, rgba(255,165,0,0) 80%);
       border-radius: 50%;
       opacity: 0;
-      animation: sparkle-anim linear forwards;
       filter: blur(1px);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+      animation: sparkle-anim linear forwards;
     }
-
-    /* Brilho tipo "Estrela" para algumas partículas */
-    .flare::before, .flare::after {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 200%; height: 1px;
-      background: rgba(255,215,0,0.8);
-      transform: translate(-50%, -50%);
-    }
-    .flare::after { transform: translate(-50%, -50%) rotate(90deg); }
 
     @keyframes sparkle-anim {
-      0% { transform: scale(0) translateY(0); opacity: 0; }
+      0% { transform: translateY(0) scale(0); opacity: 0; }
       20% { opacity: 1; }
-      100% { transform: scale(1.2) translateY(-40px); opacity: 0; }
+      100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
     }
-    /* -------------------------------- */
+    /* ------------------------ */
 
     .container {
       position: relative;
@@ -79,22 +71,24 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
     }
 
     .timer-container { margin-bottom: 20px; }
-    .timer-label { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+    .timer-label { font-size: 14px; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
     .timer { display: flex; justify-content: center; gap: 8px; align-items: center; }
     .timer-digit {
       background: linear-gradient(180deg, hsl(220, 15%, 18%) 0%, hsl(220, 15%, 12%) 100%);
       border: 1px solid hsla(45, 100%, 50%, 0.3);
       padding: 10px 15px;
       border-radius: 8px;
-      min-width: 50px;
+      min-width: 60px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
     .timer-digit span { font-size: 24px; font-weight: 700; }
     .timer-separator { font-size: 24px; font-weight: 700; }
 
-    .title { font-size: 36px; font-weight: 900; margin-bottom: 10px; }
+    .title { font-size: 42px; font-weight: 900; margin-bottom: 10px; line-height: 1.1; }
     .subtitle { font-size: 16px; color: var(--muted); margin-bottom: 30px; }
 
     .wheel-container {
@@ -105,36 +99,40 @@
     }
 
     @media (min-width: 768px) {
-      .wheel-container { width: 400px; height: 400px; }
+      .wheel-container { width: 420px; height: 420px; }
     }
 
     .pointer {
       position: absolute;
-      top: -10px; left: 50%;
+      top: -15px;
+      left: 50%;
       transform: translateX(-50%);
       width: 0; height: 0;
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
-      border-top: 35px solid hsl(45, 100%, 50%);
-      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+      border-top: 40px solid hsl(45, 100%, 50%);
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
       z-index: 20;
     }
 
     .wheel-border {
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: -5px;
       border-radius: 50%;
-      background: linear-gradient(135deg, hsl(45, 100%, 60%) 0%, hsl(30, 100%, 45%) 50%, hsl(45, 100%, 55%) 100%);
-      padding: 6px;
-      animation: pulse-glow 2s ease-in-out infinite;
+      background: conic-gradient(from 0deg, #ffd700, #b8860b, #ffd700);
+      padding: 8px;
+      animation: pulse-glow 1.5s ease-in-out infinite;
     }
 
     .wheel-border-inner { width: 100%; height: 100%; border-radius: 50%; background: var(--background); }
 
     .wheel {
-      position: absolute; inset: 6px;
+      position: absolute;
+      inset: 6px;
       border-radius: 50%;
       overflow: hidden;
-      transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+      transition: transform 5s cubic-bezier(0.15, 0, 0.15, 1);
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
     }
 
     .wheel svg { width: 100%; height: 100%; }
@@ -143,34 +141,41 @@
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 70px; height: 70px;
+      width: 80px; height: 80px;
       border-radius: 50%;
-      background: linear-gradient(135deg, hsl(45, 100%, 55%) 0%, hsl(30, 100%, 40%) 100%);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+      background: radial-gradient(circle, #ffd700 0%, #b8860b 100%);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), inset 0 2px 5px rgba(255, 255, 255, 0.8);
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px; font-weight: 900; color: var(--background);
+      font-size: 18px; font-weight: 900; color: #000;
       z-index: 10;
+      border: 3px solid #000;
     }
 
     .spin-button {
       background: var(--gold-gradient);
-      color: var(--background);
-      font-weight: 700; font-size: 18px;
-      text-transform: uppercase; letter-spacing: 0.1em;
-      padding: 16px 40px;
-      border: none; border-radius: 50px;
-      cursor: pointer; transition: all 0.3s ease;
-      position: relative; z-index: 2;
+      color: #000;
+      font-weight: 800;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 20px 50px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4), 0 0 0px rgba(255, 215, 0, 0);
     }
 
     .spin-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 60px hsla(45, 100%, 50%, 0.6);
+      transform: scale(1.1) translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 40px hsla(45, 100%, 50%, 0.8);
     }
+
+    .spin-button:active { transform: scale(0.95); }
 
     .modal-overlay {
       display: none; position: fixed; inset: 0;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.9);
       backdrop-filter: blur(8px);
       z-index: 100; align-items: center; justify-content: center; padding: 20px;
     }
@@ -178,35 +183,70 @@
     .modal-overlay.active { display: flex; }
 
     .modal {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid hsla(45, 100%, 50%, 0.4);
-      border-radius: 16px;
+      background: linear-gradient(145deg, #1e2430, #0f1218);
+      border: 2px solid #ffd700;
+      border-radius: 24px;
       max-width: 500px; width: 100%;
-      padding: 30px; position: relative;
-      animation: scaleIn 0.3s ease;
+      max-height: 90vh; overflow-y: auto;
+      padding: 40px 30px; position: relative;
+      box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+      animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes scaleIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    .modal-close {
+      position: absolute; top: 15px; right: 15px;
+      width: 40px; height: 40px;
+      border-radius: 50%; background: #2a313e;
+      border: 1px solid #ffd700; color: #ffd700;
+      cursor: pointer; font-size: 20px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .winner-badge {
+      display: inline-block; padding: 8px 20px;
+      border-radius: 50px; font-size: 14px; font-weight: 800;
+      background: #ffd700; color: #000;
+      margin-bottom: 25px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
     }
 
     .brand-logo-container {
-      width: 220px; height: 110px;
-      background: #fff; border-radius: 12px;
-      padding: 12px; margin: 0 auto 20px;
+      width: 240px; height: 120px;
+      background: #fff; border-radius: 16px; padding: 15px;
+      margin: 0 auto 25px;
       display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
+
     .brand-logo-container img { width: 100%; height: 100%; object-fit: contain; }
+
+    .offer-box {
+      background: rgba(255, 215, 0, 0.1);
+      border: 2px dashed #ffd700;
+      border-radius: 16px; padding: 20px;
+      margin-bottom: 25px;
+    }
+
+    .offer-text { font-size: 28px; font-weight: 800; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
 
     .cta-button {
       display: block; width: 100%;
       background: var(--gold-gradient);
-      color: var(--background);
-      font-weight: 700; text-transform: uppercase;
-      padding: 16px; border-radius: 12px;
-      text-decoration: none; text-align: center;
+      color: #000; font-weight: 900; font-size: 18px;
+      text-transform: uppercase; padding: 20px;
+      border: none; border-radius: 15px;
+      cursor: pointer; text-decoration: none;
+      text-align: center; transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
+    .footer { margin-top: 40px; font-size: 11px; color: var(--muted); opacity: 0.7; }
+
     @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 20px hsla(45, 100%, 50%, 0.4); }
-      50% { box-shadow: 0 0 40px hsla(45, 100%, 50%, 0.7); }
+      0%, 100% { box-shadow: 0 0 30px hsla(45, 100%, 50%, 0.5); filter: brightness(1); }
+      50% { box-shadow: 0 0 60px hsla(45, 100%, 50%, 0.9); filter: brightness(1.3); }
     }
   </style>
 </head>
@@ -215,7 +255,7 @@
 
   <div class="container">
     <div class="timer-container">
-      <p class="timer-label">✨ Offer expires in ✨</p>
+      <p class="timer-label">✨ Limited Time Offer ✨</p>
       <div class="timer">
         <div class="timer-digit"><span class="gold-text" id="hours">02</span></div>
         <span class="timer-separator gold-text">:</span>
@@ -225,8 +265,8 @@
       </div>
     </div>
 
-    <h1 class="title gold-text">🏆 SPIN & WIN! 🏆</h1>
-    <p class="subtitle">Discover your exclusive offer at the best sportsbooks!</p>
+    <h1 class="title gold-text">JACKPOT CHANCE!</h1>
+    <p class="subtitle">Spin the wheel to unlock your VIP welcome bonus</p>
 
     <div class="wheel-container">
       <div class="pointer"></div>
@@ -239,66 +279,72 @@
       <div class="center-circle">SPIN</div>
     </div>
 
-    <button class="spin-button" id="spinBtn">SEE OFFER</button>
+    <button class="spin-button" id="spinBtn">SPIN TO WIN</button>
+    <p class="footer">21+. Terms apply. Play responsibly.</p>
   </div>
 
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose">✕</button>
       <div style="text-align: center;">
-        <span class="winner-badge gold-text">🎉 CONGRATULATIONS! 🎉</span>
+        <span class="winner-badge">JACKPOT WON!</span>
         <div class="brand-logo-container">
           <img id="modalLogo" src="" alt="Brand Logo">
         </div>
-        <h2 class="brand-name gold-text" id="modalName"></h2>
-        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
-          <p id="modalOffer" style="font-size: 22px; font-weight: 700;"></p>
+        <div class="offer-box">
+          <p class="offer-label" style="color: #ffd700; text-transform: uppercase; font-size: 12px; font-weight: 700;">Your Exclusive Reward</p>
+          <p class="offer-text" id="modalOffer"></p>
         </div>
-        <a class="cta-button" id="modalCta" href="#" target="_blank">GET OFFER →</a>
-        <button onclick="closeModal()" style="background:none; border:none; color:#888; margin-top:15px; cursor:pointer;">Close</button>
+      </div>
+      <a class="cta-button" id="modalCta" href="#" target="_blank">CLAIM NOW →</a>
+      <div class="terms">
+        <p id="modalTerms" style="font-size: 10px; color: #888; margin-top: 15px; text-align: center;"></p>
       </div>
     </div>
   </div>
 
   <script>
-    // --- LÓGICA DO SPARKLING INTENSO ---
-    const sparkleContainer = document.getElementById('sparkles-container');
-    
+    // --- LÓGICA DO SPARKLING INTENSIFICADA ---
     function createSparkle() {
+      const container = document.getElementById('sparkles-container');
       const sparkle = document.createElement('div');
-      const isFlare = Math.random() > 0.8; // 20% das luzes serão "Flare"
+      sparkle.className = 'sparkle';
       
-      sparkle.className = isFlare ? 'sparkle flare' : 'sparkle';
+      const isGold = Math.random() > 0.3;
+      const size = Math.random() * 6 + 2 + 'px';
       
-      const size = Math.random() * 5 + 3 + 'px';
       sparkle.style.width = size;
       sparkle.style.height = size;
-      
       sparkle.style.left = Math.random() * 100 + '%';
       sparkle.style.top = Math.random() * 100 + '%';
+      
+      if(!isGold) {
+          sparkle.style.background = 'radial-gradient(circle, #fff 0%, rgba(255,255,255,0.8) 50%, transparent 100%)';
+          sparkle.style.boxShadow = '0 0 15px #fff';
+      }
       
       const duration = Math.random() * 1.5 + 0.8;
       sparkle.style.animationDuration = duration + 's';
       
-      sparkleContainer.appendChild(sparkle);
+      container.appendChild(sparkle);
       
-      setTimeout(() => sparkle.remove(), duration * 1000);
+      setTimeout(() => {
+        sparkle.remove();
+      }, duration * 1000);
     }
     
-    // Frequência aumentada para 10 brilhos por segundo
-    setInterval(createSparkle, 100);
+    // Intervalo muito mais rápido (50ms em vez de 200ms)
+    setInterval(createSparkle, 50);
     // -------------------------------------
 
     const brands = [
-      { id: "caesar", name: "Caesars", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Caesars-removebg-preview.png", offer: "Deposit $10 earn $200", color: "#F5F5F5" },
-      { id: "betmgm", name: "BetMGM", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/BetMGM-removebg-preview.png", offer: "Deposit Match up to $1000", color: "#E5D1B1" },
-      { id: "bet365", name: "Bet365", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/bet365-2-removebg-preview.png", offer: "Deposit Match up to $900", color: "#F5F5F5" },
-      { id: "wsop", name: "WSOP", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/WSOP.png", offer: "Deposit Match up to $800", color: "#E5D1B1" },
-      { id: "fanatics", name: "Fanatics", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Fanatics-removebg-preview.png", offer: "Deposit Match up to $700", color: "#F5F5F5" },
-      { id: "hardrock", name: "Hard Rock Bet", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Hard-Rock-Bet.png", offer: "Deposit Match up to $600", color: "#E5D1B1" },
-      { id: "playstar", name: "PlayStar", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/PlayStar.png", offer: "Deposit Match up to $500", color: "#F5F5F5" },
-      { id: "fanduel", name: "FanDuel", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/FanDuel-scaled.png", offer: "Deposit Match up to $2000", color: "#E5D1B1" }
+      { id: "caesar", name: "Caesars", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/Caesars-removebg-preview.png", offer: "Deposit $10 earn $200", url: "#", color: "#F5F5F5", terms: "New users only. 21+. T&Cs apply." },
+      { id: "betmgm", name: "BetMGM", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/BetMGM-removebg-preview.png", offer: "Match up to $1000", url: "#", color: "#E5D1B1", terms: "21+. New customers only. 1x playthrough." },
+      { id: "bet365", name: "Bet365", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/bet365-2-removebg-preview.png", offer: "Match up to $900", url: "#", color: "#F5F5F5", terms: "Min deposit $10. Bet Credits available." },
+      { id: "fanduel", name: "FanDuel", logo: "https://offers.pickswise.com/wp-content/uploads/2026/01/FanDuel-scaled.png", offer: "Match up to $2000", url: "#", color: "#E5D1B1", terms: "21+. New users only. Terms at FanDuel.com." }
     ];
 
+    // Build Wheel
     const wheelSvg = document.querySelector('#wheel svg');
     const segmentAngle = 360 / brands.length;
 
@@ -312,7 +358,7 @@
       const x2 = 50 + 50 * Math.cos(endRad);
       const y2 = 50 + 50 * Math.sin(endRad);
       const largeArc = segmentAngle > 180 ? 1 : 0;
-      
+      const path = `M 50 50 L ${x1} ${y1} A 50 50 0 ${largeArc} 1 ${x2} ${y2} Z`;
       const midAngle = ((startAngle + endAngle) / 2 * Math.PI) / 180;
       const logoX = 50 + 32 * Math.cos(midAngle);
       const logoY = 50 + 32 * Math.sin(midAngle);
@@ -320,42 +366,65 @@
 
       const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       g.innerHTML = `
-        <path d="M 50 50 L ${x1} ${y1} A 50 50 0 ${largeArc} 1 ${x2} ${y2} Z" fill="${brand.color}" stroke="rgba(212,175,55,0.3)" stroke-width="0.3"/>
+        <path d="${path}" fill="${index % 2 === 0 ? '#1a1a1a' : '#2a2a2a'}" stroke="#ffd700" stroke-width="0.5"/>
         <image href="${brand.logo}" x="${logoX - 10}" y="${logoY - 6}" width="20" height="12" transform="rotate(${logoRotation}, ${logoX}, ${logoY})" preserveAspectRatio="xMidYMid meet"/>
       `;
       wheelSvg.appendChild(g);
     });
 
+    // Spin Logic
     let currentRotation = 0;
+    let isSpinning = false;
     const wheel = document.getElementById('wheel');
     const spinBtn = document.getElementById('spinBtn');
 
     spinBtn.addEventListener('click', () => {
+      if (isSpinning) return;
+      isSpinning = true;
       spinBtn.disabled = true;
+      spinBtn.style.opacity = "0.7";
+
       const winnerIndex = Math.floor(Math.random() * brands.length);
-      const extraVoltas = 360 * 8;
-      const stopAngle = 360 - (winnerIndex * segmentAngle) - (segmentAngle / 2);
-      currentRotation += extraVoltas + stopAngle + (360 - (currentRotation % 360));
+      const rotations = 8 + Math.floor(Math.random() * 5); 
+      const targetAngle = (winnerIndex * segmentAngle);
+      const stopAngle = 360 - targetAngle - (segmentAngle / 2);
+      
+      currentRotation += (rotations * 360) + stopAngle - (currentRotation % 360);
       wheel.style.transform = `rotate(${currentRotation}deg)`;
 
       setTimeout(() => {
-        const brand = brands[winnerIndex];
-        document.getElementById('modalLogo').src = brand.logo;
-        document.getElementById('modalName').textContent = brand.name;
-        document.getElementById('modalOffer').textContent = brand.offer;
-        document.getElementById('modalOverlay').classList.add('active');
+        isSpinning = false;
         spinBtn.disabled = false;
-      }, 4000);
+        spinBtn.style.opacity = "1";
+        showModal(brands[winnerIndex]);
+      }, 5000);
     });
 
-    function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+    function showModal(brand) {
+      document.getElementById('modalLogo').src = brand.logo;
+      document.getElementById('modalOffer').textContent = brand.offer;
+      document.getElementById('modalCta').href = brand.url;
+      document.getElementById('modalTerms').textContent = brand.terms;
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
 
-    // Timer simples
-    let ts = 8000;
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+
+    // Timer Simple
+    let totalSeconds = 7965;
     setInterval(() => {
-      ts--;
-      document.getElementById('minutes').textContent = String(Math.floor(ts/60)).padStart(2,'0');
-      document.getElementById('seconds').textContent = String(ts%60).padStart(2,'0');
+      totalSeconds--;
+      const h = Math.floor(totalSeconds / 3600);
+      const m = Math.floor((totalSeconds % 3600) / 60);
+      const s = totalSeconds % 60;
+      document.getElementById('hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(s).padStart(2, '0');
     }, 1000);
   </script>
 </body>
