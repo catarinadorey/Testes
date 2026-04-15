@@ -1,157 +1,1046 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spin & Win Casino Offers</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Affiliate Betting Hub — Estratégia</title>
   <style>
     :root {
-      --background: hsl(220, 20%, 8%);
-      --foreground: hsl(45, 100%, 95%);
-      --primary: hsl(45, 100%, 50%);
-      --secondary: hsl(220, 15%, 18%);
-      --muted: hsl(220, 10%, 60%);
-      --gold-gradient: linear-gradient(135deg, hsl(45, 100%, 50%) 0%, hsl(30, 100%, 45%) 50%, hsl(45, 100%, 55%) 100%);
-      --dark-gradient: linear-gradient(180deg, hsl(220, 20%, 12%) 0%, hsl(220, 20%, 6%) 100%);
-      --glass-bg: hsla(220, 15%, 15%, 0.8);
-      --glow-gold: 0 0 30px hsla(45, 100%, 50%, 0.4);
+      --bg: #07111f;
+      --bg-soft: #0d1b2d;
+      --card: rgba(255,255,255,0.06);
+      --card-strong: rgba(255,255,255,0.1);
+      --line: rgba(255,255,255,0.12);
+      --text: #eef4ff;
+      --muted: #a9b7cf;
+      --accent: #31d98b;
+      --accent-2: #78a6ff;
+      --danger: #ff7f7f;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 22px;
+      --max: 1180px;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: var(--dark-gradient); color: var(--foreground); min-height: 100vh; }
-
-    /* Sparkles Background */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(4px 4px at 5% 8%, rgba(255,230,150,1), transparent 60%),
-        radial-gradient(3px 3px at 12% 22%, rgba(255,255,255,.95), transparent 60%),
-        radial-gradient(4px 4px at 18% 45%, rgba(255,220,120,1), transparent 60%),
-        radial-gradient(3px 3px at 25% 70%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(4px 4px at 32% 90%, rgba(255,230,150,1), transparent 60%),
-        radial-gradient(3px 3px at 40% 15%, rgba(255,255,255,.95), transparent 60%),
-        radial-gradient(4px 4px at 48% 35%, rgba(255,220,120,1), transparent 60%),
-        radial-gradient(3px 3px at 55% 60%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(4px 4px at 62% 80%, rgba(255,230,150,1), transparent 60%),
-        radial-gradient(3px 3px at 70% 10%, rgba(255,255,255,.95), transparent 60%),
-        radial-gradient(4px 4px at 78% 28%, rgba(255,220,120,1), transparent 60%),
-        radial-gradient(3px 3px at 85% 55%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(4px 4px at 92% 78%, rgba(255,230,150,1), transparent 60%),
-        radial-gradient(5px 5px at 15% 50%, rgba(255,235,180,1), transparent 65%),
-        radial-gradient(5px 5px at 45% 85%, rgba(255,235,180,1), transparent 65%),
-        radial-gradient(5px 5px at 75% 45%, rgba(255,235,180,1), transparent 65%),
-
-        /* Duplicados */
-        radial-gradient(3px 3px at 10% 20%, rgba(255,255,255,.95), transparent 60%),
-        radial-gradient(4px 4px at 20% 40%, rgba(255,230,150,1), transparent 60%),
-        radial-gradient(3px 3px at 30% 60%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(4px 4px at 40% 80%, rgba(255,220,120,1), transparent 60%),
-        radial-gradient(3px 3px at 50% 10%, rgba(255,255,255,.95), transparent 60%),
-        radial-gradient(4px 4px at 60% 35%, rgba(255,230,150,1), transparent 60%),
-        radial-gradient(3px 3px at 70% 55%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(4px 4px at 80% 75%, rgba(255,220,120,1), transparent 60%),
-        radial-gradient(5px 5px at 5% 50%, rgba(255,235,180,1), transparent 65%),
-        radial-gradient(5px 5px at 25% 80%, rgba(255,235,180,1), transparent 65%),
-        radial-gradient(5px 5px at 55% 25%, rgba(255,235,180,1), transparent 65%),
-        radial-gradient(5px 5px at 85% 50%, rgba(255,235,180,1), transparent 65%),
-        radial-gradient(3px 3px at 90% 15%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(4px 4px at 95% 70%, rgba(255,230,150,1), transparent 60%),
-
-        /* Mobile-friendly */
-        radial-gradient(2px 2px at 15% 30%, rgba(255,255,255,.85), transparent 60%),
-        radial-gradient(2px 2px at 35% 50%, rgba(255,230,150,1), transparent 60%),
-        radial-gradient(2px 2px at 65% 20%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(2px 2px at 80% 60%, rgba(255,220,120,1), transparent 60%);
-      filter: blur(0.5px);
-      animation: sparkleMove 6s linear infinite;
+        radial-gradient(circle at top left, rgba(120,166,255,.18), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(49,217,139,.12), transparent 24%),
+        linear-gradient(180deg, #07111f 0%, #081424 55%, #091827 100%);
     }
 
-    @keyframes sparkleMove { from { transform: translateY(0); } to { transform: translateY(-350px); } }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
 
-    .container { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; }
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(7,17,31,.72);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; padding: 16px 0;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: .02em;
+    }
+    .brand-badge {
+      width: 36px; height: 36px; border-radius: 12px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #07111f; font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+    .nav-links {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+    .nav-links a {
+      padding: 10px 14px; border-radius: 999px;
+      border: 1px solid transparent; color: var(--muted); font-size: 14px;
+      transition: .2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text); border-color: var(--line); background: rgba(255,255,255,.05);
+    }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 16px; border-radius: 999px; font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), #78ffcb);
+      color: #07111f;
+      box-shadow: 0 12px 30px rgba(49,217,139,.2);
+    }
 
-    /* Pickswise Logo */
-    .pickswise-logo-container { text-align: center; margin-bottom: 20px; }
-    .pickswise-logo-container img { max-width: 250px; width: 50%; height: auto; }
+    .hero {
+      padding: 68px 0 28px;
+    }
+    .hero-wrap {
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: stretch;
+    }
+    .hero-card, .panel, .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: var(--shadow);
+    }
+    .hero-card {
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      min-height: 530px;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute; inset: auto -80px -100px auto; width: 260px; height: 260px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(49,217,139,.22), transparent 68%);
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(49,217,139,.2);
+      color: #b9ffd9; background: rgba(49,217,139,.09);
+      border-radius: 999px; padding: 10px 14px; font-size: 13px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: .98; margin: 18px 0 18px;
+      max-width: 10ch;
+    }
+    .lead {
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.6; color: var(--muted); max-width: 62ch;
+    }
+    .hero-actions { display:flex; flex-wrap:wrap; gap: 14px; margin-top: 26px; }
+    .btn {
+      border: 0; cursor: pointer; border-radius: 16px; padding: 14px 18px;
+      font-weight: 700; font-size: 15px; transition: .2s ease; display: inline-flex; align-items:center; gap:10px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #7cffcb); color: #07111f;
+      box-shadow: 0 14px 30px rgba(49,217,139,.18);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,.05); color: var(--text); border: 1px solid var(--line);
+    }
+    .btn:hover { transform: translateY(-2px); }
 
-    /* Restante CSS já existente... (timer, wheel, buttons, modal, etc.) */
-    /* ...Mantenho todo o resto do teu CSS sem alterações ... */
+    .hero-metrics {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 28px;
+    }
+    .metric {
+      background: rgba(255,255,255,.045); border: 1px solid var(--line); border-radius: 18px; padding: 16px;
+    }
+    .metric strong { display:block; font-size: 32px; margin-bottom: 8px; }
+    .metric span { color: var(--muted); font-size: 14px; line-height:1.45; }
+
+    .simulator {
+      padding: 24px; display:flex; flex-direction:column; gap: 16px; min-height: 530px;
+    }
+    .simulator h3 { margin:0; font-size: 26px; }
+    .simulator p { margin:0; color: var(--muted); line-height: 1.6; }
+    .toggle-group, .filter-group { display:flex; flex-wrap:wrap; gap: 10px; }
+    .chip {
+      padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,.05); border:1px solid var(--line);
+      color: var(--muted); cursor:pointer; font-weight: 600; transition: .2s ease;
+    }
+    .chip.active { color: var(--text); border-color: rgba(49,217,139,.35); background: rgba(49,217,139,.12); }
+    .offer-box {
+      margin-top: 6px; padding: 20px; border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+    }
+    .offer-box .small { color: var(--muted); font-size: 14px; }
+    .offer-title { font-size: 24px; font-weight: 800; margin: 8px 0; }
+    .offer-tag { display:inline-block; margin-top: 8px; color:#b9ffd9; background: rgba(49,217,139,.1); padding:8px 12px; border-radius: 999px; font-size: 13px; font-weight:700; }
+    .offer-list { display:grid; gap: 12px; margin-top: 14px; }
+    .offer-item {
+      display:flex; align-items:center; justify-content:space-between; gap: 10px;
+      padding: 14px 16px; background: rgba(255,255,255,.04); border:1px solid var(--line); border-radius: 16px;
+    }
+    .offer-item strong { display:block; }
+    .offer-item span { display:block; color: var(--muted); font-size: 13px; margin-top: 4px; }
+    .mini-badge {
+      padding: 8px 10px; border-radius: 999px; background: rgba(120,166,255,.12); color: #cfe0ff; font-size: 12px; font-weight:700;
+      white-space: nowrap;
+    }
+
+    section.block { padding: 28px 0; }
+    .section-top {
+      display:flex; align-items:end; justify-content:space-between; gap: 20px; margin-bottom: 18px;
+    }
+    .section-top h2 { margin: 0; font-size: clamp(28px, 3vw, 44px); }
+    .section-top p { margin:0; color: var(--muted); max-width: 64ch; line-height:1.7; }
+
+    .grid-3 { display:grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .grid-4 { display:grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+    .grid-2 { display:grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+    .card { padding: 24px; }
+    .card h3 { margin:0 0 10px; font-size: 22px; }
+    .card p { margin:0; color: var(--muted); line-height:1.7; }
+    .pill {
+      display:inline-block; padding: 8px 10px; border-radius: 999px; font-size: 12px; font-weight:700; letter-spacing:.04em;
+      color:#b9ffd9; background: rgba(49,217,139,.1); border:1px solid rgba(49,217,139,.18);
+      margin-bottom: 14px;
+    }
+
+    .list { display:grid; gap: 12px; margin-top: 18px; }
+    .list-item {
+      display:flex; gap: 14px; align-items:flex-start; padding: 14px 16px; border-radius: 16px;
+      background: rgba(255,255,255,.04); border: 1px solid var(--line);
+    }
+    .list-no {
+      width: 32px; height: 32px; border-radius: 10px; display:grid; place-items:center; flex:0 0 32px;
+      background: rgba(49,217,139,.15); color:#b9ffd9; font-weight:800;
+    }
+
+    .tabs { display:flex; flex-wrap:wrap; gap: 10px; margin-bottom: 18px; }
+    .tab-btn {
+      padding: 12px 14px; border-radius: 14px; border:1px solid var(--line); background: rgba(255,255,255,.04); color: var(--muted);
+      cursor:pointer; font-weight:700;
+    }
+    .tab-btn.active { color: var(--text); background: rgba(120,166,255,.13); border-color: rgba(120,166,255,.28); }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+
+    .comparison {
+      overflow:auto; border:1px solid var(--line); border-radius: 22px; background: rgba(255,255,255,.04);
+    }
+    table { width:100%; border-collapse: collapse; min-width: 760px; }
+    th, td { padding: 18px 16px; text-align:left; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing:.08em; }
+    td { vertical-align: top; }
+    .score {
+      display:inline-flex; align-items:center; justify-content:center; min-width: 54px; padding: 10px 12px;
+      background: rgba(49,217,139,.14); color:#b9ffd9; border-radius: 12px; font-weight:800;
+    }
+
+    .accordion { display:grid; gap: 12px; }
+    .acc-item { border:1px solid var(--line); border-radius: 18px; overflow:hidden; background: rgba(255,255,255,.04); }
+    .acc-head {
+      width:100%; text-align:left; border:0; background:transparent; color:var(--text); cursor:pointer;
+      padding: 18px 20px; font-size: 18px; font-weight: 700; display:flex; justify-content:space-between; gap: 16px;
+    }
+    .acc-head span:last-child { color: var(--muted); }
+    .acc-body { display:none; padding: 0 20px 20px; color: var(--muted); line-height:1.75; }
+    .acc-item.open .acc-body { display:block; }
+
+    .roadmap {
+      display:grid; grid-template-columns: repeat(5,1fr); gap: 14px;
+    }
+    .step {
+      position:relative; padding: 22px; border-radius: 20px; background: rgba(255,255,255,.05); border:1px solid var(--line);
+    }
+    .step strong { display:block; font-size: 13px; color:#b9ffd9; text-transform: uppercase; letter-spacing:.08em; margin-bottom: 10px; }
+    .step h4 { margin:0 0 10px; font-size: 20px; }
+    .step p { margin:0; color: var(--muted); line-height:1.65; }
+
+    .footer {
+      padding: 40px 0 70px; color: var(--muted);
+    }
+    .footer-box {
+      display:flex; align-items:center; justify-content:space-between; gap: 20px;
+      padding: 24px; border-radius: 24px; background: rgba(255,255,255,.05); border:1px solid var(--line);
+    }
+    .footer strong { color: var(--text); display:block; font-size: 22px; margin-bottom: 8px; }
+
+    .hidden-mobile { display: inline-flex; }
+
+    @media (max-width: 1100px) {
+      .hero-wrap, .grid-3, .grid-4, .grid-2, .roadmap { grid-template-columns: 1fr; }
+      .hero-card, .simulator { min-height: auto; }
+    }
+    @media (max-width: 860px) {
+      .nav-inner { flex-direction: column; align-items: stretch; }
+      .nav-links { justify-content: center; }
+      .nav-cta { justify-content: center; }
+      .hero { padding-top: 38px; }
+      .hero-card { padding: 28px; }
+      .hero-metrics { grid-template-columns: 1fr; }
+      .section-top { flex-direction: column; align-items: flex-start; }
+      section.block { padding: 18px 0; }
+      .hidden-mobile { display: none; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-
-    <!-- LOGO PICKSWISE -->
-    <div class="pickswise-logo-container">
-      <img src="https://offers.pickswise.com/wp-content/uploads/2025/11/cropped-cropped-Design-sem-nome-617x135-1.png" alt="Pickswise Logo">
-    </div>
-
-    <div class="timer-container">
-      <p class="timer-label">✨ Offer expires in ✨</p>
-      <div class="timer">
-        <div class="timer-digit"><span class="gold-text" id="hours">02</span></div>
-        <span class="timer-separator gold-text">:</span>
-        <div class="timer-digit"><span class="gold-text" id="minutes">12</span></div>
-        <span class="timer-separator gold-text">:</span>
-        <div class="timer-digit"><span class="gold-text" id="seconds">45</span></div>
-      </div>
-    </div>
-
-    <h1 class="title gold-text">🏆 SPIN & WIN! 🏆</h1>
-    <p class="subtitle">Discover your exclusive offer at the best sportsbooks!</p>
-
-    <div class="wheel-container">
-      <div class="pointer"></div>
-      <div class="wheel-border">
-        <div class="wheel-border-inner"></div>
-      </div>
-      <div class="wheel" id="wheel">
-        <svg viewBox="0 0 100 100"></svg>
-      </div>
-      <div class="center-circle">SPIN</div>
-    </div>
-
-    <button class="spin-button" id="spinBtn">SEE OFFER</button>
-    <p class="footer">21+. Gamble responsibly. If you have a gambling problem, please seek professional help.</p>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal" id="modal">
-      <button class="modal-close" id="modalClose">✕</button>
-      <div style="text-align: center;">
-        <span class="winner-badge gold-text">🎉 CONGRATULATIONS! YOU WON! 🎉</span>
-        <div class="brand-logo-container">
-          <img id="modalLogo" src="" alt="Brand Logo">
-        </div>
-        <h2 class="brand-name gold-text" id="modalName"></h2>
-        <div class="offer-box">
-          <p class="offer-label">Exclusive Offer</p>
-          <p class="offer-text" id="modalOffer"></p>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-badge">A</div>
+        <div>
+          <div>Affiliate Betting Hub</div>
+          <div style="font-size:12px;color:var(--muted);font-weight:600;">Proposta estratégica para aprovação</div>
         </div>
       </div>
-      <div class="pros-cons">
-        <h4><span style="color: #22c55e;">✓</span> Pros</h4>
-        <ul id="modalPros"></ul>
-        <h4><span style="color: #f59e0b;">⚠</span> Cons</h4>
-        <ul id="modalCons"></ul>
+      <div class="nav-links">
+        <a href="#visao" class="active">Visão</a>
+        <a href="#estrutura">Estrutura</a>
+        <a href="#conteudo">Conteúdo</a>
+        <a href="#tools">Ferramentas</a>
+        <a href="#boosts">Odds Boosts</a>
+        <a href="#geo">GEO</a>
+        <a href="#paid">Paid</a>
+        <a href="#roadmap">Roadmap</a>
       </div>
-      <a class="cta-button" id="modalCta" href="#" target="_blank">GET OFFER →</a>
-      <div class="terms">
-        <h5>Terms & Conditions</h5>
-        <p id="modalTerms"></p>
+      <a href="#conclusao" class="nav-cta">Ver recomendação final</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="visao">
+    <div class="container hero-wrap">
+      <div class="hero-card">
+        <div class="eyebrow">SEO + Paid Media + Conversão</div>
+        <h1>Não devemos criar apenas um afiliado. Devemos criar um produto que converte.</h1>
+        <p class="lead">
+          O projeto deve juntar conteúdo útil, rankings, reviews curtas, predictions, ferramentas inteligentes e landing pages orientadas a performance. O objetivo é simples: aumentar relevância por país e maximizar FTDs por marca.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#estrutura">Explorar estrutura do site</a>
+          <button class="btn btn-secondary" data-scroll="#tools">Ver ferramentas recomendadas</button>
+        </div>
+        <div class="hero-metrics">
+          <div class="metric">
+            <strong>SEO</strong>
+            <span>Money pages, guias estratégicos, reviews comparáveis e freshness com predictions.</span>
+          </div>
+          <div class="metric">
+            <strong>Paid</strong>
+            <span>Landing pages por GEO e intenção para melhorar CTR, relevância e CPA.</span>
+          </div>
+          <div class="metric">
+            <strong>FTDs</strong>
+            <span>UX mais clara, ofertas dinâmicas e decisão mais rápida para o utilizador.</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel simulator">
+        <h3>Simulador de posicionamento</h3>
+        <p>Exemplo visual de como o site pode adaptar oferta e mensagem por país e perfil de utilizador.</p>
+
+        <div>
+          <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">Selecionar país</div>
+          <div class="toggle-group" id="countrySwitch">
+            <button class="chip active" data-country="pt">Portugal</button>
+            <button class="chip" data-country="br">Brasil</button>
+            <button class="chip" data-country="ca">Canadá</button>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">Selecionar foco</div>
+          <div class="filter-group" id="profileSwitch">
+            <button class="chip active" data-profile="bonus">Bónus</button>
+            <button class="chip" data-profile="beginner">Iniciantes</button>
+            <button class="chip" data-profile="live">Live Betting</button>
+          </div>
+        </div>
+
+        <div class="offer-box" id="offerBox">
+          <div class="small">Mercado prioritário</div>
+          <div class="offer-title">Portugal · Oferta principal</div>
+          <div class="small">Mensagem, ranking e CTA ajustados automaticamente.</div>
+          <div class="offer-tag">Mais relevância = mais probabilidade de FTD</div>
+          <div class="offer-list" id="offerList"></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="block" id="estrutura">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <div class="pill">Arquitetura recomendada</div>
+            <h2>Estrutura do site</h2>
+          </div>
+          <p>O site deve funcionar como um hub híbrido: forte em SEO, claro em UX e preparado para campanhas pagas. A arquitetura tem de servir descoberta, comparação e conversão.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="pill">Página principal</div>
+            <h3>Homepage geolocalizada</h3>
+            <p>Deteta o país, mostra as melhores marcas disponíveis, oferta principal, jogos do dia, blocos de confiança e CTAs acima da dobra.</p>
+            <div class="list">
+              <div class="list-item"><div class="list-no">1</div><div>Top bookmakers por mercado</div></div>
+              <div class="list-item"><div class="list-no">2</div><div>Oferta prioritária e prova de valor</div></div>
+              <div class="list-item"><div class="list-no">3</div><div>Predictions e jogos relevantes</div></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="pill">SEO transacional</div>
+            <h3>Money pages por GEO</h3>
+            <p>São as páginas com maior potencial de tráfego qualificado e FTD. Devem captar procura direta por “melhores casas”, “melhores bónus” e variantes locais.</p>
+            <div class="list">
+              <div class="list-item"><div class="list-no">A</div><div>/best-betting-sites-portugal</div></div>
+              <div class="list-item"><div class="list-no">B</div><div>/betting-bonuses-brazil</div></div>
+              <div class="list-item"><div class="list-no">C</div><div>/best-betting-apps-canada</div></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="pill">Comparação e decisão</div>
+            <h3>Reviews e páginas de marca</h3>
+            <p>Devem ajudar o utilizador a decidir em segundos. Menos texto genérico, mais comparabilidade, critérios claros, prós e contras e CTA imediato.</p>
+            <div class="list">
+              <div class="list-item"><div class="list-no">✓</div><div>Resumo acima da dobra</div></div>
+              <div class="list-item"><div class="list-no">✓</div><div>Quick facts e badges</div></div>
+              <div class="list-item"><div class="list-no">✓</div><div>Comparação com concorrentes</div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="conteudo">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <div class="pill">Conteúdo com utilidade real</div>
+            <h2>O que devemos publicar</h2>
+          </div>
+          <p>Não faz sentido apostar em conteúdo genérico ou noticioso sem intenção. O foco deve estar em formatos que posicionam bem e ajudam a converter.</p>
+        </div>
+
+        <div class="tabs" id="contentTabs">
+          <button class="tab-btn active" data-tab="rankings">Rankings</button>
+          <button class="tab-btn" data-tab="reviews">Reviews</button>
+          <button class="tab-btn" data-tab="predictions">Predictions</button>
+          <button class="tab-btn" data-tab="guides">Guias</button>
+        </div>
+
+        <div class="tab-panel active" data-panel="rankings">
+          <div class="grid-2">
+            <article class="card">
+              <div class="pill">Core do negócio</div>
+              <h3>Rankings das melhores casas para X</h3>
+              <p>Estas páginas devem ser o coração da estratégia de SEO e monetização. São as melhores para captar intenção comercial por GEO e perfil de utilizador.</p>
+              <div class="list">
+                <div class="list-item"><div class="list-no">1</div><div>Best betting sites por país</div></div>
+                <div class="list-item"><div class="list-no">2</div><div>Melhores apps de apostas</div></div>
+                <div class="list-item"><div class="list-no">3</div><div>Melhores bónus</div></div>
+                <div class="list-item"><div class="list-no">4</div><div>Melhores para iniciantes e live betting</div></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="pill">Como fazer bem</div>
+              <h3>Estrutura ideal</h3>
+              <p>O ranking deve parecer editorial, transparente e objetivo. O utilizador tem de perceber rapidamente porque uma marca está em primeiro lugar.</p>
+              <div class="list">
+                <div class="list-item"><div class="list-no">A</div><div>Ranking visível acima da dobra</div></div>
+                <div class="list-item"><div class="list-no">B</div><div>Critérios claros de avaliação</div></div>
+                <div class="list-item"><div class="list-no">C</div><div>Prós, contras e badges por operador</div></div>
+                <div class="list-item"><div class="list-no">D</div><div>CTA forte em cada posição</div></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="reviews">
+          <div class="grid-2">
+            <article class="card">
+              <div class="pill">Decisão rápida</div>
+              <h3>Análises de marcas mais inteligentes</h3>
+              <p>As reviews não devem ser longas e aborrecidas. Devem ser pragmáticas, comparáveis e orientadas a decisão. Texto só onde realmente ajuda SEO ou esclarece dúvidas.</p>
+              <div class="list">
+                <div class="list-item"><div class="list-no">1</div><div>Hero com rating, oferta e CTA</div></div>
+                <div class="list-item"><div class="list-no">2</div><div>Prós e contras visuais</div></div>
+                <div class="list-item"><div class="list-no">3</div><div>Quick facts: pagamentos, mercados, app, odds</div></div>
+                <div class="list-item"><div class="list-no">4</div><div>Comparação direta com outras marcas</div></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="pill">Porque isto converte melhor</div>
+              <h3>Menos fricção, mais clareza</h3>
+              <p>O utilizador não quer ler a história da marca. Quer saber se vale a pena, para que perfil serve e qual é a melhor oferta naquele momento.</p>
+              <div class="list">
+                <div class="list-item"><div class="list-no">✓</div><div>Ajuda a escolher em segundos</div></div>
+                <div class="list-item"><div class="list-no">✓</div><div>Aumenta trust com critérios claros</div></div>
+                <div class="list-item"><div class="list-no">✓</div><div>Suporta comparações e testes A/B</div></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="predictions">
+          <div class="grid-2">
+            <article class="card">
+              <div class="pill">Freshness + intenção</div>
+              <h3>Predictions e palpites</h3>
+              <p>São uma das melhores alavancas para captar tráfego recorrente e intenção imediata. Ligam o contexto do jogo diretamente à oferta certa.</p>
+              <div class="list">
+                <div class="list-item"><div class="list-no">1</div><div>Jogos grandes com procura recorrente</div></div>
+                <div class="list-item"><div class="list-no">2</div><div>Conteúdo curto, claro e rápido de consumir</div></div>
+                <div class="list-item"><div class="list-no">3</div><div>CTA contextual com bookmaker recomendado</div></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="pill">Como produzir</div>
+              <h3>Template consistente</h3>
+              <p>Cada prediction deve seguir uma estrutura repetível para escalar: contexto do jogo, pick principal, odds, racional curto e ligação à melhor oferta disponível.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="guides">
+          <div class="grid-2">
+            <article class="card">
+              <div class="pill">E-E-A-T e long-tail</div>
+              <h3>Guias com intenção real</h3>
+              <p>Guias fazem sentido, mas só quando ajudam o utilizador e suportam páginas comerciais. Nada de conteúdos vagos ou enciclopédicos sem propósito.</p>
+              <div class="list">
+                <div class="list-item"><div class="list-no">1</div><div>Como apostar futebol em [país]</div></div>
+                <div class="list-item"><div class="list-no">2</div><div>Como levantar dinheiro numa casa de apostas</div></div>
+                <div class="list-item"><div class="list-no">3</div><div>Como usar bónus sem erros comuns</div></div>
+                <div class="list-item"><div class="list-no">4</div><div>Estratégias para iniciantes</div></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="pill">Papel na estratégia</div>
+              <h3>Guias apoiam, não lideram</h3>
+              <p>Guias servem para captar long-tail, reforçar autoridade e alimentar o internal linking para rankings, reviews e ofertas. Não devem roubar prioridade às páginas mais comerciais.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="tools">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <div class="pill">Diferenciador estratégico</div>
+            <h2>Ferramentas com AI e utilidade real</h2>
+          </div>
+          <p>Aqui está uma das maiores oportunidades do projeto. Ferramentas úteis ajudam SEO, aumentam engagement e tornam o site mais parecido com produto do que com afiliado puro.</p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card">
+            <div class="pill">Tool 1</div>
+            <h3>Odds Converter</h3>
+            <p>Converte decimal, american e fractional. Fácil de entender, útil para SEO long-tail e ótimo ponto de entrada para utilizadores novos.</p>
+          </article>
+          <article class="card">
+            <div class="pill">Tool 2</div>
+            <h3>Value Bet Calculator</h3>
+            <p>Ajuda a perceber se uma odd tem valor esperado. Cria autoridade e reforça perceção de inteligência do produto.</p>
+          </article>
+          <article class="card">
+            <div class="pill">Tool 3</div>
+            <h3>Bet Builder Helper</h3>
+            <p>Assistente que sugere combinações e explica o racional. Deve ser usado com foco em usabilidade e CTAs bem ligados à intenção.</p>
+          </article>
+          <article class="card">
+            <div class="pill">Tool 4</div>
+            <h3>Quiz “Melhor casa para ti”</h3>
+            <p>Questionário simples que recomenda a marca ideal com base em país, perfil e preferência. Excelente para conversão.</p>
+          </article>
+        </div>
+
+        <div class="grid-2" style="margin-top:18px;">
+          <article class="card">
+            <div class="pill">Nova oportunidade</div>
+            <h3>Odds Boosts por casa e por jogo</h3>
+            <p>Secção dedicada a odds aumentadas em jogos específicos. Junta urgência, valor percebido e intenção imediata, o que a torna uma das funcionalidades com maior potencial de FTD.</p>
+            <div class="list">
+              <div class="list-item"><div class="list-no">1</div><div>Mostrar odd antiga vs odd nova</div></div>
+              <div class="list-item"><div class="list-no">2</div><div>Destaque para percentagem de aumento</div></div>
+              <div class="list-item"><div class="list-no">3</div><div>Filtro por desporto, jogo e bookmaker</div></div>
+              <div class="list-item"><div class="list-no">4</div><div>CTA direto para apostar agora</div></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="pill">Porque é tão forte</div>
+            <h3>Conversão em tempo real</h3>
+            <p>Odds boosts combinam escassez, benefício claro e timing. Isso torna esta funcionalidade muito forte para homepage, predictions, páginas GEO e landing pages de Paid Media.</p>
+            <div class="list">
+              <div class="list-item"><div class="list-no">↑</div><div>Alta intenção de aposta imediata</div></div>
+              <div class="list-item"><div class="list-no">↑</div><div>Freshness diário para o site</div></div>
+              <div class="list-item"><div class="list-no">↑</div><div>Ótima ligação com predictions e campanhas</div></div>
+              <div class="list-item"><div class="list-no">↑</div><div>Mais valor percebido pelo utilizador</div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid-2" style="margin-top:18px;">
+          <article class="card">
+            <div class="pill">Como implementar</div>
+            <h3>Princípios de produto</h3>
+            <div class="list">
+              <div class="list-item"><div class="list-no">1</div><div>UX simples, rápida e mobile-first</div></div>
+              <div class="list-item"><div class="list-no">2</div><div>Resultado imediato sem fricção</div></div>
+              <div class="list-item"><div class="list-no">3</div><div>CTA contextual logo após o output</div></div>
+              <div class="list-item"><div class="list-no">4</div><div>Página indexável própria para cada ferramenta</div></div>
+              <div class="list-item"><div class="list-no">5</div><div>Tracking de interação para CRO e remarketing</div></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="pill">Porque vale a pena</div>
+            <h3>Impacto esperado</h3>
+            <div class="list">
+              <div class="list-item"><div class="list-no">↑</div><div>Mais engagement e tempo no site</div></div>
+              <div class="list-item"><div class="list-no">↑</div><div>Maior diferenciação face à concorrência</div></div>
+              <div class="list-item"><div class="list-no">↑</div><div>Mais confiança na decisão de aposta</div></div>
+              <div class="list-item"><div class="list-no">↑</div><div>Mais pontos de entrada SEO e paid</div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <div class="pill">Exemplo prático</div>
+            <h2>Como uma review deve parecer</h2>
+          </div>
+          <p>O objetivo é mostrar uma estrutura de review mais útil e comparável. Menos texto corrido, mais contexto acionável.</p>
+        </div>
+
+        <div class="comparison">
+          <table>
+            <thead>
+              <tr>
+                <th>Elemento</th>
+                <th>Como deve ser</th>
+                <th>Porque é importante</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Hero</strong></td>
+                <td>Rating, oferta atual, CTA, melhor para quem</td>
+                <td>Ajuda a decidir logo nos primeiros segundos</td>
+              </tr>
+              <tr>
+                <td><strong>Prós e contras</strong></td>
+                <td>Formato visual e direto</td>
+                <td>Facilita comparação sem leitura extensa</td>
+              </tr>
+              <tr>
+                <td><strong>Quick facts</strong></td>
+                <td>Pagamentos, odds, app, mercados, live</td>
+                <td>Responde às dúvidas mais comuns rapidamente</td>
+              </tr>
+              <tr>
+                <td><strong>Comparação</strong></td>
+                <td>Tabela contra 2 a 3 concorrentes</td>
+                <td>Melhora a perceção de imparcialidade</td>
+              </tr>
+              <tr>
+                <td><strong>Texto SEO</strong></td>
+                <td>Conteúdo sóbrio, útil e escaneável</td>
+                <td>Suporta posicionamento sem cansar o utilizador</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="boosts">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <div class="pill">Feature de alto potencial</div>
+            <h2>Secção dedicada a Odds Boosts</h2>
+          </div>
+          <p>Esta secção deve funcionar como um hub de oportunidades do dia. O foco é mostrar boosts ativos por casa, jogo e mercado, sempre com urgência visual e ligação direta à conversão.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <div class="pill">Como deve aparecer</div>
+            <h3>Estrutura ideal da secção</h3>
+            <div class="list">
+              <div class="list-item"><div class="list-no">1</div><div>Label forte: Boost do dia</div></div>
+              <div class="list-item"><div class="list-no">2</div><div>Jogo ou evento em destaque</div></div>
+              <div class="list-item"><div class="list-no">3</div><div>Odd antiga → odd nova</div></div>
+              <div class="list-item"><div class="list-no">4</div><div>Percentagem de aumento e tempo restante</div></div>
+              <div class="list-item"><div class="list-no">5</div><div>Bookmaker + CTA “Apostar agora”</div></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="pill">Onde encaixa melhor</div>
+            <h3>Integração na estratégia global</h3>
+            <div class="list">
+              <div class="list-item"><div class="list-no">A</div><div>Secção própria no menu principal</div></div>
+              <div class="list-item"><div class="list-no">B</div><div>Destaque na homepage por GEO</div></div>
+              <div class="list-item"><div class="list-no">C</div><div>Bloco contextual dentro de predictions</div></div>
+              <div class="list-item"><div class="list-no">D</div><div>Landing pages específicas para campanhas</div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="comparison" style="margin-top:18px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Elemento</th>
+                <th>Implementação recomendada</th>
+                <th>Impacto esperado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Freshness</strong></td>
+                <td>Atualização frequente com boosts ativos e remoção de boosts expirados</td>
+                <td>Mais relevância diária e melhor experiência</td>
+              </tr>
+              <tr>
+                <td><strong>GEO</strong></td>
+                <td>Mostrar apenas boosts disponíveis no país do utilizador</td>
+                <td>Mais trust e maior probabilidade de clique</td>
+              </tr>
+              <tr>
+                <td><strong>Filtros</strong></td>
+                <td>Desporto, competição, bookmaker e tipo de aposta</td>
+                <td>Descoberta mais rápida e UX melhor</td>
+              </tr>
+              <tr>
+                <td><strong>Urgência</strong></td>
+                <td>Tempo restante, badge visual e destaque do ganho percentual</td>
+                <td>Maior pressão para ação imediata</td>
+              </tr>
+              <tr>
+                <td><strong>Conversão</strong></td>
+                <td>CTA direto, tracking e associação a oferta do bookmaker</td>
+                <td>Mais FTDs e melhor leitura de performance</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="geo">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <div class="pill">Core técnico e de negócio</div>
+            <h2>Estratégia GEO</h2>
+          </div>
+          <p>A personalização por país é uma das maiores vantagens competitivas do projeto. Não basta traduzir páginas: é preciso adaptar operadores, ofertas, mensagens, moeda e enquadramento legal.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Conteúdo localizado</h3>
+            <p>Criar páginas e mensagens pensadas para cada mercado. Termos, competições, métodos de pagamento e marcas mais relevantes mudam de país para país.</p>
+          </article>
+          <article class="card">
+            <h3>Ofertas dinâmicas</h3>
+            <p>O ranking deve mudar em função do país, dispositivo, campanha e prioridade comercial. Isto torna o site mais relevante e mais rentável.</p>
+          </article>
+          <article class="card">
+            <h3>Compliance</h3>
+            <p>É necessário respeitar regras locais de gambling e publicidade, tanto no conteúdo como nas landing pages de Paid Media.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="paid">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <div class="pill">Sinergia com performance</div>
+            <h2>Como Paid Media encaixa</h2>
+          </div>
+          <p>O domínio deve servir SEO e Ads, mas não com as mesmas páginas. O ideal é partilhar a autoridade do domínio e criar templates distintos para cada objetivo.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <div class="pill">Google Ads</div>
+            <h3>Mais relevância e melhor intenção</h3>
+            <div class="list">
+              <div class="list-item"><div class="list-no">1</div><div>Keywords transacionais por GEO</div></div>
+              <div class="list-item"><div class="list-no">2</div><div>Landing pages específicas por tema e operador</div></div>
+              <div class="list-item"><div class="list-no">3</div><div>Mensagem mais curta, mais direta e mais focada em CTA</div></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="pill">Meta Ads</div>
+            <h3>UX visual e mobile-first</h3>
+            <div class="list">
+              <div class="list-item"><div class="list-no">1</div><div>Criativos ligados a oferta, jogo ou benefício</div></div>
+              <div class="list-item"><div class="list-no">2</div><div>Páginas rápidas com hierarquia simples</div></div>
+              <div class="list-item"><div class="list-no">3</div><div>Segmentação por país e retargeting por perfil</div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <div class="pill">Boas práticas Google</div>
+            <h2>O que precisa de ser respeitado</h2>
+          </div>
+          <p>Para competir bem e reduzir risco, a estratégia tem de seguir princípios de conteúdo útil, confiança e qualidade técnica.</p>
+        </div>
+
+        <div class="accordion" id="seoAccordion">
+          <div class="acc-item open">
+            <button class="acc-head"><span>Conteúdo útil e original</span><span>−</span></button>
+            <div class="acc-body">Cada página deve ter uma função clara para o utilizador. O objetivo não é publicar muito, é publicar melhor. Menos conteúdo filler e mais informação útil, escaneável e ligada à decisão.</div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><span>E-E-A-T e confiança</span><span>+</span></button>
+            <div class="acc-body">É importante reforçar experiência, especialização e confiança com autorias claras, políticas visíveis, responsible gambling, critérios transparentes e marca sólida.</div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><span>Localização real por mercado</span><span>+</span></button>
+            <div class="acc-body">Não deve existir dependência de tradução automática simples. Cada mercado precisa de adaptação cultural, semântica e comercial.</div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><span>Performance técnica</span><span>+</span></button>
+            <div class="acc-body">O site deve ser rápido, mobile-first, com arquitetura limpa, internal linking forte e templates consistentes para escalar produção sem degradar qualidade.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="roadmap">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <div class="pill">Plano de execução</div>
+            <h2>Prioridades</h2>
+          </div>
+          <p>O projeto deve ser lançado em fases para validar produto, GEO prioritários e templates antes de escalar internacionalmente.</p>
+        </div>
+
+        <div class="roadmap">
+          <article class="step">
+            <strong>Fase 1</strong>
+            <h4>Homepage + rankings GEO</h4>
+            <p>Criar a base do produto e as páginas com maior impacto em SEO e FTD.</p>
+          </article>
+          <article class="step">
+            <strong>Fase 2</strong>
+            <h4>Reviews simplificadas</h4>
+            <p>Lançar páginas de marca curtas, comparáveis e focadas em decisão.</p>
+          </article>
+          <article class="step">
+            <strong>Fase 3</strong>
+            <h4>Predictions</h4>
+            <p>Adicionar conteúdo recorrente para ganhar freshness e tráfego diário.</p>
+          </article>
+          <article class="step">
+            <strong>Fase 4</strong>
+            <h4>Ferramentas prioritárias</h4>
+            <p>Lançar Odds Converter, Value Bet Calculator e uma primeira versão da secção de Odds Boosts.</p>
+          </article>
+          <article class="step">
+            <strong>Fase 5</strong>
+            <h4>Guias estratégicos</h4>
+            <p>Expandir com conteúdo evergreen, integração dos boosts em predictions e otimização contínua de CRO.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="conclusao">
+    <div class="container">
+      <div class="footer-box">
+        <div>
+          <strong>Recomendação final</strong>
+          <div>Devemos construir um affiliate hub premium, geolocalizado e orientado à conversão, combinando rankings, reviews inteligentes, predictions, ferramentas úteis, Odds Boosts e landing pages específicas para Paid Media.</div>
+        </div>
+        <div class="hidden-mobile">
+          <button class="btn btn-primary" data-scroll="#visao">Voltar ao topo</button>
+        </div>
       </div>
     </div>
-  </div>
+  </footer>
 
-  <!-- SCRIPT JS existente -->
   <script>
-    /* Mantive todo o teu script exatamente igual */
+    const offers = {
+      pt: {
+        bonus: {
+          title: 'Portugal · Oferta principal',
+          subtitle: 'Foco em bónus de entrada e facilidade de registo.',
+          tag: 'Ideal para utilizadores focados em oferta inicial',
+          items: [
+            ['Marca A', 'Bónus forte + onboarding simples', 'Prioridade comercial'],
+            ['Marca B', 'Boa experiência mobile e pagamentos rápidos', 'Alternativa segura'],
+            ['Marca C', 'Boa para jogadores recreativos', 'Mais equilibrada']
+          ]
+        },
+        beginner: {
+          title: 'Portugal · Melhor para iniciantes',
+          subtitle: 'Foco em simplicidade, confiança e UX clara.',
+          tag: 'Menos fricção = maior probabilidade de FTD',
+          items: [
+            ['Marca B', 'Interface simples e boa usabilidade', 'Mais intuitiva'],
+            ['Marca A', 'Boa oferta de entrada e navegação clara', 'Bom equilíbrio'],
+            ['Marca C', 'Mercados populares e experiência estável', 'Opção segura']
+          ]
+        },
+        live: {
+          title: 'Portugal · Melhor para live betting',
+          subtitle: 'Foco em mercados ao vivo, rapidez e depth de oferta.',
+          tag: 'Mais relevância para utilizadores ativos',
+          items: [
+            ['Marca C', 'Boa cobertura live e atualização rápida', 'Mais indicada'],
+            ['Marca A', 'Boa oferta em futebol ao vivo', 'Segunda melhor'],
+            ['Marca B', 'Experiência sólida em mobile', 'Boa alternativa']
+          ]
+        }
+      },
+      br: {
+        bonus: {
+          title: 'Brasil · Oferta principal',
+          subtitle: 'Mensagem adaptada ao mercado e foco em aquisição.',
+          tag: 'Oferta e comunicação ajustadas ao GEO',
+          items: [
+            ['Marca X', 'Oferta agressiva e forte awareness', 'Topo do ranking'],
+            ['Marca Y', 'Boa app e pagamentos convenientes', 'Boa alternativa'],
+            ['Marca Z', 'Valor forte para utilizador novo', 'Perfil promo']
+          ]
+        },
+        beginner: {
+          title: 'Brasil · Melhor para iniciantes',
+          subtitle: 'Foco em clareza, confiança e onboarding.',
+          tag: 'Mais simples para começar',
+          items: [
+            ['Marca Y', 'Boa experiência e navegação clara', 'Mais intuitiva'],
+            ['Marca X', 'Boa comunicação e força de marca', 'Alta confiança'],
+            ['Marca Z', 'Bom equilíbrio entre bónus e usabilidade', 'Alternativa']
+          ]
+        },
+        live: {
+          title: 'Brasil · Melhor para live betting',
+          subtitle: 'Foco em rapidez e mercados populares.',
+          tag: 'Ajustado a perfil mais ativo',
+          items: [
+            ['Marca Z', 'Boa performance live e variedade', 'Mais indicada'],
+            ['Marca X', 'Boa cobertura de futebol', 'Forte em volume'],
+            ['Marca Y', 'Mobile consistente', 'Boa segunda escolha']
+          ]
+        }
+      },
+      ca: {
+        bonus: {
+          title: 'Canadá · Oferta principal',
+          subtitle: 'Exemplo de posicionamento por mercado regulado.',
+          tag: 'Conteúdo e oferta adaptados ao contexto local',
+          items: [
+            ['Brand 1', 'Boa proposta promocional e app forte', 'Top pick'],
+            ['Brand 2', 'Experiência estável e bom onboarding', 'Balanced'],
+            ['Brand 3', 'Oferta competitiva para novos utilizadores', 'Promo-led']
+          ]
+        },
+        beginner: {
+          title: 'Canadá · Melhor para iniciantes',
+          subtitle: 'Foco em experiência, clareza e confiança.',
+          tag: 'Recomendação baseada em perfil',
+          items: [
+            ['Brand 2', 'Mais simples de usar', 'Best fit'],
+            ['Brand 1', 'Boa combinação de oferta e UX', 'Strong option'],
+            ['Brand 3', 'Boa alternativa por valor', 'Secondary']
+          ]
+        },
+        live: {
+          title: 'Canadá · Melhor para live betting',
+          subtitle: 'Foco em velocidade e cobertura.',
+          tag: 'Perfil mais avançado',
+          items: [
+            ['Brand 1', 'Boa atualização ao vivo', 'Top live'],
+            ['Brand 3', 'Boa variedade de mercados', 'Depth'],
+            ['Brand 2', 'Experiência estável no mobile', 'Safe option']
+          ]
+        }
+      }
+    };
+
+    let currentCountry = 'pt';
+    let currentProfile = 'bonus';
+
+    function renderOffer() {
+      const data = offers[currentCountry][currentProfile];
+      const box = document.getElementById('offerBox');
+      const list = document.getElementById('offerList');
+      box.querySelector('.offer-title').textContent = data.title;
+      box.querySelectorAll('.small')[1].textContent = data.subtitle;
+      box.querySelector('.offer-tag').textContent = data.tag;
+      list.innerHTML = data.items.map(item => `
+        <div class="offer-item">
+          <div>
+            <strong>${item[0]}</strong>
+            <span>${item[1]}</span>
+          </div>
+          <div class="mini-badge">${item[2]}</div>
+        </div>
+      `).join('');
+    }
+    renderOffer();
+
+    document.querySelectorAll('#countrySwitch .chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#countrySwitch .chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCountry = btn.dataset.country;
+        renderOffer();
+      });
+    });
+
+    document.querySelectorAll('#profileSwitch .chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#profileSwitch .chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentProfile = btn.dataset.profile;
+        renderOffer();
+      });
+    });
+
+    document.querySelectorAll('[data-scroll]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.querySelector(btn.getAttribute('data-scroll'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    document.querySelectorAll('#contentTabs .tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#contentTabs .tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelector(`.tab-panel[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('#seoAccordion .acc-head').forEach(head => {
+      head.addEventListener('click', () => {
+        const item = head.parentElement;
+        item.classList.toggle('open');
+        const sign = head.querySelector('span:last-child');
+        sign.textContent = item.classList.contains('open') ? '−' : '+';
+      });
+    });
+
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = [...navLinks].map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY + 120;
+      let current = sections[0]?.id;
+      sections.forEach(sec => { if (sec.offsetTop <= y) current = sec.id; });
+      navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
+    });
   </script>
 </body>
 </html>
